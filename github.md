@@ -1,14 +1,13 @@
 repo: RensbourroTaki/MordhauZones
-branch: main
+branch: main-/-(root)
 
 ## Last sync
-date: 2026-11-25T12:00:00Z
-
+date: 2026-11-25T20:52:42Z
 ### Updated in this project
-- Repository is empty so far; the website was built from the brief and the uploaded logo
+- Checked repo contents: assets/, uploads/, .image-slots.state.json and .nojekyll still missing upstream
 
 ## Screen map
 | Screen | Repo files |
 |---|---|
-| Mordhau Park.dc.html (v1, single page) | none yet |
-| Mordhau Park v2.dc.html (one page per section) | none yet |
+| Mordhau Zones website (all pages) | Mordhau Park v2.dc.html, support.js, image-slot.js, .image-slots.state.json, assets/logo.png |
+| Redirect | index.html |
