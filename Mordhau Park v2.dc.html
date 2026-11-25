@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Alegreya+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html,body{margin:0;background:#100f0d;color:#ede7db;font-family:'Alegreya Sans',system-ui,sans-serif;font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+a{color:#d2ab55;text-decoration:none}a:hover{color:#ede7db}
+input,textarea,select,button{font-family:inherit;font-size:inherit}
+::selection{background:#a3281f;color:#fff}
+@keyframes mpFloat{0%,100%{transform:translate(-50%,0) rotate(45deg)}50%{transform:translate(-50%,-6px) rotate(45deg)}}
+</style>
+</helmet>
+
+<header style="position:sticky;top:0;z-index:50;background:rgba(16,15,13,.94);backdrop-filter:blur(8px);border-bottom:1px solid #2c2822">
+  <div style="max-width:1280px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+    <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;cursor:pointer;display:flex;align-items:center">
+      <img src="./assets/logo.png" alt="Mordhau Zones" style="height:44px;width:auto;display:block"></img>
+    </button>
+    <nav style="display:flex;flex-wrap:wrap;gap:4px 18px;flex:1;align-items:center;font-size:15px;letter-spacing:.06em;text-transform:uppercase;font-weight:500">
+      <sc-for list="{{ nav }}" as="n" hint-placeholder-count="9">
+        <button onClick="{{ n.go }}" style="background:none;border:0;padding:6px 0;cursor:pointer;color:{{ n.color }};text-transform:uppercase;letter-spacing:.06em;font-weight:500" style-hover="color:#ede7db">{{ n.label }}</button>
+      </sc-for>
+    </nav>
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="display:flex;border:1px solid #3a352d;border-radius:3px;overflow:hidden;font-size:14px;font-weight:700">
+        <button onClick="{{ setEn }}" style="border:0;padding:6px 10px;cursor:pointer;background:{{ enBg }};color:{{ enFg }}">EN</button>
+        <button onClick="{{ setDe }}" style="border:0;padding:6px 10px;cursor:pointer;background:{{ deBg }};color:{{ deFg }}">DE</button>
+      </div>
+      <button onClick="{{ goDonate }}" style="background:#a3281f;color:#fff;border:0;border-radius:3px;padding:9px 18px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.08em;cursor:pointer" style-hover="background:#bd3127">{{ t.donate }}</button>
+    </div>
+  </div>
+</header>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<main data-screen-label="Home">
+
+  <section style="position:relative;min-height:86vh;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid #2c2822">
+    <div style="position:absolute;inset:0"><image-slot id="hero-bg" shape="rect" placeholder="Hero background – Mordhau key art / screenshot"></image-slot></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(16,15,13,.35) 0%,rgba(16,15,13,.88) 75%)"></div>
+    <div style="position:relative;pointer-events:none;max-width:1100px;width:100%;padding:80px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
+      <img src="./assets/logo.png" alt="Mordhau Zones" style="width:100%;max-width:960px;height:auto;filter:drop-shadow(0 12px 30px rgba(0,0,0,.7))"></img>
+      <p style="margin:0;font-family:Cinzel,serif;font-size:clamp(20px,2.6vw,30px);letter-spacing:.12em;color:#d2ab55">MORDHAU ZONES — {{ t.tagline }}</p>
+      <p style="margin:0;max-width:640px;font-size:20px;color:#cfc7b8;text-wrap:pretty">{{ t.heroText }}</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;pointer-events:auto">
+        <button onClick="{{ goHowto }}" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:14px 26px;font-family:Cinzel,serif;font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer" style-hover="background:#e2bf6c">{{ t.ctaJoin }}</button>
+        <button onClick="{{ goZones }}" style="background:rgba(16,15,13,.6);color:#ede7db;border:1px solid #d2ab55;border-radius:3px;padding:14px 26px;font-family:Cinzel,serif;font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer" style-hover="background:#1f1c17">{{ t.ctaZones }}</button>
+      </div>
+      <p style="margin:0;font-size:15px;color:#a9a092;letter-spacing:.08em;text-transform:uppercase">{{ t.heroMeta }}</p>
+    </div>
+  </section>
+  <section style="max-width:1280px;margin:0 auto;padding:72px 24px 100px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px">
+      <sc-for list="{{ tiles }}" as="tl" hint-placeholder-count="6">
+        <button onClick="{{ tl.go }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:24px;color:#ede7db;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px" style-hover="border-color:#d2ab55">
+          <span style="font-family:Cinzel,serif;font-weight:700;font-size:22px">{{ tl.title }}</span>
+          <span style="color:#cfc7b8;font-size:16px">{{ tl.text }}</span>
+          <span style="color:#d2ab55;font-weight:700;font-size:15px;margin-top:6px">→</span>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+  <section style="max-width:1280px;margin:0 auto;padding:0 24px 88px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+      <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3.4vw,40px)">News</h2>
+      <button onClick="{{ goNews }}" style="background:none;border:0;color:#d2ab55;font-weight:700;cursor:pointer;padding:0">{{ t.allNews }}</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <sc-for list="{{ homeNews }}" as="item" hint-placeholder-count="3">
+        <button onClick="{{ item.open }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden;color:#ede7db;cursor:pointer;text-align:left;padding:0;display:flex;flex-direction:column" style-hover="border-color:#d2ab55">
+          <div style="height:170px;width:100%;pointer-events:none"><image-slot id="{{ item.slot }}" shape="rect" placeholder="News image"></image-slot></div>
+          <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:8px">
+            <div style="display:flex;gap:12px;font-size:13px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase"><span style="color:#d2ab55;font-weight:700">{{ item.tag }}</span><span>{{ item.date }}</span></div>
+            <span style="font-family:Cinzel,serif;font-size:20px;font-weight:700;line-height:1.25">{{ item.title }}</span>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+  <section style="max-width:1280px;margin:0 auto;padding:0 24px 88px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px">
+      <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3.4vw,40px)">Zones</h2>
+      <button onClick="{{ goZones }}" style="background:none;border:0;color:#d2ab55;font-weight:700;cursor:pointer;padding:0">{{ t.toMap }}</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px">
+      <sc-for list="{{ zoneList }}" as="z" hint-placeholder-count="8">
+        <button onClick="{{ z.open }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden;color:#ede7db;cursor:pointer;text-align:left;padding:0;display:flex;flex-direction:column" style-hover="border-color:#d2ab55">
+          <div style="height:120px;width:100%;pointer-events:none"><image-slot id="zone-card-{{ z.key }}" shape="rect" placeholder="{{ z.ph }}"></image-slot></div>
+          <div style="padding:14px 16px 16px;display:flex;flex-direction:column;gap:2px">
+            <span style="font-family:Cinzel,serif;font-weight:700;font-size:17px">{{ z.name }}</span>
+            <span style="font-size:14px;color:#a9a092">{{ z.kind }}</span>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </section>
+  <section style="max-width:1280px;margin:0 auto;padding:0 24px 88px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.voteKicker }}</p>
+        <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3.4vw,40px)">VoteBoard</h2>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.voteText }}</p>
+        <button onClick="{{ goVote }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700;align-self:flex-start;margin-top:8px" style-hover="background:#1f1c17">{{ t.toVote }}</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <sc-for list="{{ topVotes }}" as="v" hint-placeholder-count="3">
+          <button onClick="{{ goVote }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;display:flex;align-items:center;gap:16px;padding:16px 20px;color:#ede7db;cursor:pointer;text-align:left" style-hover="border-color:#d2ab55">
+            <span style="font-family:Cinzel,serif;font-weight:900;font-size:24px;color:#6f675b;width:28px">{{ v.rank }}</span>
+            <span style="flex:1;font-weight:700;font-size:19px">{{ v.title }}</span>
+            <span style="font-family:Cinzel,serif;font-weight:900;font-size:20px;color:#d2ab55">▲ {{ v.count }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+  <section style="border-top:1px solid #2c2822;background:#191714">
+    <div style="max-width:1280px;margin:0 auto;padding:64px 24px;display:flex;flex-wrap:wrap;gap:24px 48px;align-items:center;justify-content:space-between">
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3.4vw,40px)">{{ t.joinTitle }}</h2>
+        <p style="margin:0;color:#a9a092;letter-spacing:.06em;text-transform:uppercase;font-size:15px">{{ t.heroMeta }}</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button onClick="{{ goHowto }}" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:13px 24px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.06em;cursor:pointer" style-hover="background:#e2bf6c">{{ t.ctaJoin }}</button>
+        <button onClick="{{ goDonate }}" style="background:#a3281f;color:#fff;border:0;border-radius:3px;padding:13px 24px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.06em;cursor:pointer" style-hover="background:#bd3127">{{ t.donate }}</button>
+      </div>
+    </div>
+  </section>
+</main>
+</sc-if>
+
+<sc-if value="{{ isNews }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="News" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <sc-if value="{{ newsListMode }}" hint-placeholder-val="{{ true }}">
+    <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.newsKicker }}</p>
+    <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">News</h1>
+    <div style="display:flex;gap:6px;flex-wrap:wrap;margin:20px 0 32px">
+      <sc-for list="{{ newsTags }}" as="tg" hint-placeholder-count="4">
+        <button onClick="{{ tg.go }}" style="background:{{ tg.bg }};color:{{ tg.fg }};border:1px solid {{ tg.border }};border-radius:3px;padding:7px 14px;cursor:pointer;font-size:15px;font-weight:700">{{ tg.label }}</button>
+      </sc-for>
+    </div>
+    <button onClick="{{ newsFeat.open }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden;color:#ede7db;cursor:pointer;text-align:left;padding:0;display:flex;flex-wrap:wrap;width:100%;margin-bottom:20px" style-hover="border-color:#d2ab55">
+      <div style="flex:1 1 560px;min-height:340px;pointer-events:none"><image-slot id="{{ newsFeat.slot }}" shape="rect" placeholder="News image"></image-slot></div>
+      <div style="flex:1 1 340px;padding:36px;display:flex;flex-direction:column;gap:14px;justify-content:center">
+        <div style="display:flex;gap:12px;font-size:14px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase"><span style="color:#d2ab55;font-weight:700">{{ newsFeat.tag }}</span><span>{{ newsFeat.date }}</span></div>
+        <span style="font-family:Cinzel,serif;font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15">{{ newsFeat.title }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty">{{ newsFeat.text }}</span>
+        <span style="color:#d2ab55;font-weight:700">{{ t.readMore }}</span>
+      </div>
+    </button>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+      <sc-for list="{{ newsRest }}" as="item" hint-placeholder-count="4">
+        <button onClick="{{ item.open }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden;color:#ede7db;cursor:pointer;text-align:left;padding:0;display:flex;flex-direction:column" style-hover="border-color:#d2ab55">
+          <div style="height:190px;width:100%;pointer-events:none"><image-slot id="{{ item.slot }}" shape="rect" placeholder="News image"></image-slot></div>
+          <div style="padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px">
+            <div style="display:flex;gap:12px;font-size:14px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase"><span style="color:#d2ab55;font-weight:700">{{ item.tag }}</span><span>{{ item.date }}</span></div>
+            <span style="font-family:Cinzel,serif;font-size:22px;font-weight:700;line-height:1.25">{{ item.title }}</span>
+            <span style="color:#cfc7b8;text-wrap:pretty">{{ item.text }}</span>
+          </div>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+  <sc-if value="{{ articleMode }}" hint-placeholder-val="{{ false }}">
+    <div style="max-width:860px;margin:0 auto">
+      <button onClick="{{ newsBack }}" style="background:none;border:0;color:#d2ab55;font-weight:700;cursor:pointer;padding:0;margin-bottom:28px">{{ t.backNews }}</button>
+      <div style="display:flex;gap:12px;font-size:14px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px"><span style="color:#d2ab55;font-weight:700">{{ article.tag }}</span><span>{{ article.date }}</span></div>
+      <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ article.title }}</h1>
+      <p style="margin:0 0 32px;color:#cfc7b8;font-size:21px;text-wrap:pretty">{{ article.text }}</p>
+      <div style="height:420px;margin-bottom:36px"><image-slot id="{{ article.slot }}" shape="rounded" radius="4" placeholder="News image"></image-slot></div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <sc-for list="{{ article.body }}" as="para" hint-placeholder-count="3"><p style="margin:0;color:#ede7db;text-wrap:pretty">{{ para }}</p></sc-for>
+      </div>
+    </div>
+    <h2 style="margin:88px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.moreNews }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+      <sc-for list="{{ moreNews }}" as="item" hint-placeholder-count="3">
+        <button onClick="{{ item.open }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:20px 22px;color:#ede7db;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:8px" style-hover="border-color:#d2ab55">
+          <div style="display:flex;gap:12px;font-size:13px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase"><span style="color:#d2ab55;font-weight:700">{{ item.tag }}</span><span>{{ item.date }}</span></div>
+          <span style="font-family:Cinzel,serif;font-size:20px;font-weight:700;line-height:1.25">{{ item.title }}</span>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+</main>
+</sc-if>
+
+<sc-if value="{{ isMedia }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Media" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.mediaKicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Media</h1>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.mediaIntro }}</p>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">Trailer</h2>
+  <div style="aspect-ratio:16/9;width:100%"><image-slot id="media-main" shape="rounded" radius="4" placeholder="Trailer – video still (video embed goes here)"></image-slot></div>
+  <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">Gallery</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));grid-auto-rows:210px;gap:12px">
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-1" shape="rounded" radius="4" placeholder="Screenshot – Boxing Zone"></image-slot></div><span style="font-size:14px;color:#a9a092">Boxing Zone</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-2" shape="rounded" radius="4" placeholder="Screenshot – Tavern"></image-slot></div><span style="font-size:14px;color:#a9a092">Tavern</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-3" shape="rounded" radius="4" placeholder="Screenshot – Hunting Grounds"></image-slot></div><span style="font-size:14px;color:#a9a092">Hunting Grounds</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-4" shape="rounded" radius="4" placeholder="Screenshot – Cooking with Zombies"></image-slot></div><span style="font-size:14px;color:#a9a092">Cooking with Zombies</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-5" shape="rounded" radius="4" placeholder="Screenshot – Parkour"></image-slot></div><span style="font-size:14px;color:#a9a092">Parkour</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-6" shape="rounded" radius="4" placeholder="Screenshot – Tavern (interior)"></image-slot></div><span style="font-size:14px;color:#a9a092">Tavern</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-7" shape="rounded" radius="4" placeholder="Screenshot – Free Kill Zone"></image-slot></div><span style="font-size:14px;color:#a9a092">Free Kill Zone</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;min-width:0"><div style="flex:1;min-height:0"><image-slot id="media-8" shape="rounded" radius="4" placeholder="Screenshot – Invasion Portal"></image-slot></div><span style="font-size:14px;color:#a9a092">Invasion Portal</span></div>
+  </div>
+  <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">Community Clips</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;justify-content:space-between;margin:-8px 0 20px">
+    <p style="margin:0;max-width:640px;color:#cfc7b8;text-wrap:pretty">{{ t.clipsText }}</p>
+    <button onClick="{{ goContact }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.sendClip }}</button>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
+    <div style="aspect-ratio:16/9"><image-slot id="clip-1" shape="rounded" radius="4" placeholder="Community clip 1"></image-slot></div>
+    <div style="aspect-ratio:16/9"><image-slot id="clip-2" shape="rounded" radius="4" placeholder="Community clip 2"></image-slot></div>
+    <div style="aspect-ratio:16/9"><image-slot id="clip-3" shape="rounded" radius="4" placeholder="Community clip 3"></image-slot></div>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isFeatures }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Features" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.featKicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Features</h1>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.featIntro }}</p>
+  <div style="display:flex;flex-direction:column;gap:72px">
+    <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
+      <div style="display:flex;flex-wrap:wrap;flex-direction:{{ f.dir }};gap:40px;align-items:center">
+        <div style="flex:1 1 460px;height:340px"><image-slot id="feat-{{ f.key }}" shape="rounded" radius="4" placeholder="{{ f.ph }}"></image-slot></div>
+        <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:Cinzel,serif;font-size:18px;color:#d2ab55;font-weight:700">{{ f.n }}</span>
+          <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3vw,38px);line-height:1.15">{{ f.title }}</h2>
+          <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ f.text }}</p>
+          <ul style="margin:0;padding:0 0 0 18px;color:#cfc7b8;display:flex;flex-direction:column;gap:4px">
+            <sc-for list="{{ f.bullets }}" as="b" hint-placeholder-count="3"><li>{{ b }}</li></sc-for>
+          </ul>
+          <button onClick="{{ f.go }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700;align-self:flex-start;margin-top:6px" style-hover="background:#1f1c17">{{ f.cta }}</button>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="margin:96px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.zonesGlance }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px">
+    <sc-for list="{{ zoneList }}" as="z" hint-placeholder-count="8">
+      <button onClick="{{ z.open }}" style="background:#191714;border:1px solid #2c2822;border-radius:3px;padding:14px 12px;color:#ede7db;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:2px" style-hover="border-color:#d2ab55">
+        <span style="font-family:Cinzel,serif;font-weight:700;font-size:16px">{{ z.name }}</span>
+        <span style="font-size:14px;color:#a9a092">{{ z.kind }}</span>
+      </button>
+    </sc-for>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isUpcoming }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Upcoming" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.upKicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Upcoming Features</h1>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.upIntro }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:2px solid #d2ab55"><span style="font-family:Cinzel,serif;font-weight:700;font-size:20px">{{ t.colProgress }}</span></div>
+      <sc-for list="{{ upProgress }}" as="u" hint-placeholder-count="2">
+          <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:Cinzel,serif;color:#d2ab55;font-weight:700;font-size:15px">{{ u.when }}</span>
+            <span style="font-family:Cinzel,serif;font-size:21px;font-weight:700;line-height:1.2">{{ u.title }}</span>
+            <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ u.text }}</span>
+            <div style="display:flex;align-items:center;gap:10px;margin-top:6px"><div style="flex:1;height:4px;background:#2c2822;border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ u.pct }};background:#d2ab55"></div></div><span style="font-size:14px;color:#a9a092">{{ u.pct }}</span></div>
+          </div>
+        </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:2px solid #9cc47a"><span style="font-family:Cinzel,serif;font-weight:700;font-size:20px">{{ t.colPlanned }}</span></div>
+      <sc-for list="{{ upPlanned }}" as="u" hint-placeholder-count="2">
+          <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px">
+            <span style="font-family:Cinzel,serif;color:#d2ab55;font-weight:700;font-size:15px">{{ u.when }}</span>
+            <span style="font-family:Cinzel,serif;font-size:21px;font-weight:700;line-height:1.2">{{ u.title }}</span>
+            <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ u.text }}</span>
+          </div>
+        </sc-for>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:2px solid #a3281f"><span style="font-family:Cinzel,serif;font-weight:700;font-size:20px">{{ t.colReview }}</span></div>
+      <sc-for list="{{ upReview }}" as="u" hint-placeholder-count="2">
+        <button onClick="{{ goVote }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:22px;color:#ede7db;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:8px" style-hover="border-color:#d2ab55">
+          <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#a9a092;font-weight:700">{{ u.zone }}</span>
+          <span style="font-family:Cinzel,serif;font-size:21px;font-weight:700;line-height:1.2">{{ u.title }}</span>
+          <span style="font-family:Cinzel,serif;font-weight:900;color:#d2ab55">▲ {{ u.count }}</span>
+        </button>
+      </sc-for>
+      <button onClick="{{ goVote }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.toVote }}</button>
+    </div>
+  </div>
+  <h2 style="margin:88px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.shipped }}</h2>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
+    <sc-for list="{{ shipped }}" as="sh" hint-placeholder-count="4">
+      <button onClick="{{ sh.open }}" style="display:grid;grid-template-columns:minmax(110px,160px) minmax(0,1fr) auto;gap:20px;align-items:baseline;padding:16px 0;border:0;border-bottom:1px solid #2c2822;background:none;color:#ede7db;cursor:pointer;text-align:left" style-hover="color:#d2ab55">
+        <span style="color:#a9a092;font-size:15px">{{ sh.date }}</span>
+        <span style="font-weight:700;font-size:18px">{{ sh.title }}</span>
+        <span style="color:#9cc47a;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700">{{ t.live }}</span>
+      </button>
+    </sc-for>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isVote }}" hint-placeholder-val="{{ false }}">
+  <section id="voteboard" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+    <div style="display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-end;justify-content:space-between;margin-bottom:32px">
+      <div style="flex:1 1 480px;display:flex;flex-direction:column;gap:12px">
+        <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.voteKicker }}</p>
+        <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.1">VoteBoard</h2>
+        <p style="margin:0;color:#cfc7b8;max-width:720px;text-wrap:pretty">{{ t.voteText }}</p>
+        <p style="margin:0;color:#a9a092;font-size:15px">{{ t.voteNote }}</p>
+      </div>
+      <button onClick="{{ toggleForm }}" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:13px 22px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.06em;cursor:pointer" style-hover="background:#e2bf6c">{{ t.suggest }}</button>
+    </div>
+
+    <sc-if value="{{ showForm }}" hint-placeholder-val="{{ false }}">
+      <form onSubmit="{{ submitIdea }}" style="background:#191714;border:1px solid #d2ab55;border-radius:4px;padding:28px;margin-bottom:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.sgTitle }}<input name="title" required="" maxlength="80" style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db" style-focus="border-color:#d2ab55;outline:none"></input></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.sgZone }}
+          <select name="zone" style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db">
+            <sc-for list="{{ ideaZones }}" as="iz" hint-placeholder-count="9"><option>{{ iz }}</option></sc-for>
+          </select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.sgBy }}<input name="by" style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db" style-focus="border-color:#d2ab55;outline:none"></input></label>
+        <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.sgDesc }}<textarea name="desc" required="" rows="4" style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db;resize:vertical" style-focus="border-color:#d2ab55;outline:none"></textarea></label>
+        <div style="grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap">
+          <button type="submit" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:12px 24px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.06em;cursor:pointer">{{ t.sgSend }}</button>
+          <button type="button" onClick="{{ toggleForm }}" style="background:none;border:1px solid #3a352d;color:#ede7db;border-radius:3px;padding:12px 20px;cursor:pointer">{{ t.sgCancel }}</button>
+        </div>
+      </form>
+    </sc-if>
+
+    <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #2c2822;border-bottom:1px solid #2c2822;margin-bottom:20px">
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <sc-for list="{{ filters }}" as="fl" hint-placeholder-count="4">
+          <button onClick="{{ fl.go }}" style="background:{{ fl.bg }};color:{{ fl.fg }};border:1px solid {{ fl.border }};border-radius:3px;padding:7px 14px;cursor:pointer;font-size:15px;font-weight:700">{{ fl.label }} <span style="opacity:.65;font-weight:400">{{ fl.n }}</span></button>
+        </sc-for>
+      </div>
+      <div style="display:flex;gap:6px;align-items:center;font-size:15px;color:#a9a092">
+        <span>{{ t.sortBy }}</span>
+        <sc-for list="{{ sorts }}" as="so" hint-placeholder-count="2">
+          <button onClick="{{ so.go }}" style="background:none;border:0;border-bottom:2px solid {{ so.line }};color:{{ so.fg }};padding:6px 4px;cursor:pointer;font-weight:700;font-size:15px">{{ so.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ votes }}" as="v" hint-placeholder-count="6">
+        <article style="background:#191714;border:1px solid {{ v.border }};border-radius:4px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:0">
+          <div style="padding:28px 0 28px 28px;font-family:Cinzel,serif;font-weight:900;font-size:30px;color:#6f675b;line-height:1;min-width:64px">{{ v.rank }}</div>
+          <div style="padding:26px 28px;display:flex;flex-direction:column;gap:12px;min-width:0">
+            <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+              <span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:{{ v.stFg }};background:{{ v.stBg }};border-radius:2px;padding:3px 8px">{{ v.statusLabel }}</span>
+              <span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#ede7db;border:1px solid #3a352d;border-radius:2px;padding:2px 8px">{{ v.zone }}</span>
+            </div>
+            <h3 style="margin:0;font-family:Cinzel,serif;font-size:clamp(22px,2.2vw,28px);line-height:1.2">{{ v.title }}</h3>
+            <p style="margin:0;color:#cfc7b8;max-width:820px;text-wrap:pretty">{{ v.desc }}</p>
+            <sc-if value="{{ v.note }}" hint-placeholder-val="{{ false }}">
+              <div style="display:flex;gap:12px;align-items:baseline;background:#100f0d;border:1px solid #2c2822;border-radius:3px;padding:12px 16px;max-width:820px">
+                <span style="flex:none;color:#d2ab55;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase">{{ t.teamNote }}</span>
+                <span style="color:#ede7db;font-size:16px">{{ v.note }}</span>
+              </div>
+            </sc-if>
+            <span style="font-size:14px;color:#8a8275">{{ t.proposedBy }} {{ v.by }} · {{ v.date }}</span>
+          </div>
+          <div style="padding:24px 28px 24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:120px">
+            <button onClick="{{ v.toggle }}" style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:92px;height:92px;border:1px solid {{ v.btnBorder }};background:{{ v.btnBg }};color:{{ v.btnFg }};border-radius:4px;cursor:pointer;line-height:1.1;gap:2px" style-hover="border-color:#d2ab55">
+              <span style="font-size:14px">▲</span>
+              <span style="font-family:Cinzel,serif;font-weight:900;font-size:26px">{{ v.count }}</span>
+              <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase">{{ v.btnLabel }}</span>
+            </button>
+            <div style="width:92px;height:4px;background:#2c2822;border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ v.pct }};background:#d2ab55;transition:width .4s"></div></div>
+          </div>
+        </article>
+      </sc-for>
+      <sc-if value="{{ noVotes }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;padding:40px 0;text-align:center;color:#a9a092">{{ t.noIdeas }}</p>
+      </sc-if>
+    </div>
+  </section>
+</sc-if>
+
+<sc-if value="{{ isDonate }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Donate" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.donKicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Donate</h1>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.donText }}</p>
+  <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:26px 28px;display:flex;flex-direction:column;gap:12px;margin-bottom:56px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
+      <span style="font-family:Cinzel,serif;font-weight:700;font-size:21px">{{ t.goalTitle }}</span>
+      <span style="font-family:Cinzel,serif;font-weight:900;font-size:24px;color:#d2ab55">{{ goalLabel }}</span>
+    </div>
+    <div style="height:10px;background:#2c2822;border-radius:5px;overflow:hidden"><div style="height:100%;width:{{ goalPct }};background:#d2ab55"></div></div>
+    <span style="font-size:15px;color:#a9a092">{{ t.goalNote }}</span>
+  </div>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.monthlyTiers }}</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px">
+      <sc-for list="{{ tiers }}" as="tr" hint-placeholder-count="3">
+        <div style="background:#191714;border:1px solid {{ tr.border }};border-radius:4px;padding:28px 26px;display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px">
+            <h3 style="margin:0;font-family:Cinzel,serif;font-size:24px">{{ tr.name }}</h3>
+            <span style="font-family:Cinzel,serif;font-size:26px;font-weight:700;color:#d2ab55">{{ tr.price }}<span style="font-size:15px;color:#a9a092;font-family:'Alegreya Sans',sans-serif;font-weight:400"> {{ t.perMonth }}</span></span>
+          </div>
+          <ul style="margin:0;padding:0 0 0 18px;color:#cfc7b8;display:flex;flex-direction:column;gap:6px;flex:1">
+            <sc-for list="{{ tr.perks }}" as="p" hint-placeholder-count="3"><li>{{ p }}</li></sc-for>
+          </ul>
+          <button onClick="{{ tr.pick }}" style="background:{{ tr.btnBg }};color:{{ tr.btnFg }};border:1px solid #a3281f;border-radius:3px;padding:12px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.08em;cursor:pointer">{{ tr.cta }}</button>
+        </div>
+      </sc-for>
+    </div>
+    <sc-if value="{{ donateMsg }}" hint-placeholder-val="{{ false }}">
+      <p style="margin:20px 0 0;padding:14px 18px;border:1px solid #d2ab55;border-radius:3px;color:#ede7db;background:#1f1c17">{{ donateMsg }}</p>
+    </sc-if>
+
+  <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.oneTime }}</h2>
+  <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:28px;display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+    <sc-for list="{{ amounts }}" as="am" hint-placeholder-count="4">
+      <button onClick="{{ am.go }}" style="min-width:84px;min-height:52px;background:{{ am.bg }};color:{{ am.fg }};border:1px solid {{ am.border }};border-radius:3px;cursor:pointer;font-family:Cinzel,serif;font-weight:700;font-size:20px">{{ am.label }}</button>
+    </sc-for>
+    <label style="display:flex;align-items:center;gap:8px;color:#a9a092;font-size:15px">{{ t.otherAmount }}<input type="number" min="1" value="{{ giveCustom }}" onChange="{{ onCustom }}" placeholder="€" style="width:110px;background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:13px 12px;color:#ede7db" style-focus="border-color:#d2ab55;outline:none"></input></label>
+    <button onClick="{{ giveOnce }}" style="margin-left:auto;background:#a3281f;color:#fff;border:0;border-radius:3px;padding:15px 26px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.06em;cursor:pointer" style-hover="background:#bd3127">{{ t.donateOnce }}</button>
+  </div>
+  <sc-if value="{{ onceMsg }}" hint-placeholder-val="{{ false }}">
+    <p style="margin:16px 0 0;padding:14px 18px;border:1px solid #d2ab55;border-radius:3px;color:#ede7db;background:#1f1c17">{{ onceMsg }}</p>
+  </sc-if>
+  <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.moneyGoes }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:#2c2822;border:1px solid #2c2822">
+    <sc-for list="{{ moneyUses }}" as="mu" hint-placeholder-count="3">
+      <div style="background:#100f0d;padding:26px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:Cinzel,serif;font-weight:700;font-size:21px">{{ mu.title }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty">{{ mu.text }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">FAQ</h2>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
+    <sc-for list="{{ donFaq }}" as="q" hint-placeholder-count="4">
+      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8">{{ q.a }}</span></div>
+    </sc-for>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isHowto }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="How To" style="max-width:1100px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.howKicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">How To</h1>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.howIntro }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:#2c2822;border:1px solid #2c2822;margin-bottom:72px">
+    <sc-for list="{{ reqs }}" as="rq" hint-placeholder-count="3">
+      <div style="background:#191714;padding:22px 24px;display:flex;flex-direction:column;gap:4px">
+        <span style="display:block;color:#d2ab55;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase">{{ rq.label }}</span>
+        <span style="font-weight:700;font-size:19px">{{ rq.text }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.stepByStep }}</h2>
+  <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid #2c2822">
+    <sc-for list="{{ steps }}" as="s" hint-placeholder-count="5">
+      <li style="display:flex;flex-wrap:wrap;gap:24px 40px;align-items:center;padding:28px 0;border-bottom:1px solid #2c2822">
+        <div style="flex:1 1 340px;display:flex;gap:22px;align-items:flex-start">
+          <span style="font-family:Cinzel,serif;font-weight:900;font-size:48px;color:#d2ab55;line-height:1;width:44px;flex:none">{{ s.n }}</span>
+          <div style="display:flex;flex-direction:column;gap:6px">
+            <span style="font-family:Cinzel,serif;font-weight:700;font-size:24px">{{ s.title }}</span>
+            <span style="color:#cfc7b8;text-wrap:pretty">{{ s.text }}</span>
+          </div>
+        </div>
+        <div style="flex:1 1 380px;height:220px"><image-slot id="howto-{{ s.n }}" shape="rounded" radius="4" placeholder="Screenshot – step {{ s.n }}"></image-slot></div>
+      </li>
+    </sc-for>
+  </ol>
+  <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.firstVisit }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px">
+    <sc-for list="{{ firstTips }}" as="ft" hint-placeholder-count="3">
+      <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:10px">
+        <span style="font-family:Cinzel,serif;font-weight:700;font-size:21px">{{ ft.title }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty;flex:1">{{ ft.text }}</span>
+        <button onClick="{{ ft.go }}" style="background:none;border:0;color:#d2ab55;font-weight:700;cursor:pointer;padding:0;text-align:left">{{ ft.cta }}</button>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.troubleshooting }}</h2>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
+    <sc-for list="{{ trouble }}" as="q" hint-placeholder-count="4">
+      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8">{{ q.a }}</span></div>
+    </sc-for>
+  </div>
+  <button onClick="{{ goContact }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700;margin-top:28px" style-hover="background:#1f1c17">{{ t.stillStuck }}</button>
+</main>
+</sc-if>
+
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="About" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.aboutKicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">About</h1>
+  <div style="display:flex;flex-direction:column;gap:16px;max-width:760px;margin-bottom:64px">
+    <p style="margin:0;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.aboutText }}</p>
+    <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.story1 }}</p>
+    <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.story2 }}</p>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px">
+    <sc-for list="{{ founders }}" as="fd" hint-placeholder-count="2">
+      <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:32px;display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;gap:24px;align-items:center">
+          <image-slot id="founder-{{ $index }}" shape="circle" placeholder="Avatar" style="width:140px;height:140px;flex:none"></image-slot>
+          <div style="display:flex;flex-direction:column;gap:6px;min-width:0">
+            <h2 style="margin:0;font-family:Cinzel,serif;font-size:32px">{{ fd.name }}</h2>
+            <span style="color:#d2ab55;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase">{{ fd.role }}</span>
+          </div>
+        </div>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ fd.text }}</p>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ fd.bio }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <sc-for list="{{ fd.focus }}" as="fc" hint-placeholder-count="3"><span style="font-size:14px;border:1px solid #3a352d;border-radius:2px;padding:4px 10px;color:#ede7db">{{ fc }}</span></sc-for>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="margin:88px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.standFor }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:#2c2822;border:1px solid #2c2822">
+    <sc-for list="{{ values }}" as="vl" hint-placeholder-count="3">
+      <div style="background:#100f0d;padding:28px 26px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:Cinzel,serif;font-size:15px;color:#d2ab55;font-weight:700">{{ vl.n }}</span>
+        <span style="font-family:Cinzel,serif;font-weight:700;font-size:22px">{{ vl.title }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty">{{ vl.text }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:40px">
+    <button onClick="{{ goContact }}" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:13px 24px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.06em;cursor:pointer" style-hover="background:#e2bf6c">{{ t.writeUs }}</button>
+    <button onClick="{{ goVote }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.toVote }}</button>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Contact" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:56px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.contactKicker }}</p>
+      <h1 style="margin:0;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Contact</h1>
+      <p style="margin:0;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.contactText }}</p>
+      <h2 style="margin:28px 0 4px;font-family:Cinzel,serif;font-size:24px">{{ t.beforeWrite }}</h2>
+      <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
+        <sc-for list="{{ contactTips }}" as="ct" hint-placeholder-count="3">
+          <div style="padding:16px 0;border-bottom:1px solid #2c2822;display:flex;flex-direction:column;gap:4px">
+            <span style="display:block;color:#d2ab55;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase">{{ ct.title }}</span>
+            <span style="color:#cfc7b8;text-wrap:pretty">{{ ct.text }}</span>
+          </div>
+        </sc-for>
+      </div>
+      <button onClick="{{ goVote }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700;align-self:flex-start;margin-top:8px" style-hover="background:#1f1c17">{{ t.ideaToVote }}</button>
+    </div>
+    <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+      <div style="background:#191714;border:1px solid #d2ab55;border-radius:4px;padding:36px;display:flex;flex-direction:column;gap:10px">
+        <h3 style="margin:0;font-family:Cinzel,serif;font-size:26px">{{ t.sentTitle }}</h3>
+        <p style="margin:0;color:#cfc7b8">{{ t.sentText }}</p>
+        <button onClick="{{ resetForm }}" style="align-self:flex-start;margin-top:8px;background:none;border:1px solid #3a352d;color:#ede7db;border-radius:3px;padding:10px 16px;cursor:pointer">{{ t.sendAnother }}</button>
+      </div>
+    </sc-if>
+    <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+      <form onSubmit="{{ submit }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.fName }}<input name="name" required="" style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db" style-focus="border-color:#d2ab55;outline:none"></input></label>
+        <label style="display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.fReply }}<input required="" placeholder="{{ t.fReplyPh }}" style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db" style-focus="border-color:#d2ab55;outline:none"></input></label>
+        <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.fTopic }}
+          <select style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db">
+            <sc-for list="{{ topics }}" as="tp" hint-placeholder-count="4"><option>{{ tp }}</option></sc-for>
+          </select>
+        </label>
+        <label style="grid-column:1/-1;display:flex;flex-direction:column;gap:6px;font-size:15px;color:#a9a092">{{ t.fMsg }}<textarea required="" rows="5" style="background:#100f0d;border:1px solid #3a352d;border-radius:3px;padding:12px;color:#ede7db;resize:vertical" style-focus="border-color:#d2ab55;outline:none"></textarea></label>
+        <button type="submit" style="grid-column:1/-1;justify-self:start;background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:13px 28px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.08em;cursor:pointer" style-hover="background:#e2bf6c">{{ t.fSend }}</button>
+      </form>
+    </sc-if>
+  </div>
+</main>
+</sc-if>
+
+<sc-if value="{{ isZones }}" hint-placeholder-val="{{ false }}">
+<div style="position:relative;overflow:hidden">
+<div style="position:absolute;left:0;right:0;top:0;height:1100px;pointer-events:none">
+  <image-slot id="zone-{{ zone.key }}" shape="rect" placeholder=" "></image-slot>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(16,15,13,.45) 0%,rgba(16,15,13,.72) 45%,#100f0d 100%),linear-gradient(to right,rgba(16,15,13,.6) 0%,rgba(16,15,13,0) 50%,rgba(16,15,13,.6) 100%)"></div>
+</div>
+<main data-screen-label="Zones" style="position:relative;max-width:1280px;margin:0 auto;padding:72px 24px 100px">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.guide }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Zones</h1>
+  <p style="margin:0 0 40px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.zonesIntro }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:28px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:6px">
+      <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(4,92px);gap:6px">
+        <sc-for list="{{ mapZones }}" as="z" hint-placeholder-count="7">
+          <button onClick="{{ z.select }}" style="grid-column:{{ z.col }};grid-row:{{ z.row }};background:{{ z.bg }};border:1px solid {{ z.border }};color:{{ z.fg }};border-radius:3px;cursor:pointer;padding:6px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left;min-width:0" style-hover="border-color:#d2ab55">
+            <span style="font-family:Cinzel,serif;font-weight:700;font-size:clamp(9px,1.1vw,15px);line-height:1.15;letter-spacing:-.02em">{{ z.name }}</span>
+            <span style="font-size:clamp(10px,.9vw,12px);opacity:.8;overflow-wrap:anywhere">{{ z.kind }}</span>
+          </button>
+        </sc-for>
+      </div>
+      <div style="position:relative;height:262px">
+        <div style="position:absolute;inset:0;pointer-events:none">
+          <span style="position:absolute;left:65%;top:8px;width:40px;height:14px;transform:translateX(-50%) rotate(-4deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+          <span style="position:absolute;left:63%;top:27px;width:40px;height:14px;transform:translateX(-50%) rotate(3deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+          <span style="position:absolute;left:60%;top:46px;width:40px;height:14px;transform:translateX(-50%) rotate(5deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+          <span style="position:absolute;left:59%;top:65px;width:40px;height:14px;transform:translateX(-50%) rotate(-2deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+          <span style="position:absolute;left:60%;top:84px;width:40px;height:14px;transform:translateX(-50%) rotate(-5deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+          <span style="position:absolute;left:58%;top:103px;width:40px;height:14px;transform:translateX(-50%) rotate(2deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+          <span style="position:absolute;left:55%;top:122px;width:40px;height:14px;transform:translateX(-50%) rotate(4deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+          <span style="position:absolute;left:54%;top:141px;width:40px;height:14px;transform:translateX(-50%) rotate(-3deg);background:#1f1c17;border:1px solid #3a352d;border-radius:3px"></span>
+        </div>
+        <button onClick="{{ portal.select }}" style="position:absolute;left:38%;top:168px;width:30%;min-width:130px;height:84px;background:{{ portal.bg }};border:1px solid {{ portal.border }};color:{{ portal.fg }};border-radius:3px;cursor:pointer;padding:8px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;text-align:left" style-hover="border-color:#d2ab55">
+          <span style="font-family:Cinzel,serif;font-weight:700;font-size:15px;line-height:1.15">{{ portal.name }}</span>
+          <span style="font-size:12px;opacity:.8">{{ portal.kind }}</span>
+        </button>
+      </div>
+      </div>
+      <p style="margin:0;font-size:14px;color:#a9a092">{{ t.mapHint }}</p>
+    </div>
+    <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden">
+      <div style="height:240px"><image-slot id="zone-{{ zone.key }}" shape="rect" placeholder="{{ zone.ph }}"></image-slot></div>
+      <div style="padding:26px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <h2 style="margin:0;font-family:Cinzel,serif;font-size:32px">{{ zone.name }}</h2>
+          <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:{{ zone.tagFg }};background:{{ zone.tagBg }};border-radius:2px;padding:3px 8px">{{ zone.kind }}</span>
+        </div>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ zone.desc }}</p>
+        <ul style="margin:0;padding:0 0 0 18px;color:#cfc7b8;display:flex;flex-direction:column;gap:4px">
+          <sc-for list="{{ zone.acts }}" as="a" hint-placeholder-count="3"><li>{{ a }}</li></sc-for>
+        </ul>
+        <p style="margin:0;padding-top:12px;border-top:1px solid #2c2822;font-size:16px"><span style="color:#d2ab55;font-weight:700">{{ t.earn }}</span> {{ zone.earn }}</p>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:28px;background:#191714;border:1px solid #2c2822;border-radius:4px">
+    <div style="display:flex;flex-wrap:wrap;gap:4px;padding:8px;border-bottom:1px solid #2c2822">
+      <sc-for list="{{ zoneList }}" as="z" hint-placeholder-count="8">
+        <button onClick="{{ z.select }}" style="background:{{ z.tabBg }};color:{{ z.tabFg }};border:0;border-radius:3px;padding:9px 14px;cursor:pointer;font-family:Cinzel,serif;font-weight:700;font-size:15px" style-hover="color:#d2ab55">{{ z.name }}</button>
+      </sc-for>
+    </div>
+    <div style="padding:32px;display:flex;flex-wrap:wrap;gap:40px">
+      <div style="flex:2 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px">
+        <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.details }}</p>
+        <h3 style="margin:0;font-family:Cinzel,serif;font-size:30px">{{ zone.name }}</h3>
+        <sc-for list="{{ zone.details }}" as="para" hint-placeholder-count="2">
+          <p style="margin:0;color:#cfc7b8;max-width:760px;text-wrap:pretty">{{ para }}</p>
+        </sc-for>
+      </div>
+      <div style="flex:1 1 240px;display:flex;flex-direction:column;gap:18px;border-left:1px solid #2c2822;padding-left:28px">
+        <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">{{ t.ruleLbl }}</span><span style="color:#ede7db">{{ zone.rule }}</span></div>
+        <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">{{ t.earn }}</span><span style="color:#ede7db">{{ zone.earn }}</span></div>
+        <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">Type</span><span style="color:#ede7db">{{ zone.kind }}</span></div>
+      </div>
+    </div>
+  </div>
+  <h2 style="margin:80px 0 24px;font-family:Cinzel,serif;font-size:32px">{{ t.allZones }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+    <sc-for list="{{ zoneList }}" as="z" hint-placeholder-count="8">
+      <button onClick="{{ z.selectTop }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden;color:#ede7db;cursor:pointer;text-align:left;padding:0;display:flex;flex-direction:column" style-hover="border-color:#d2ab55">
+        <div style="height:150px;width:100%;pointer-events:none"><image-slot id="zone-card-{{ z.key }}" shape="rect" placeholder="{{ z.ph }}"></image-slot></div>
+        <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px">
+          <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#d2ab55;font-weight:700">{{ z.kind }}</span>
+          <span style="font-family:Cinzel,serif;font-size:22px;font-weight:700">{{ z.name }}</span>
+          <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ z.short }}</span>
+        </div>
+      </button>
+    </sc-for>
+  </div>
+</main>
+</div>
+</sc-if>
+
+<sc-if value="{{ isRules }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Rules" style="max-width:1100px;margin:0 auto;padding:72px 24px 100px">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.guide }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Rules &amp; Feature-Guide</h1>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.rulesIntro }}</p>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.serverRules }}</h2>
+  <ol style="margin:0 0 56px;padding:0;list-style:none;display:flex;flex-direction:column;border-top:1px solid #2c2822">
+    <sc-for list="{{ rules }}" as="r" hint-placeholder-count="6">
+      <li style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:18px 0;border-bottom:1px solid #2c2822">
+        <span style="font-family:Cinzel,serif;font-weight:900;font-size:24px;color:#d2ab55">{{ r.n }}</span>
+        <div><strong style="display:block;font-size:19px">{{ r.title }}</strong><span style="color:#cfc7b8">{{ r.text }}</span></div>
+      </li>
+    </sc-for>
+  </ol>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:56px">
+    <div style="background:#191714;border:1px solid #2c2822;border-top:3px solid #6f9a4e;border-radius:3px;padding:24px 26px">
+      <h3 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:22px;color:#9cc47a">{{ t.yes }}</h3>
+      <ul style="margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;color:#cfc7b8"><sc-for list="{{ doList }}" as="d" hint-placeholder-count="5"><li>{{ d }}</li></sc-for></ul>
+    </div>
+    <div style="background:#191714;border:1px solid #2c2822;border-top:3px solid #a3281f;border-radius:3px;padding:24px 26px">
+      <h3 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:22px;color:#e0675d">{{ t.no }}</h3>
+      <ul style="margin:0;padding:0 0 0 18px;display:flex;flex-direction:column;gap:6px;color:#cfc7b8"><sc-for list="{{ dontList }}" as="d" hint-placeholder-count="5"><li>{{ d }}</li></sc-for></ul>
+    </div>
+  </div>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.penalties }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px">
+    <sc-for list="{{ penalties }}" as="pn" hint-placeholder-count="4">
+      <div style="background:#191714;border:1px solid #2c2822;border-top:3px solid {{ pn.c }};border-radius:3px;padding:20px;display:flex;flex-direction:column;gap:6px">
+        <span style="font-family:Cinzel,serif;font-weight:900;font-size:26px;color:{{ pn.c }};line-height:1">{{ pn.n }}</span>
+        <span style="font-weight:700;font-size:19px">{{ pn.title }}</span>
+        <span style="color:#cfc7b8;font-size:16px">{{ pn.text }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-bottom:56px">
+    <p style="margin:0;color:#cfc7b8;max-width:680px">{{ t.reportText }}</p>
+    <button onClick="{{ goContact }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.reportBtn }}</button>
+  </div>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.zoneRules }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:#2c2822;border:1px solid #2c2822;margin-bottom:56px">
+    <sc-for list="{{ zoneList }}" as="z" hint-placeholder-count="8">
+      <div style="background:#100f0d;padding:20px 22px;display:flex;flex-direction:column;gap:4px">
+        <span style="font-family:Cinzel,serif;font-weight:700;font-size:18px">{{ z.name }}</span>
+        <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#d2ab55;font-weight:700">{{ z.kind }}</span>
+        <span style="color:#cfc7b8;font-size:16px">{{ z.rule }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">Feature-Guide</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px">
+    <sc-for list="{{ guide }}" as="g" hint-placeholder-count="4">
+      <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:24px 26px;display:flex;flex-direction:column;gap:8px">
+        <h3 style="margin:0;font-family:Cinzel,serif;font-size:21px">{{ g.title }}</h3>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ g.text }}</p>
+      </div>
+    </sc-for>
+  </div>
+  <button onClick="{{ goRep }}" style="margin-top:28px;background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.toRep }}</button>
+</main>
+</sc-if>
+
+<sc-if value="{{ isRep }}" hint-placeholder-val="{{ false }}">
+<main data-screen-label="Reputation" style="max-width:1100px;margin:0 auto;padding:72px 24px 100px">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.guide }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">Reputation Guide</h1>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.repIntro }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:64px">
+    <sc-for list="{{ repFlow }}" as="s" hint-placeholder-count="4">
+      <div style="background:#191714;border:1px solid #2c2822;border-top:3px solid {{ s.c }};border-radius:3px;padding:22px 20px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:Cinzel,serif;font-weight:900;font-size:28px;color:{{ s.c }};line-height:1">{{ s.n }}</span>
+        <span style="font-weight:700;font-size:19px">{{ s.title }}</span>
+        <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ s.text }}</span>
+      </div>
+    </sc-for>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;margin-bottom:64px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h2 style="margin:0;font-family:Cinzel,serif;font-size:30px;color:#d2ab55">Reputation Points</h2>
+      <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.repPts }}</p>
+      <div style="height:260px;margin-top:8px"><image-slot id="rep-board" shape="rounded" radius="4" placeholder="Screenshot – in-game highscore board"></image-slot></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <h2 style="margin:0;font-family:Cinzel,serif;font-size:30px;color:#d2ab55">Coins</h2>
+      <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.repCoins }}</p>
+      <div style="height:260px;margin-top:8px"><image-slot id="rep-vending" shape="rounded" radius="4" placeholder="Screenshot – potion vending machine"></image-slot></div>
+    </div>
+  </div>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.earnByZone }}</h2>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822;margin-bottom:64px">
+    <sc-for list="{{ zoneList }}" as="z" hint-placeholder-count="8">
+      <button onClick="{{ z.open }}" style="display:grid;grid-template-columns:minmax(160px,260px) minmax(0,1fr);gap:20px;align-items:baseline;padding:14px 0;border:0;border-bottom:1px solid #2c2822;background:none;color:#ede7db;cursor:pointer;text-align:left" style-hover="color:#d2ab55">
+        <span style="font-family:Cinzel,serif;font-weight:700;font-size:18px">{{ z.name }}</span>
+        <span style="color:#cfc7b8">{{ z.earn }}</span>
+      </button>
+    </sc-for>
+  </div>
+  <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">FAQ</h2>
+  <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
+    <sc-for list="{{ faq }}" as="q" hint-placeholder-count="4">
+      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8">{{ q.a }}</span></div>
+    </sc-for>
+  </div>
+</main>
+</sc-if>
+
+<footer style="border-top:1px solid #2c2822;background:#0b0a09">
+  <div style="max-width:1280px;margin:0 auto;padding:40px 24px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+    <img src="./assets/logo.png" alt="Mordhau Zones" style="height:64px;width:auto"></img>
+    <div style="display:flex;flex-wrap:wrap;gap:8px 20px;font-size:15px">
+      <button onClick="{{ goRules }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">Rules</button>
+      <button onClick="{{ goZones }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">Zones</button>
+      <button onClick="{{ goRep }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">Reputation</button>
+      <button onClick="{{ goContact }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">Contact</button>
+    </div>
+    <p style="margin:0;width:100%;font-size:14px;color:#8a8275">© 2026 Mordhau Zones. {{ t.disclaimer }}</p>
+  </div>
+</footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;defaultLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;en&quot;,&quot;de&quot;],&quot;default&quot;:&quot;en&quot;,&quot;tsType&quot;:&quot;'en'|'de'&quot;},&quot;startPage&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;home&quot;,&quot;zones&quot;,&quot;rules&quot;,&quot;rep&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+const L = (en, de) => ({ __l: 1, en, de });
+const loc = (v, lang) => {
+  if (v && v.__l) return v[lang];
+  if (Array.isArray(v)) return v.map(x => loc(x, lang));
+  if (v && typeof v === 'object') { const o = {}; for (const k in v) o[k] = loc(v[k], lang); return o; }
+  return v;
+};
+
+const T2 = {
+  allNews: L('All news →', 'Alle News →'), toMap: L('To the map →', 'Zur Karte →'), toVote: L('Go to the VoteBoard →', 'Zum VoteBoard →'),
+  joinTitle: L('Ready to join?', 'Bereit zum Joinen?'), readMore: L('Read more →', 'Weiterlesen →'), backNews: L('← All news', '← Alle News'), moreNews: L('More news', 'Weitere News'),
+  mediaIntro: L('Trailer, screenshots from every zone and the best clips from our players.', 'Trailer, Screenshots aus jeder Zone und die besten Clips unserer Spieler.'),
+  clipsText: L('Got a great moment on video? Send us the link and we might feature it here.', 'Du hast einen starken Moment auf Video? Schick uns den Link, vielleicht zeigen wir ihn hier.'),
+  sendClip: L('Send us your clip →', 'Clip einschicken →'),
+  featIntro: L('What makes Mordhau Zones different: one map with everything on it, and systems that make every fight count.', 'Was Mordhau Zones ausmacht: eine Map, auf der alles drauf ist, und Systeme, durch die jeder Kampf zählt.'),
+  zonesGlance: L('Zones at a glance', 'Zonen im Überblick'),
+  upIntro: L('What we’re working on, what’s next, and what the community is pushing for.', 'Woran wir arbeiten, was als Nächstes kommt und wofür die Community votet.'),
+  colProgress: L('In progress', 'In Arbeit'), colPlanned: L('Planned', 'Geplant'), colReview: L('From the VoteBoard', 'Vom VoteBoard'),
+  shipped: L('Recently shipped', 'Zuletzt veröffentlicht'), live: 'Live',
+  goalTitle: L('Server costs this month', 'Serverkosten diesen Monat'), goalNote: L('Example values. We update this every month.', 'Beispielwerte. Wir aktualisieren das jeden Monat.'),
+  monthlyTiers: L('Monthly tiers', 'Monatliche Tiers'), oneTime: L('One-time donation', 'Einmalige Spende'), otherAmount: L('Other amount', 'Anderer Betrag'),
+  donateOnce: L('Donate', 'Spenden'), moneyGoes: L('Where your money goes', 'Wohin dein Geld geht'),
+  howIntro: L('From launching the game to your first fight in under two minutes.', 'Vom Spielstart bis zum ersten Kampf in unter zwei Minuten.'),
+  stepByStep: L('Step by step', 'Schritt für Schritt'), firstVisit: L('Your first visit', 'Dein erster Besuch'), troubleshooting: L('Troubleshooting', 'Probleme lösen'),
+  stillStuck: L('Still stuck? Write us →', 'Immer noch Probleme? Schreib uns →'),
+  story1: L('M4L-73 found AlwaysFun through Mordhau and asked him to produce a music video for him: 3D animation, sci-fi. The video still isn’t finished, and AlwaysFun admits that’s entirely on him, because he always takes on too much.', 'M4L-73 hat AlwaysFun über Mordhau gefunden und ihn gebeten, ein Musikvideo für ihn zu produzieren: 3D-Animation, Sci-Fi. Fertig ist das Video bis heute nicht, und daran ist laut AlwaysFun allein er schuld, weil er sich immer zu viel vornimmt.'),
+  story2: L('Thanks to AI, the two of them teamed up to make their gaming dream real. Now they build Mordhau Zones piece by piece, and you decide on the VoteBoard what comes next. See you in the Tavern.', 'Dank AI haben sich die beiden zusammengetan, um ihren Gaming-Traum zu verwirklichen. Jetzt bauen sie Mordhau Zones Stück für Stück, und was als Nächstes kommt, entscheidest du auf dem VoteBoard mit. Wir sehen uns in der Taverne.'),
+  standFor: L('What we stand for', 'Wofür wir stehen'), writeUs: L('Write us', 'Schreib uns'),
+  beforeWrite: L('Before you write', 'Bevor du schreibst'), ideaToVote: L('Got a feature idea? Post it on the VoteBoard →', 'Feature-Idee? Ab aufs VoteBoard →'),
+  penalties: L('Penalties', 'Strafen'), reportText: L('Saw someone breaking the rules? Report it with name, zone and time.', 'Jemand bricht die Regeln? Melde es mit Name, Zone und Uhrzeit.'), reportBtn: L('Report a player →', 'Spieler melden →'),
+  earnByZone: L('What you earn per zone', 'Was du pro Zone verdienst')
+};
+
+const T = {
+  donate: L('Donate', 'Spenden'),
+  tagline: L('where everything is going on!', 'wo alles los ist!'),
+  heroText: L('One huge modded map, seven zones. Box, hunt, cook with zombies, fight across the parkour or just listen to the bards in the tavern. Every kill and every activity earns you reputation and coins.', 'Eine riesige Mod-Map, sieben Zonen. Boxen, jagen, mit Zombies kochen, auf dem Parkour kämpfen oder einfach den Barden in der Taverne lauschen. Jeder Kill und jede Aktivität bringt dir Reputation und Coins.'),
+  ctaJoin: L('How to join', 'So joinst du'),
+  ctaZones: L('Explore the zones', 'Zonen entdecken'),
+  heroMeta: L('Server type: Modded · Search “Mordhau Zones”', 'Server Type: Modded · Suche „Mordhau Zones“'),
+  newsKicker: L('What’s new', 'Was gibt’s Neues'),
+  mediaKicker: L('Screenshots & clips', 'Screenshots & Clips'),
+  featKicker: L('What you get', 'Was dich erwartet'),
+  upKicker: L('On the roadmap', 'Auf der Roadmap'),
+  voteKicker: L('You decide', 'Du entscheidest'),
+  voteText: L('Tell us what to build next. Upvote the ideas you want most. The ranking updates live and the top entries move onto the roadmap.', 'Sag uns, was wir als Nächstes bauen. Vote für die Ideen, die du am meisten willst. Das Ranking aktualisiert sich live, die Top-Einträge wandern auf die Roadmap.'),
+  voteNote: L('One vote per idea. Click again to take it back.', 'Eine Stimme pro Idee. Nochmal klicken nimmt sie zurück.'),
+  suggest: L('+ Suggest an idea', '+ Idee vorschlagen'),
+  sgTitle: L('Idea title', 'Titel der Idee'), sgZone: L('Zone', 'Zone'), sgBy: L('Your in-game name', 'Dein Ingame-Name'),
+  sgDesc: L('Describe your idea', 'Beschreib deine Idee'), sgSend: L('Submit idea', 'Idee einreichen'), sgCancel: L('Cancel', 'Abbrechen'),
+  sortBy: L('Sort:', 'Sortieren:'), teamNote: L('Team', 'Team'), proposedBy: L('Proposed by', 'Vorgeschlagen von'),
+  noIdeas: L('No ideas in this category yet.', 'Noch keine Ideen in dieser Kategorie.'),
+  donKicker: L('Keep the zones running', 'Halt die Zonen am Laufen'),
+  donText: L('Server hosting and development cost money. If you enjoy Mordhau Zones, you can support us. All perks are cosmetic, no pay-to-win.', 'Hosting und Entwicklung kosten Geld. Wenn dir Mordhau Zones gefällt, kannst du uns unterstützen. Alle Perks sind kosmetisch, kein Pay-to-Win.'),
+  perMonth: L('/ month', '/ Monat'),
+  howKicker: L('Connect to our server', 'Verbinde dich mit unserem Server'),
+  aboutKicker: L('Who’s behind this', 'Wer dahinter steckt'),
+  aboutText: L('Mordhau Zones is built by two players who met through years of playing Mordhau together.', 'Hinter Mordhau Zones stehen zwei Spieler, die sich über jahrelanges gemeinsames Mordhau-Spielen kennengelernt haben.'),
+  contactKicker: L('Get in touch', 'Schreib uns'),
+  contactText: L('Questions, bug reports, ideas or a ban appeal? Drop us a message and we’ll get back to you.', 'Fragen, Bugs, Ideen oder ein Entbannungsantrag? Schreib uns und wir melden uns.'),
+  fName: L('Name / in-game name', 'Name / Ingame-Name'),
+  fReply: L('How can we reach you?', 'Wie erreichen wir dich?'),
+  fReplyPh: L('Discord, Steam or email', 'Discord, Steam oder E-Mail'),
+  fTopic: L('Topic', 'Thema'),
+  fMsg: L('Message', 'Nachricht'),
+  fSend: L('Send message', 'Nachricht senden'),
+  sentTitle: L('Message sent', 'Nachricht gesendet'),
+  sentText: L('Thanks! We’ll get back to you soon.', 'Danke! Wir melden uns bald.'),
+  sendAnother: L('Send another', 'Noch eine senden'),
+  guide: L('Guide', 'Guide'),
+  zonesIntro: L('Mordhau Zones is one big modded map split into seven zones. The Tavern sits in the middle, everything else is a short walk away. Pick a zone on the map to see what happens there.', 'Mordhau Zones ist eine große Mod-Map, aufgeteilt in sieben Zonen. Die Taverne liegt in der Mitte, alles andere ist nur ein paar Schritte entfernt. Wähl eine Zone auf der Karte, um zu sehen, was dort passiert.'),
+  mapHint: L('Schematic overview, not to scale.', 'Schematische Übersicht, nicht maßstabsgetreu.'),
+  earn: L('Earns:', 'Bringt:'),
+  details: L('Zone details', 'Zonen-Details'),
+  ruleLbl: L('Zone rule', 'Zonenregel'),
+  allZones: L('All zones', 'Alle Zonen'),
+  rulesIntro: L('Keep it fair and keep it fun. These rules apply everywhere on the server, plus a few zone-specific ones.', 'Fair bleiben, Spaß haben. Diese Regeln gelten überall auf dem Server, dazu kommen ein paar zonenspezifische.'),
+  serverRules: L('Server rules', 'Serverregeln'),
+  yes: L('Go for it', 'Ausdrücklich erwünscht'),
+  no: L('Not on our server', 'Nicht bei uns'),
+  zoneRules: L('Zone rules', 'Zonenregeln'),
+  toRep: L('How reputation works →', 'So funktioniert Reputation →'),
+  repIntro: L('Kills and zone activities earn you two things: Reputation Points and Coins. Reputation shows how good you are, coins are what you spend.', 'Kills und Zonen-Aktivitäten bringen dir zwei Dinge: Reputation Points und Coins. Reputation zeigt, wie gut du bist, Coins gibst du aus.'),
+  repPts: L('Reputation Points are tracked per zone. Every zone has its own highscore board in the map, showing the ranking list of the best players in that zone. Duel well and you climb the Duel board, hunt well and you climb the Hunting Grounds board.', 'Reputation Points werden pro Zone gezählt. Jede Zone hat ihr eigenes Highscore-Board in der Map, mit der Rangliste der besten Spieler dieser Zone. Wer gut duelliert, steigt im Duel-Board, wer gut jagt, im Hunting-Grounds-Board.'),
+  repCoins: L('Coins are spent at vending machines around the map. They sell special potions. Potions stack in your inventory and you can equip one like a weapon and trigger it whenever you want.', 'Coins gibst du an Vending Machines auf der Map aus. Dort gibt es spezielle Potions. Potions lassen sich im Inventar stacken, und du kannst sie wie eine Waffe ausrüsten und auslösen, wann immer du willst.'),
+  disclaimer: L('Community server. Not affiliated with Triternion. MORDHAU is a trademark of its respective owner.', 'Community-Server. Nicht mit Triternion verbunden. MORDHAU ist eine Marke des jeweiligen Inhabers.')
+};
+
+const ZONES = [
+  { key: 'tavern', name: 'Tavern', col: '3 / 5', row: '1 / 4', pvp: 'safe',
+    kind: L('Bards & Games', 'Bards & Games'),
+    short: L('The heart of the map. Bards, music, dice and darts.', 'Das Herz der Map. Barden, Musik, Würfel und Darts.'),
+    desc: L('The Tavern is the hub in the middle of the map and a safe zone. Listen to the bards, play tavern games and visit the vending machines before heading out.', 'Die Taverne ist der Hub in der Mitte der Map und eine Safe Zone. Lausch den Barden, spiel Tavernenspiele und besuch die Vending Machines, bevor es losgeht.'),
+    acts: [L('Bards and music', 'Barden und Musik'), L('Dice and darts', 'Würfel und Darts'), L('Potion vending machines', 'Potion-Vending-Machines')],
+    earn: L('Coins from tavern games', 'Coins aus Tavernenspielen'),
+    rule: L('No combat. Weapons stay sheathed.', 'Kein Kampf. Waffen bleiben stecken.') },
+  { key: 'boxing', name: 'Boxing Zone', col: '5 / 6', row: '1 / 4', pvp: 'pvp',
+    kind: L('1v1 PvP', '1v1 PvP'),
+    short: L('Step into the ring. Fists only, one on one.', 'Rein in den Ring. Nur Fäuste, eins gegen eins.'),
+    desc: L('A proper boxing arena next to the Tavern. Fists only, one opponent, the crowd watching. The best fighters end up on the Boxing Zone highscore board.', 'Ein echter Boxring neben der Taverne. Nur Fäuste, ein Gegner, das Publikum schaut zu. Die besten Kämpfer landen auf dem Boxing-Zone-Highscore-Board.'),
+    acts: [L('1v1 boxing matches', '1v1-Boxkämpfe'), L('Boxing Zone highscore board', 'Boxing-Zone-Highscore-Board')],
+    earn: L('Reputation and coins per win', 'Reputation und Coins pro Sieg'),
+    rule: L('Fists only. Never step into someone else’s fight.', 'Nur Fäuste. Niemals in fremde Kämpfe eingreifen.') },
+  { key: 'hunting', name: 'Hunting Grounds', col: '1 / 3', row: '1 / 3', pvp: 'pvp',
+    kind: L('Stealth PvP', 'Stealth PvP'),
+    short: L('Stealth play in complex terrain. Hide, climb, strike.', 'Stealth-Play in komplexem Gelände. Verstecken, klettern, zuschlagen.'),
+    desc: L('Complex terrain with lots of verticality, hiding spots and secret passages. Stalk your prey, stay unseen and strike first. All weapons and the toolbox are allowed.', 'Komplexes Gelände mit viel Vertikalität, Verstecken und Schlupflöchern. Pirsch dich an, bleib unentdeckt und schlag zuerst zu. Alle Waffen und die Toolbox sind erlaubt.'),
+    acts: [L('Stealth hunting', 'Stealth-Jagd'), L('Hiding spots and secret passages', 'Verstecke und Schlupflöcher'), L('All weapons and toolbox allowed', 'Alle Waffen und Toolbox erlaubt'), L('Hunting Grounds highscore board', 'Hunting-Grounds-Highscore-Board')],
+    earn: L('Reputation and coins per kill', 'Reputation und Coins pro Kill'),
+    rule: L('All weapons and the toolbox are allowed.', 'Alle Waffen und die Toolbox sind erlaubt.') },
+  { key: 'zombies', name: 'Cooking with Zombies', col: '1 / 3', row: '3 / 5', pvp: 'pve',
+    kind: L('Horde & Activity', 'Horde & Aktivität'),
+    short: L('Co-op for two: one cooks, one gardens. The finished dish becomes your weapon against the horde.', 'Koop zu zweit: einer kocht, einer gärtnert. Das fertige Gericht wird zur Waffe gegen die Horde.'),
+    desc: L('One player cooks, the other fetches ingredients from the garden and keeps new crops growing. Once a dish is done it turns into a weapon, so you can take down the zombie horde in time.', 'Einer kocht, der andere holt die Zutaten aus dem Garten und sorgt für neuen Anbau. Ist ein Gericht fertig, wird es zur schlagfertigen Waffe, damit ihr die Zombie-Horde rechtzeitig umbringen könnt.'),
+    acts: [L('Cook dishes that become weapons', 'Gerichte kochen, die zu Waffen werden'), L('Harvest and replant the garden', 'Garten ernten und neu anbauen'), L('Up to 6 players: 3 sections with 2 players each', 'Bis zu 6 Spieler: 3 Abschnitte mit je 2 Spielern'), L('Own highscore board with player display per section', 'Eigenes Highscore-Board mit Spieleranzeige pro Abschnitt')],
+    earn: L('Reputation and coins per zombie kill', 'Reputation und Coins pro Zombie-Kill'),
+    rule: L('Two players per cooking section, six in total.', 'Zwei Spieler pro Koch-Abschnitt, sechs insgesamt.') },
+  { key: 'parkour', name: 'Parkour', col: '6 / 7', row: '1 / 4', pvp: 'pvp',
+    kind: L('Death Match', 'Death Match'),
+    short: L('Obstacles, traps and moving platforms. Free deathmatch on the course.', 'Hindernisse, Fallen und Moving Platforms. Free Deathmatch auf dem Parcours.'),
+    desc: L('Parkour courses full of obstacles, traps and moving platforms, combined with a free deathmatch. Keep your footing while everyone else tries to knock you off.', 'Parcours voller Hindernisse, Fallen und Moving Platforms, kombiniert mit Free Deathmatch. Halt dich auf den Beinen, während alle anderen versuchen, dich runterzuholen.'),
+    acts: [L('Obstacles, traps and moving platforms', 'Hindernisse, Fallen und Moving Platforms'), L('Free deathmatch on the course', 'Free Deathmatch auf dem Parcours'), L('Parkour highscore board', 'Parkour-Highscore-Board')],
+    earn: L('Reputation and coins per kill and finished run', 'Reputation und Coins pro Kill und geschafftem Lauf'),
+    rule: L('Combat allowed. Anything goes on the course.', 'Kampf erlaubt. Auf dem Parcours ist alles erlaubt.') },
+  { key: 'fkz', name: 'Free Kill Zone', col: '3 / 7', row: '4 / 5', pvp: 'pvp',
+    kind: L('Deathmatch', 'Deathmatch'),
+    short: L('Free for all. Everyone is fair game.', 'Jeder gegen jeden. Alle sind Freiwild.'),
+    desc: L('Deathmatch. Everyone against everyone, anything goes inside the zone. Step in only if you’re ready.', 'Deathmatch. Jeder gegen jeden, innerhalb der Zone ist alles erlaubt. Rein nur, wenn du bereit bist.'),
+    acts: [L('Free-for-all deathmatch', 'Free-for-all-Deathmatch'), L('Kill highscore board', 'Kill-Highscore-Board')],
+    earn: L('Reputation and coins per kill', 'Reputation und Coins pro Kill'),
+    rule: L('Anything goes, but only inside the zone.', 'Alles erlaubt, aber nur innerhalb der Zone.') },
+  { key: 'portal', name: 'Invasion Portal', pvp: 'pvp',
+    kind: L('Invasion', 'Invasion'),
+    short: L('Far out at the edge of the map. Follow the path and step through.', 'Weit draußen am Rand der Map. Folg dem Pfad und tritt hindurch.'),
+    desc: L('Far from the Tavern, at the end of a winding path, the Invasion Portal waits. Step through to take part in invasions.', 'Weit weg von der Taverne, am Ende eines verschlungenen Pfads, wartet das Invasion Portal. Tritt hindurch und nimm an Invasionen teil.'),
+    acts: [L('Invasion events', 'Invasions-Events'), L('Invasion highscore board', 'Invasion-Highscore-Board')],
+    earn: L('Reputation and coins per invasion', 'Reputation und Coins pro Invasion'),
+    rule: L('Follow the rules announced at the portal.', 'Halte dich an die Regeln, die am Portal angesagt werden.') }
+];
+
+const DETAILS = {
+  tavern: L(['The Tavern is where every session starts. Bards play, players gather around the tables for dice and darts, and the vending machines sell potions for your coins.', 'Weapons stay sheathed here. Use the Tavern to meet your group, plan your next zone and check the highscore boards.'], ['In der Taverne beginnt jede Session. Barden spielen, an den Tischen wird gewürfelt und Darts geworfen, und die Vending Machines verkaufen Potions gegen Coins.', 'Waffen bleiben hier stecken. Nutz die Taverne, um deine Gruppe zu treffen, die nächste Zone zu planen und die Highscore-Boards zu checken.']),
+  boxing: L(['Two fighters, one ring, no weapons. Step in, touch gloves and fight until one of you goes down.', 'Every win adds to your reputation on the Boxing Zone highscore board.'], ['Zwei Kämpfer, ein Ring, keine Waffen. Rein, abklatschen und kämpfen, bis einer am Boden liegt.', 'Jeder Sieg zählt auf dem Boxing-Zone-Highscore-Board.']),
+  hunting: L(['The Hunting Grounds are built for stealth. Complex terrain with lots of verticality, hiding spots and secret passages lets you stalk other players and strike before they see you.', 'All weapons are allowed and so is the toolbox, so build your own cover and traps. Every kill moves you up the Hunting Grounds board.'], ['Die Hunting Grounds sind für Stealth gebaut. Komplexes Gelände mit viel Vertikalität, Verstecken und Schlupflöchern lässt dich andere Spieler anpirschen und zuschlagen, bevor sie dich sehen.', 'Alle Waffen sind erlaubt, die Toolbox auch, also bau dir eigene Deckung und Fallen. Jeder Kill bringt dich im Hunting-Grounds-Board nach oben.']),
+  zombies: L(['Cooking with Zombies is a co-op game loop for two. One player cooks. When the dish is finished it turns into a weapon, and you need it to take down the zombie horde before it overruns you. The second player fetches ingredients from the garden and keeps new crops growing.', 'The zone is split into three cooking sections with two players each, so up to six players can play at once. Every cooking section has its own highscore board with player display.'], ['Cooking with Zombies ist ein Koop-Gameloop zu zweit. Einer kocht. Ist das Gericht fertig, wird es zur schlagfertigen Waffe, und die braucht ihr, um die Zombie-Horde rechtzeitig umzubringen. Der Zweite holt die Zutaten aus dem Garten und sorgt für neuen Anbau.', 'Die Zone ist in drei Koch-Abschnitte für je zwei Spieler unterteilt, insgesamt können also bis zu sechs Spieler gleichzeitig spielen. Jeder Koch-Abschnitt hat eigene Highscores mit Spieleranzeige.']),
+  parkour: L(['Parkour courses with obstacles, traps, moving platforms and more, played as a free deathmatch. Run, jump and climb while other players try to take you out.', 'Finishing runs and landing kills both earn reputation on the Parkour board.'], ['Parcours mit Hindernissen, Fallen, Moving Platforms und mehr, gespielt als Free Deathmatch. Renn, spring und kletter, während andere Spieler versuchen, dich auszuschalten.', 'Geschaffte Läufe und Kills bringen beide Reputation auf dem Parkour-Board.']),
+  fkz: L(['The Free Kill Zone is a deathmatch area. Everyone fights everyone and anything goes, as long as you stay inside the zone.', 'Every kill counts for reputation and coins on the kill board.'], ['Die Free Kill Zone ist ein Deathmatch-Bereich. Jeder kämpft gegen jeden und alles ist erlaubt, solange du in der Zone bleibst.', 'Jeder Kill zählt für Reputation und Coins auf dem Kill-Board.']),
+  portal: L(['The Invasion Portal sits far out from the rest of the map. Follow the marked path to reach it.', 'Step through the portal to take part in invasions. Rewards are reputation and coins per invasion.'], ['Das Invasion Portal liegt weit draußen, abseits vom Rest der Map. Folg dem markierten Pfad, um es zu erreichen.', 'Tritt durch das Portal und nimm an Invasionen teil. Pro Invasion gibt es Reputation und Coins.'])
+};
+
+const TILES = [
+  ['zones', 'Zones', L('Seven zones on one map', 'Sieben Zonen auf einer Map')],
+  ['howto', 'How To', L('Connect to our server in five steps', 'In fünf Schritten auf unseren Server')],
+  ['vote', 'VoteBoard', L('Vote for what we build next', 'Vote, was wir als Nächstes bauen')],
+  ['news', 'News', L('Latest updates from Mordhau Zones', 'Neues aus Mordhau Zones')],
+  ['rules', 'Rules & Feature-Guide', L('What’s allowed, what isn’t, and how things work', 'Was erlaubt ist, was nicht, und wie alles funktioniert')],
+  ['rep', 'Reputation Guide', L('Reputation points, coins and potions', 'Reputation Points, Coins und Potions')]
+];
+
+const NEWS = [
+  { id: 'launch', slot: 'news-0', date: '2026-11-20', tag: L('Launch', 'Launch'), title: L('Mordhau Zones opens its gates', 'Mordhau Zones öffnet die Tore'),
+    text: L('The server is live. Seven zones, one map. Come in, look around and tell us what you think.', 'Der Server ist live. Sieben Zonen, eine Map. Komm rein, schau dich um und sag uns, was du denkst.'),
+    body: L(['After months of building and testing, Mordhau Zones is open. Set the server type to Modded, search for Mordhau Zones and join. The mod downloads automatically on your first visit.', 'You start in the Tavern. From there every zone is a short walk away: Boxing Zone, Hunting Grounds, Cooking with Zombies, Parkour, the Free Kill Zone and, far out at the end of the bridge, the Invasion Portal.', 'Found a bug or have an idea? Use the contact form or put it on the VoteBoard.'], ['Nach Monaten voller Bauen und Testen ist Mordhau Zones offen. Stell den Server Type auf Modded, such nach Mordhau Zones und join. Die Mod lädt beim ersten Besuch automatisch.', 'Du startest in der Taverne. Von dort ist jede Zone nur ein paar Schritte entfernt: Boxing Zone, Hunting Grounds, Cooking with Zombies, Parkour, die Free Kill Zone und, weit draußen am Ende der Brücke, das Invasion Portal.', 'Bug gefunden oder eine Idee? Nutz das Kontaktformular oder stell sie aufs VoteBoard.']) },
+  { id: 'hunting', slot: 'news-3', date: '2026-11-17', tag: L('Zones', 'Zonen'), title: L('Hunting Grounds: built for stealth', 'Hunting Grounds: gebaut für Stealth'),
+    text: L('Complex terrain, lots of verticality, hiding spots and secret passages. All weapons and the toolbox are allowed.', 'Komplexes Gelände, viel Vertikalität, Verstecke und Schlupflöcher. Alle Waffen und die Toolbox sind erlaubt.'),
+    body: L(['The Hunting Grounds are now a full stealth zone. Climb, hide and use the secret passages to get the drop on other players.', 'All weapons are allowed and so is the toolbox. Every kill counts on the Hunting Grounds highscore board.'], ['Die Hunting Grounds sind jetzt eine vollwertige Stealth-Zone. Kletter, versteck dich und nutz die Schlupflöcher, um andere Spieler zu überraschen.', 'Alle Waffen sind erlaubt, die Toolbox auch. Jeder Kill zählt auf dem Hunting-Grounds-Highscore-Board.']) },
+  { id: 'boards', slot: 'news-1', date: '2026-11-14', tag: L('Zones', 'Zonen'), title: L('Highscore boards in every zone', 'Highscore-Boards in jeder Zone'),
+    text: L('Every zone now has its own ranking list. Your reputation points finally count for something.', 'Jede Zone hat jetzt ihre eigene Rangliste. Deine Reputation Points zählen endlich was.'),
+    body: L(['Reputation points are tracked per zone, and each zone now shows its ranking list on a highscore board inside the map.', 'Cooking with Zombies goes one step further: every cooking section has its own board with player display.'], ['Reputation Points werden pro Zone gezählt, und jede Zone zeigt ihre Rangliste jetzt auf einem Highscore-Board in der Map.', 'Cooking with Zombies geht noch weiter: Jeder Koch-Abschnitt hat sein eigenes Board mit Spieleranzeige.']) },
+  { id: 'cooking', slot: 'news-4', date: '2026-11-11', tag: L('Zones', 'Zonen'), title: L('Cooking with Zombies is open', 'Cooking with Zombies ist offen'),
+    text: L('One cooks, one gardens, the finished dish becomes your weapon against the horde.', 'Einer kocht, einer gärtnert, das fertige Gericht wird zur Waffe gegen die Horde.'),
+    body: L(['Cooking with Zombies is a co-op loop for two. One player cooks, the other fetches ingredients from the garden and replants. Finished dishes turn into weapons against the zombie horde.', 'The zone has three sections with two players each, so up to six can play at once.'], ['Cooking with Zombies ist ein Koop-Loop zu zweit. Einer kocht, der andere holt Zutaten aus dem Garten und baut neu an. Fertige Gerichte werden zu Waffen gegen die Zombie-Horde.', 'Die Zone hat drei Abschnitte für je zwei Spieler, es können also bis zu sechs gleichzeitig spielen.']) },
+  { id: 'vote', slot: 'news-2', date: '2026-11-08', tag: L('Community', 'Community'), title: L('The VoteBoard is open', 'Das VoteBoard ist offen'),
+    text: L('You decide what we build next. Head to the VoteBoard and push your favourite ideas up.', 'Du entscheidest, was wir als Nächstes bauen. Ab zum VoteBoard und vote deine Lieblingsideen nach oben.'),
+    body: L(['The VoteBoard is where the roadmap starts. Upvote the ideas you want, suggest your own, and we’ll pick from the top of the list.', 'We add a short team note to ideas we’re looking into, so you can see where things stand.'], ['Auf dem VoteBoard beginnt die Roadmap. Vote für die Ideen, die du willst, schlag eigene vor, und wir wählen von oben aus der Liste.', 'Zu Ideen, die wir prüfen, schreiben wir eine kurze Team-Notiz, damit du siehst, wo sie stehen.']) }
+];
+
+const FEATURES = [
+  { n: 'I', key: 'zones', page: 'zones', ph: 'Map overview / zone collage', cta: L('Explore the zones →', 'Zonen entdecken →'),
+    title: L('One map, seven zones', 'Eine Map, sieben Zonen'),
+    text: L('Tavern, Boxing Zone, Hunting Grounds, Cooking with Zombies, Parkour, Free Kill Zone and the Invasion Portal. No server hopping.', 'Tavern, Boxing Zone, Hunting Grounds, Cooking with Zombies, Parkour, Free Kill Zone und das Invasion Portal. Kein Server-Hopping.'),
+    bullets: [L('Tavern hub in the middle', 'Taverne als Hub in der Mitte'), L('PvP, PvE and co-op zones side by side', 'PvP-, PvE- und Koop-Zonen nebeneinander'), L('Each zone with its own rules', 'Jede Zone mit eigenen Regeln')] },
+  { n: 'II', key: 'rep', page: 'rep', ph: 'In-game highscore board', cta: L('Reputation Guide →', 'Reputation Guide →'),
+    title: L('Reputation & highscores', 'Reputation & Highscores'),
+    text: L('Kills and activities earn reputation points. Each zone shows its own ranking list in-game.', 'Kills und Aktivitäten bringen Reputation Points. Jede Zone zeigt ingame ihre eigene Rangliste.'),
+    bullets: [L('Reputation tracked per zone', 'Reputation pro Zone'), L('Highscore board in every zone', 'Highscore-Board in jeder Zone'), L('Player display in Cooking with Zombies', 'Spieleranzeige bei Cooking with Zombies')] },
+  { n: 'III', key: 'coins', page: 'rep', ph: 'Potion vending machine', cta: L('How coins work →', 'So funktionieren Coins →'),
+    title: L('Coins & potions', 'Coins & Potions'),
+    text: L('Spend coins at vending machines on stackable potions you equip and trigger like a weapon.', 'Gib Coins an Vending Machines für stackbare Potions aus, die du wie eine Waffe ausrüstest und auslöst.'),
+    bullets: [L('Coins from kills and activities', 'Coins aus Kills und Aktivitäten'), L('Vending machines around the map', 'Vending Machines auf der ganzen Map'), L('Potions stack and trigger on demand', 'Potions stacken und lösen auf Wunsch aus')] },
+  { n: 'IV', key: 'vote', page: 'vote', ph: 'Community / VoteBoard', cta: L('Go to the VoteBoard →', 'Zum VoteBoard →'),
+    title: L('Built with the community', 'Mit der Community gebaut'),
+    text: L('The VoteBoard decides what comes next. Your votes shape the roadmap.', 'Das VoteBoard entscheidet, was als Nächstes kommt. Deine Votes formen die Roadmap.'),
+    bullets: [L('Suggest your own ideas', 'Eigene Ideen vorschlagen'), L('Live ranking', 'Live-Ranking'), L('Team notes on reviewed ideas', 'Team-Notizen zu geprüften Ideen')] }
+];
+
+const UPCOMING = [
+  { stage: 'progress', pct: '60%', when: 'Q1 2027', title: L('Seasonal leaderboards', 'Saisonale Ranglisten'), text: L('Highscore boards reset each season, with the top players remembered in the Tavern.', 'Highscore-Boards starten jede Saison neu, die Besten werden in der Taverne verewigt.') },
+  { stage: 'progress', pct: '30%', when: 'Q1 2027', title: L('More potions', 'Mehr Potions'), text: L('New potion types for the vending machines.', 'Neue Potion-Sorten für die Vending Machines.') },
+  { stage: 'planned', when: 'Q2 2027', title: L('Weekly tournaments', 'Wöchentliche Turniere'), text: L('Bracket tournaments in the Boxing Zone every week.', 'Jede Woche Turniere mit Turnierbaum in der Boxing Zone.') },
+  { stage: 'planned', when: '2027', title: L('Clan halls', 'Clan-Hallen'), text: L('Voted in by the community. Rooms above the Tavern for clans.', 'Von der Community gewählt. Räume über der Taverne für Clans.') }
+];
+
+const VSTATUS = {
+  new: [L('New', 'Neu'), '#ede7db', '#3a352d'],
+  open: [L('Open for votes', 'Offen für Votes'), '#ede7db', '#3a352d'],
+  review: [L('Under review', 'In Prüfung'), '#100f0d', '#d2ab55'],
+  planned: [L('Planned', 'Geplant'), '#100f0d', '#9cc47a']
+};
+const VOTES = [
+  { id: 'joust', base: 142, status: 'review', zone: L('New zone', 'Neue Zone'), by: 'SirLancelittle', date: '2026-11-09',
+    title: L('Jousting arena', 'Tjost-Arena'),
+    desc: L('A tilt yard with horses and lances. Two riders charge at each other, best of three passes wins.', 'Eine Tjostbahn mit Pferden und Lanzen. Zwei Reiter galoppieren aufeinander zu, wer zwei von drei Durchgängen gewinnt, siegt.'),
+    note: L('We’re checking how well horses work on the map.', 'Wir prüfen gerade, wie gut Pferde auf der Map funktionieren.') },
+  { id: 'clan', base: 121, status: 'planned', zone: 'Tavern', by: 'Brother Ale', date: '2026-11-10',
+    title: L('Clan halls', 'Clan-Hallen'),
+    desc: L('Rooms above the Tavern that clans can claim, with their banner on the door and their members’ scores on the wall.', 'Räume über der Taverne, die Clans beanspruchen können, mit eigenem Banner an der Tür und den Scores der Mitglieder an der Wand.'),
+    note: L('On the roadmap for 2027.', 'Für 2027 auf der Roadmap.') },
+  { id: 'boss', base: 110, status: 'review', zone: 'Cooking with Zombies', by: 'PotScraper', date: '2026-11-12',
+    title: L('Zombie boss waves', 'Zombie-Boss-Wellen'),
+    desc: L('Every few waves a big zombie shows up that only goes down to a special dish.', 'Alle paar Wellen taucht ein großer Zombie auf, der nur mit einem besonderen Gericht umfällt.') },
+  { id: 'fish', base: 98, status: 'open', zone: 'Tavern', by: 'Wetboot', date: '2026-11-15',
+    title: L('Fishing at the lake', 'Angeln am See'),
+    desc: L('A quiet spot to fish for coins, with rare catches for the highscore board.', 'Ein ruhiger Platz zum Angeln für Coins, mit seltenen Fängen fürs Highscore-Board.') },
+  { id: 'arch', base: 76, status: 'open', zone: 'Hunting Grounds', by: 'Quiverfull', date: '2026-11-18',
+    title: L('Archery range with targets', 'Bogenschießplatz mit Zielscheiben'),
+    desc: L('Moving targets at different distances to practise before heading into the Hunting Grounds.', 'Bewegliche Ziele auf verschiedenen Distanzen zum Üben, bevor es in die Hunting Grounds geht.') },
+  { id: 'emote', base: 54, status: 'open', zone: 'Tavern', by: 'Lute Larry', date: '2026-11-21',
+    title: L('Tavern dance floor', 'Tanzfläche in der Taverne'),
+    desc: L('A dance floor in front of the bards. Emotes in sync with the music.', 'Eine Tanzfläche vor den Barden. Emotes im Takt der Musik.') }
+];
+
+const TIERS = [
+  { name: 'Squire', price: '€3', perks: [L('Supporter role on Discord', 'Supporter-Rolle auf Discord'), L('Coloured name in chat', 'Farbiger Name im Chat')] },
+  { name: 'Knight', price: '€7', hl: true, perks: [L('Everything from Squire', 'Alles von Squire'), L('Name on the Tavern supporter wall', 'Name an der Supporter-Wand in der Taverne'), L('Early access to test builds', 'Early Access zu Test-Builds')] },
+  { name: 'Lord', price: '€15', perks: [L('Everything from Knight', 'Alles von Knight'), L('Suggest an idea straight onto the VoteBoard', 'Eigene Idee direkt aufs VoteBoard'), L('Our eternal gratitude', 'Unsere ewige Dankbarkeit')] }
+];
+
+const STEPS = [
+  { n: '1', title: L('Start Mordhau', 'Mordhau starten'), text: L('Launch the game via Steam.', 'Starte das Spiel über Steam.') },
+  { n: '2', title: L('Open the server browser', 'Serverbrowser öffnen'), text: L('Go to Play and open the server browser.', 'Geh auf Play und öffne den Serverbrowser.') },
+  { n: '3', title: L('Server Type: “Modded”', 'Server Type: „Modded“'), text: L('Set the server type filter to “Modded”.', 'Stell den Server-Type-Filter auf „Modded“.') },
+  { n: '4', title: L('Search “Mordhau Zones”', '„Mordhau Zones“ suchen'), text: L('Type the name into the search field.', 'Gib den Namen ins Suchfeld ein.') },
+  { n: '5', title: L('Join', 'Joinen'), text: L('Click join. The mod downloads automatically on your first visit.', 'Klick auf Join. Die Mod lädt beim ersten Besuch automatisch.') }
+];
+
+const FOUNDERS = [
+  { name: 'AlwaysFun', role: L('Developer · Maps, Graphics & Mechanics', 'Entwickler · Maps, Grafik & Mechaniken'),
+    text: L('Experienced graphic artist with more than 35 years in game development. Builds the maps, graphics, audio, mechanics, animations and more. Every decision is made together with M4L-73.', 'Erfahrener Grafiker mit über 35 Jahren in der Spieleentwicklung. Baut Maps, Grafiken, Audio, Mechaniken, Animationen und mehr. Entschieden wird alles gemeinsam mit M4L-73.'),
+    bio: L('Building this mod server had been itching at him for ages. Yes, we use AI to help us. And yes, it’s great, because now we can build anything we want, right where we like to be most: in Mordhau.', 'Diesen Mod-Server zu bauen, hat ihn ewig gekitzelt. Ja, wir helfen uns mit AI. Und ja, das ist toll, denn jetzt können wir alles machen, und zwar da, wo wir am liebsten sind: in Mordhau.'),
+    focus: [L('Maps', 'Maps'), L('Graphics & animation', 'Grafik & Animation'), L('Audio & mechanics', 'Audio & Mechaniken')] },
+  { name: 'M4L-73', role: L('Developer · Admin & Moderator', 'Entwickler · Admin & Moderator'),
+    text: L('A developer by profession and a passionate, seriously talented musician in his free time. Handles everything server-side and is the other half of every decision.', 'Beruflich Entwickler, privat leidenschaftlicher und schwer talentierter Musiker. Kümmert sich um alles Serverseitige und ist die zweite Hälfte jeder Entscheidung.'),
+    bio: L('He is admin and moderator in-game. Moderation requests and complaints always go to him. Please keep bug reports away from him: they have their own place on this website.', 'Im Spiel ist er Admin und Moderator. Anfragen zur Moderation und Beschwerden gehen immer an ihn. Bug-Reports bitte nicht an ihn: Dafür gibt es einen eigenen Bereich hier auf der Website.'),
+    focus: [L('Server', 'Server'), L('Admin & moderation', 'Admin & Moderation'), L('Requests & complaints', 'Anfragen & Beschwerden')] }
+];
+
+const EXTRA = {
+  reqs: [{ label: L('Game', 'Spiel'), text: L('Mordhau on PC (Steam)', 'Mordhau auf PC (Steam)') }, { label: L('Server type', 'Server Type'), text: 'Modded' }, { label: L('Mod download', 'Mod-Download'), text: L('Automatic on first join', 'Automatisch beim ersten Join') }],
+  firstTips: [
+    { title: L('Start in the Tavern', 'Starte in der Taverne'), text: L('Every session begins in the Tavern. Look around, check the highscore boards and the vending machines.', 'Jede Session beginnt in der Taverne. Schau dich um, check die Highscore-Boards und die Vending Machines.'), cta: L('About the Tavern →', 'Zur Taverne →'), page: 'zones' },
+    { title: L('Read the rules', 'Lies die Regeln'), text: L('Each zone has its own rules. Two minutes of reading saves you a kick.', 'Jede Zone hat eigene Regeln. Zwei Minuten Lesen ersparen dir einen Kick.'), cta: L('Rules & Feature-Guide →', 'Rules & Feature-Guide →'), page: 'rules' },
+    { title: L('Earn your reputation', 'Verdien dir Reputation'), text: L('Kills and zone activities earn reputation and coins.', 'Kills und Zonen-Aktivitäten bringen Reputation und Coins.'), cta: L('Reputation Guide →', 'Reputation Guide →'), page: 'rep' }
+  ],
+  trouble: [
+    { q: L('I can’t find the server.', 'Ich finde den Server nicht.'), a: L('Make sure the server type filter is set to Modded and other filters are reset, then search for “Mordhau Zones”.', 'Prüf, ob der Server-Type-Filter auf Modded steht und andere Filter zurückgesetzt sind, dann such nach „Mordhau Zones“.') },
+    { q: L('The mod download is stuck.', 'Der Mod-Download hängt.'), a: L('Restart Mordhau and join again. The download continues where it stopped.', 'Starte Mordhau neu und join noch mal. Der Download macht dort weiter, wo er aufgehört hat.') },
+    { q: L('The server is full.', 'Der Server ist voll.'), a: L('Try again in a few minutes. Players come and go all the time.', 'Versuch es in ein paar Minuten noch mal. Spieler kommen und gehen ständig.') }
+  ],
+  values: [
+    { n: 'I', title: L('Fair play', 'Fair Play'), text: L('Clear rules per zone, and we enforce them.', 'Klare Regeln pro Zone, und wir setzen sie durch.') },
+    { n: 'II', title: L('Community decides', 'Die Community entscheidet'), text: L('The VoteBoard shapes the roadmap.', 'Das VoteBoard formt die Roadmap.') },
+    { n: 'III', title: L('No pay-to-win', 'Kein Pay-to-Win'), text: L('Donations get you cosmetic perks, never an advantage.', 'Spenden bringen kosmetische Perks, nie einen Vorteil.') }
+  ],
+  contactTips: [
+    { title: L('Bug report', 'Bug melden'), text: L('Tell us the zone, roughly when it happened and what you did right before.', 'Nenn uns die Zone, ungefähr wann es passiert ist und was du direkt davor gemacht hast.') },
+    { title: L('Ban appeal', 'Entbannungsantrag'), text: L('Include your in-game name and the date of the ban.', 'Gib deinen Ingame-Namen und das Datum des Banns an.') },
+    { title: L('Report a player', 'Spieler melden'), text: L('Name, zone and time. Screenshots or clips help a lot.', 'Name, Zone und Uhrzeit. Screenshots oder Clips helfen sehr.') }
+  ],
+  penalties: [
+    { n: '1', c: '#d2ab55', title: L('Warning', 'Verwarnung'), text: L('A heads-up from an admin.', 'Ein Hinweis von einem Admin.') },
+    { n: '2', c: '#d2ab55', title: 'Kick', text: L('Removed from the server, rejoin allowed.', 'Vom Server entfernt, Rejoin erlaubt.') },
+    { n: '3', c: '#a3281f', title: L('Temporary ban', 'Temporärer Bann'), text: L('Hours to days, depending on what happened.', 'Stunden bis Tage, je nach Vorfall.') },
+    { n: '4', c: '#a3281f', title: L('Permanent ban', 'Permanenter Bann'), text: L('For cheating and repeated offences.', 'Bei Cheats und wiederholten Verstößen.') }
+  ],
+  moneyUses: [
+    { title: L('Server hosting', 'Server-Hosting'), text: L('Keeps the server online around the clock.', 'Hält den Server rund um die Uhr online.') },
+    { title: L('Development', 'Entwicklung'), text: L('Tools and time for new zones and features.', 'Tools und Zeit für neue Zonen und Features.') },
+    { title: L('Community events', 'Community-Events'), text: L('Prizes for tournaments and events.', 'Preise für Turniere und Events.') }
+  ],
+  donFaq: [
+    { q: L('Do donations give an advantage?', 'Bringen Spenden einen Vorteil?'), a: L('No. All perks are cosmetic.', 'Nein. Alle Perks sind kosmetisch.') },
+    { q: L('Can I cancel a monthly tier?', 'Kann ich ein Monats-Tier kündigen?'), a: L('Yes, any time. Your perks stay until the end of the paid month.', 'Ja, jederzeit. Deine Perks bleiben bis zum Ende des bezahlten Monats.') },
+    { q: L('How do I get my perks?', 'Wie bekomme ich meine Perks?'), a: L('Add your in-game name when donating and we’ll set them up.', 'Gib beim Spenden deinen Ingame-Namen an, dann richten wir sie ein.') }
+  ]
+};
+
+const TOPICS = [L('General question', 'Allgemeine Frage'), L('Bug report', 'Bug melden'), L('Feature idea', 'Feature-Idee'), L('Ban appeal', 'Entbannungsantrag'), L('Donations', 'Spenden')];
+
+const RULES = [
+  { title: L('Respect everyone', 'Respektiere alle'), text: L('No insults, racism, harassment or hate speech in chat or voice.', 'Keine Beleidigungen, Rassismus, Belästigung oder Hassrede in Chat oder Voice.') },
+  { title: L('No cheats or exploits', 'Keine Cheats oder Exploits'), text: L('Hacks, macros and bug abuse get you banned. Found a bug? Report it.', 'Hacks, Makros und Bug-Ausnutzung führen zum Bann. Bug gefunden? Melde ihn.') },
+  { title: L('Combat only where allowed', 'Kampf nur, wo erlaubt'), text: L('Fight in combat zones only. The Tavern is combat-free.', 'Gekämpft wird nur in Kampfzonen. Die Taverne ist kampffrei.') },
+  { title: L('No spawn camping', 'Kein Spawn-Camping'), text: L('Let people get into the game before you attack them.', 'Lass Leute erst mal ankommen, bevor du sie angreifst.') },
+  { title: L('No farming with friends', 'Kein Farmen mit Freunden'), text: L('Trading kills to boost reputation is not allowed.', 'Kills tauschen, um Reputation zu pushen, ist nicht erlaubt.') },
+  { title: L('Listen to the admins', 'Hör auf die Admins'), text: L('Admin decisions are final. Disagree? Use the contact form.', 'Admin-Entscheidungen sind final. Nicht einverstanden? Nutz das Kontaktformular.') }
+];
+
+const DO = [L('Touch gloves before a fight', 'Vor dem Kampf abklatschen'), L('Team up against the zombies', 'Gemeinsam gegen die Zombies'), L('Help new players find their way', 'Neuen Spielern den Weg zeigen'), L('Report bugs and suggest ideas', 'Bugs melden und Ideen vorschlagen'), L('Have fun', 'Spaß haben')];
+const DONT = [L('Stepping into someone else’s fight', 'In fremde Kämpfe eingreifen'), L('Attacking in safe zones', 'In Safe Zones angreifen'), L('Team killing on purpose', 'Absichtliches Teamkilling'), L('Kill trading and rep farming', 'Kill-Trading und Rep-Farming'), L('Spamming chat or voice', 'Chat oder Voice zuspammen')];
+
+const GUIDE = [
+  { title: L('Zones', 'Zonen'), text: L('The map is split into seven zones, each with its own rules and activities. The Tavern in the middle connects them all.', 'Die Map ist in sieben Zonen aufgeteilt, jede mit eigenen Regeln und Aktivitäten. Die Taverne in der Mitte verbindet alle.') },
+  { title: L('Reputation & highscores', 'Reputation & Highscores'), text: L('Kills and activities earn reputation points per zone. Every zone has a highscore board with its ranking list.', 'Kills und Aktivitäten bringen Reputation Points pro Zone. Jede Zone hat ein Highscore-Board mit Rangliste.') },
+  { title: L('Coins & vending machines', 'Coins & Vending Machines'), text: L('Coins come from the same activities. Spend them at vending machines on special potions.', 'Coins kommen aus denselben Aktivitäten. Gib sie an Vending Machines für spezielle Potions aus.') },
+  { title: L('Potions', 'Potions'), text: L('Potions stack in your inventory. Equip one like a weapon and trigger it when you need it.', 'Potions stacken im Inventar. Rüste eine wie eine Waffe aus und lös sie aus, wenn du sie brauchst.') }
+];
+
+const REPFLOW = [
+  { n: '1', c: '#a3281f', title: L('Play a zone', 'Zone spielen'), text: L('Kill, hunt, run, survive. Every zone activity counts.', 'Kills, Jagd, Parkour, Überleben. Jede Zonen-Aktivität zählt.') },
+  { n: '2', c: '#d2ab55', title: L('Earn rep + coins', 'Rep + Coins verdienen'), text: L('Each action gives you reputation points and coins.', 'Jede Aktion bringt dir Reputation Points und Coins.') },
+  { n: '3', c: '#d2ab55', title: L('Climb the board', 'Im Board aufsteigen'), text: L('Your reputation puts you on that zone’s highscore board.', 'Deine Reputation bringt dich auf das Highscore-Board der Zone.') },
+  { n: '4', c: '#6f9a4e', title: L('Spend coins', 'Coins ausgeben'), text: L('Buy potions at vending machines, stack them, trigger them in a fight.', 'Kauf Potions an Vending Machines, stack sie, lös sie im Kampf aus.') }
+];
+
+const FAQ = [
+  { q: L('Is reputation shared between zones?', 'Wird Reputation zwischen Zonen geteilt?'), a: L('No. Each zone has its own highscore board, so you rank separately in every zone.', 'Nein. Jede Zone hat ihr eigenes Highscore-Board, du hast also in jeder Zone einen eigenen Rang.') },
+  { q: L('Can I lose coins?', 'Kann ich Coins verlieren?'), a: L('Coins are only used up when you buy something at a vending machine.', 'Coins werden nur verbraucht, wenn du an einer Vending Machine etwas kaufst.') },
+  { q: L('How many potions can I carry?', 'Wie viele Potions kann ich tragen?'), a: L('Potions stack, so you can carry several of the same kind.', 'Potions stacken, du kannst also mehrere derselben Sorte tragen.') },
+  { q: L('Where do I see my rank?', 'Wo sehe ich meinen Rang?'), a: L('On the highscore board inside each zone on the map.', 'Auf dem Highscore-Board in der jeweiligen Zone auf der Map.') }
+];
+
+class Component extends DCLogic {
+  state = { lang: this.props.defaultLang ?? 'en', page: this.props.startPage ?? 'home', zone: 'tavern', mine: {}, sent: false, tier: null, vSort: 'top', vFilter: 'all', showForm: false, custom: [], newsId: null, newsTag: 'all', give: 10, giveCustom: '', onceAmt: null };
+
+  componentDidMount() {
+    try {
+      const s = JSON.parse(localStorage.getItem('mp-site') || '{}');
+      this.setState({ ...(s.lang ? { lang: s.lang } : {}), mine: s.mine || {}, custom: s.custom || [] });
+    } catch (e) {}
+  }
+  save(patch) {
+    this.setState(patch, () => { try { localStorage.setItem('mp-site', JSON.stringify({ lang: this.state.lang, mine: this.state.mine, custom: this.state.custom })); } catch (e) {} });
+  }
+  goPage(p) { this.setState({ page: p, newsId: null, sent: p === 'contact' ? this.state.sent : false }, () => window.scrollTo({ top: 0 })); }
+
+  renderVals() {
+    const { lang, page, zone, mine, sent, tier } = this.state;
+    const t = loc({ ...T, ...T2 }, lang);
+    const gold = '#d2ab55';
+    const navDefs = [['News','news'],['Media','media'],['Features','features'],['Upcoming','upcoming'],['VoteBoard','vote'],['Zones','zones'],['Rules','rules'],['Reputation','rep'],['How To','howto'],['About','about'],['Contact','contact']];
+    const nav = navDefs.map(([label, p]) => ({ label, go: () => this.goPage(p), color: p === page ? gold : '#cfc7b8' }));
+    const tiles = TILES.map(([p, title, text]) => ({ title, text: loc(text, lang), go: () => this.goPage(p) }));
+
+    const zl = loc(ZONES, lang);
+    const tagC = { safe: ['#9cc47a', '#1f2a18'], pvp: ['#fff', '#a3281f'], pve: ['#100f0d', gold] };
+    const zoneList = zl.map(z => ({
+      ...z, ph: 'Screenshot – ' + z.name, details: loc(DETAILS[z.key], lang),
+      tabBg: z.key === zone ? gold : 'transparent', tabFg: z.key === zone ? '#100f0d' : '#ede7db',
+      bg: z.key === zone ? gold : (z.pvp === 'pvp' ? '#2a1714' : z.key === 'tavern' ? '#2a2418' : '#1f1c17'),
+      fg: z.key === zone ? '#100f0d' : '#ede7db',
+      border: z.key === zone ? gold : (z.key === 'portal' ? '#a3281f' : '#3a352d'),
+      select: () => this.setState({ zone: z.key }),
+      selectTop: () => this.setState({ zone: z.key }, () => window.scrollTo({ top: 0, behavior: 'smooth' })),
+      open: () => this.setState({ zone: z.key, page: 'zones' }, () => window.scrollTo({ top: 0 }))
+    }));
+    const mapZones = zoneList.filter(z => z.col);
+    const portal = zoneList.find(z => z.key === 'portal');
+    const zc = zoneList.find(z => z.key === zone) || zoneList[0];
+    const cur = { ...zc, tagFg: tagC[zc.pvp][0], tagBg: tagC[zc.pvp][1] };
+
+    const { vSort, vFilter, showForm, custom } = this.state;
+    const all = loc(VOTES, lang).concat(custom.map(c => ({ ...c, status: 'new' })))
+      .map(v => ({ ...v, count: v.base + (mine[v.id] ? 1 : 0) }));
+    const byTop = [...all].sort((a, b) => b.count - a.count);
+    const rankOf = {}; byTop.forEach((v, i) => rankOf[v.id] = i + 1);
+    const max = byTop[0].count;
+    let vl = vSort === 'new' ? [...all].sort((a, b) => (b.date || '').localeCompare(a.date || '')) : byTop;
+    if (vFilter !== 'all') vl = vl.filter(v => vFilter === 'open' ? (v.status === 'open' || v.status === 'new') : v.status === vFilter);
+    const votes = vl.map(v => {
+      const on = !!mine[v.id]; const st = VSTATUS[v.status];
+      return { ...v, note: v.note || null, rank: rankOf[v.id], pct: Math.round(v.count / max * 100) + '%',
+        statusLabel: loc(st[0], lang), stFg: st[1], stBg: st[2],
+        border: on ? gold : '#2c2822', btnBorder: on ? gold : '#3a352d', btnBg: on ? gold : '#100f0d', btnFg: on ? '#100f0d' : '#ede7db',
+        btnLabel: on ? (lang === 'de' ? 'Gevotet' : 'Voted') : 'Vote',
+        toggle: () => this.save({ mine: { ...this.state.mine, [v.id]: !on } }) };
+    });
+    const fdefs = [['all', L('All', 'Alle')], ['open', L('Open', 'Offen')], ['review', L('Under review', 'In Prüfung')], ['planned', L('Planned', 'Geplant')]];
+    const filters = fdefs.map(([k, l]) => {
+      const on = vFilter === k;
+      const n = k === 'all' ? all.length : all.filter(v => k === 'open' ? (v.status === 'open' || v.status === 'new') : v.status === k).length;
+      return { label: loc(l, lang), n, bg: on ? gold : 'transparent', fg: on ? '#100f0d' : '#ede7db', border: on ? gold : '#3a352d', go: () => this.setState({ vFilter: k }) };
+    });
+    const sorts = [['top', L('Top', 'Top')], ['new', L('Newest', 'Neueste')]].map(([k, l]) => ({ label: loc(l, lang), line: vSort === k ? gold : 'transparent', fg: vSort === k ? '#ede7db' : '#a9a092', go: () => this.setState({ vSort: k }) }));
+    const ideaZones = [lang === 'de' ? 'Neue Zone' : 'New zone', lang === 'de' ? 'Allgemein' : 'General'].concat(ZONES.map(z => z.name));
+    const submitIdea = e => {
+      e.preventDefault();
+      const f = e.target.elements;
+      const idea = { id: 'c' + Date.now(), base: 0, zone: f.zone.value, by: f.by.value.trim() || (lang === 'de' ? 'Anonym' : 'Anonymous'), date: new Date().toISOString().slice(0, 10), title: f.title.value.trim(), desc: f.desc.value.trim() };
+      this.save({ custom: [...this.state.custom, idea], mine: { ...this.state.mine, [idea.id]: true }, showForm: false, vSort: 'new', vFilter: 'all' });
+    };
+
+    const { newsId, newsTag, give, giveCustom, onceAmt } = this.state;
+    const newsAll = loc(NEWS, lang).map(n => ({ ...n, open: () => this.setState({ page: 'news', newsId: n.id }, () => window.scrollTo({ top: 0 })) }));
+    const tagKeys = ['all', ...Array.from(new Set(newsAll.map(n => n.tag)))];
+    const newsTags = tagKeys.map(k => { const on = newsTag === k; return { label: k === 'all' ? (lang === 'de' ? 'Alle' : 'All') : k, bg: on ? gold : 'transparent', fg: on ? '#100f0d' : '#ede7db', border: on ? gold : '#3a352d', go: () => this.setState({ newsTag: k }) }; });
+    const newsF = newsTag === 'all' || !tagKeys.includes(newsTag) ? newsAll : newsAll.filter(n => n.tag === newsTag);
+    const article = newsAll.find(n => n.id === newsId) || newsAll[0];
+    const upAll = loc(UPCOMING, lang);
+    const upReview = all.filter(v => v.status === 'review').sort((a, b) => b.count - a.count).map(v => ({ title: v.title, zone: v.zone, count: v.count }));
+    const amounts = [5, 10, 25, 50].map(a => { const on = give === a && !giveCustom; return { label: '€' + a, bg: on ? gold : 'transparent', fg: on ? '#100f0d' : '#ede7db', border: on ? gold : '#3a352d', go: () => this.setState({ give: a, giveCustom: '' }) }; });
+    const ex = loc(EXTRA, lang);
+    const extra = {
+      newsListMode: !newsId, articleMode: !!newsId, newsFeat: newsF[0], newsRest: newsF.slice(1), article,
+      moreNews: newsAll.filter(n => n.id !== article.id).slice(0, 3), homeNews: newsAll.slice(0, 3), shipped: newsAll,
+      newsBack: () => this.setState({ newsId: null }, () => window.scrollTo({ top: 0 })),
+      upProgress: upAll.filter(u => u.stage === 'progress'), upPlanned: upAll.filter(u => u.stage === 'planned'), upReview,
+      topVotes: byTop.slice(0, 3).map((v, i) => ({ rank: i + 1, title: v.title, count: v.count })),
+      goalLabel: '€62 / €120', goalPct: '52%', amounts, giveCustom,
+      onCustom: e => this.setState({ giveCustom: e.target.value }),
+      giveOnce: () => this.setState({ onceAmt: giveCustom || give, tier: null }),
+      onceMsg: onceAmt ? (lang === 'de' ? `Danke für deine Spende von €${onceAmt}! Der Zahlungslink wird hier eingebunden.` : `Thanks for donating €${onceAmt}! The payment link goes here.`) : null,
+      ...ex, firstTips: ex.firstTips.map(f => ({ ...f, go: () => this.goPage(f.page) })),
+      goNews: () => this.goPage('news'), goVote: () => this.goPage('vote')
+    };
+    const features = loc(FEATURES, lang).map((f, i) => ({ ...f, dir: i % 2 ? 'row-reverse' : 'row', go: () => this.goPage(f.page) }));
+
+    const tiers = loc(TIERS, lang).map(tr => {
+      const on = tier === tr.name;
+      return { ...tr, border: tr.hl ? gold : '#2c2822', btnBg: on ? '#a3281f' : 'transparent', btnFg: '#fff',
+        cta: on ? (lang === 'de' ? 'Ausgewählt' : 'Selected') : (lang === 'de' ? 'Unterstützen' : 'Support'),
+        pick: () => this.setState({ tier: tr.name, onceAmt: null }) };
+    });
+    const donateMsg = tier ? (lang === 'de' ? `Danke, dass du ${tier} werden willst! Der Zahlungslink wird hier eingebunden.` : `Thanks for choosing ${tier}! The payment link goes here.`) : null;
+
+    return {
+      ...extra, t, nav, tiles, filters, sorts, ideaZones, submitIdea, showForm, noVotes: votes.length === 0, toggleForm: () => this.setState({ showForm: !this.state.showForm }), zoneList, mapZones, portal, zone: cur, votes, tiers, donateMsg,
+      news: loc(NEWS, lang), features, upcoming: loc(UPCOMING, lang), steps: loc(STEPS, lang),
+      founders: loc(FOUNDERS, lang), topics: loc(TOPICS, lang),
+      rules: loc(RULES, lang).map((r, i) => ({ ...r, n: String(i + 1).padStart(2, '0') })),
+      doList: loc(DO, lang), dontList: loc(DONT, lang), guide: loc(GUIDE, lang), repFlow: loc(REPFLOW, lang), faq: loc(FAQ, lang),
+      isHome: page === 'home', isNews: page === 'news', isMedia: page === 'media', isFeatures: page === 'features', isUpcoming: page === 'upcoming',
+      isVote: page === 'vote', isDonate: page === 'donate', isHowto: page === 'howto', isAbout: page === 'about', isContact: page === 'contact',
+      isZones: page === 'zones', isRules: page === 'rules', isRep: page === 'rep',
+      sent, notSent: !sent,
+      submit: e => { e.preventDefault(); this.setState({ sent: true }); },
+      resetForm: () => this.setState({ sent: false }),
+      enBg: lang === 'en' ? gold : 'transparent', enFg: lang === 'en' ? '#100f0d' : '#cfc7b8',
+      deBg: lang === 'de' ? gold : 'transparent', deFg: lang === 'de' ? '#100f0d' : '#cfc7b8',
+      setEn: () => this.save({ lang: 'en' }), setDe: () => this.save({ lang: 'de' }),
+      goHome: () => this.goPage('home'), goZones: () => this.goPage('zones'), goRules: () => this.goPage('rules'), goRep: () => this.goPage('rep'),
+      goDonate: () => this.goPage('donate'), goHowto: () => this.goPage('howto'), goContact: () => this.goPage('contact')
+    };
+  }
+}
+
+</script>
+</body>
+</html>
