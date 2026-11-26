@@ -1366,6 +1366,24 @@ window.MZ_CONTENT = {
  },
  "votes": [
   {
+   "id": "imwxv05sf",
+   "status": "new",
+   "cat": "character",
+   "by": "Team",
+   "date": "2026-11-26",
+   "title": {
+    "en": "Samurai-Ninja",
+    "de": "Neue Idee"
+   },
+   "desc": {
+    "en": "Found this one pretty cool and funny Samurai-Ninja hybrid character, who could be interesting for some of you! <br>I like the style a lot. <br><br>Check the model directly at<a href=\"https://sketchfab.com/3d-models/dance-japanese-samurai-ninja-hat-8560f555469a46e085952a890ce9785b\" target=\"_blank\" rel=\"noopener noreferrer\"> sketchfab.com</a><br><br>NOTICE: All Star Characters can only be played in the proper zone and do not contain armor part switching. The whole character will be switched as soon as you enter the proper zone.",
+    "de": "Beschreibe die Idee in ein, zwei Sätzen."
+   },
+   "up": 0,
+   "down": 0,
+   "pics": 2
+  },
+  {
    "id": "imwxunj5x",
    "status": "new",
    "cat": "armor",
@@ -2236,7 +2254,9 @@ window.MZ_CONTENT = {
   "vote-imwxufg49-2": "images/vote-imwxufg49-2-20261126185048.webp",
   "vote-imwxunj5x-1": "images/vote-imwxunj5x-1-20261126185620.webp",
   "vote-imwxunj5x-2": "images/vote-imwxunj5x-2-20261126185627.webp",
-  "vote-imwxunj5x-3": "images/vote-imwxunj5x-3-20261126185632.webp"
+  "vote-imwxunj5x-3": "images/vote-imwxunj5x-3-20261126185632.webp",
+  "vote-imwxv05sf-1": "images/vote-imwxv05sf-1-20261126190556.webp",
+  "vote-imwxv05sf-2": "images/vote-imwxv05sf-2-20261126190600.webp"
  },
  "voteCats": [
   {
