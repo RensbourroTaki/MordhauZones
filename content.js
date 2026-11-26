@@ -36,11 +36,11 @@ window.MZ_CONTENT = {
    "de": "Spenden"
   },
   "tagline": {
-   "en": "where everything is going on!",
+   "en": "THE ULTIMATE MORDHAU MOD",
    "de": "wo alles los ist!"
   },
   "heroText": {
-   "en": "One huge modded map, seven zones. Box, hunt, cook with zombies, fight across the parkour or just listen to the bards in the tavern. Every kill and every activity earns you reputation and coins.",
+   "en": "The ultimate MORDHAU mod  with  one huge map, seven zones. Box, hunt, cook with zombies, fight across the parkour or listen to the bards and play mini-games in the tavern, with a reputation and coin system.",
    "de": "Eine riesige Mod-Map, sieben Zonen. Boxen, jagen, mit Zombies kochen, auf dem Parkour kämpfen oder einfach den Barden in der Taverne lauschen. Jeder Kill und jede Aktivität bringt dir Reputation und Coins."
   },
   "ctaJoin": {
@@ -866,7 +866,7 @@ window.MZ_CONTENT = {
    "name": "Invasion Portal",
    "pvp": "pvp",
    "kind": {
-    "en": "Invasion",
+    "en": "Enhanced Invasion Maps - 64 Players",
     "de": "Invasion"
    },
    "short": {
@@ -983,7 +983,7 @@ window.MZ_CONTENT = {
     "de": "Mordhau Zones öffnet die Tore"
    },
    "text": {
-    "en": "The server is live. Seven zones, one map. Come in, look around and tell us what you think.",
+    "en": "THE ",
     "de": "Der Server ist live. Sieben Zonen, eine Map. Komm rein, schau dich um und sag uns, was du denkst."
    },
    "body": {
@@ -2198,35 +2198,30 @@ window.MZ_CONTENT = {
   ]
  },
  "images": {
-  "logo": "logo.webp",
+  "logo": "images/logo-20261126031823.webp",
   "news-2": "images/news-2.webp",
   "news-1": "images/news-1.webp",
-  "zone-duel": "images/zone-duel.webp",
   "zone-tavern": "images/zone-tavern.webp",
-  "zone-portal": "images/zone-portal.webp",
+  "zone-portal": "images/zone-portal-20261126033626.webp",
   "news-3": "images/news-3.webp",
   "founder-0": "images/founder-0.webp",
   "founder-1": "images/founder-1.webp",
   "news-4": "images/news-4-20261126020648.webp",
   "zone-card-tavern": "images/zone-card-tavern-20261126020707.webp",
-  "hero-bg": "images/hero-bg-20261126024035.webp",
+  "hero-bg": "images/hero-bg-20261126031711.webp",
   "media-1": "images/media-1-20261126030043.webp",
   "media-2": "images/zone-tavern.webp",
   "media-3": "images/hero-bg-20261126024035.webp",
   "media-4": "images/news-4-20261126020648.webp",
-  "media-7": "images/zone-duel.webp",
   "media-8": "images/zone-portal.webp",
   "zone-boxing": "images/media-1-20261126030043.webp",
   "zone-hunting": "images/hero-bg-20261126024035.webp",
   "zone-zombies": "images/news-4-20261126020648.webp",
-  "zone-fkz": "images/zone-duel.webp",
   "zone-parkour": "images/news-3.webp",
   "zone-card-boxing": "images/media-1-20261126030043.webp",
   "zone-card-hunting": "images/hero-bg-20261126024035.webp",
   "zone-card-zombies": "images/news-4-20261126020648.webp",
   "zone-card-parkour": "images/news-3.webp",
-  "zone-card-fkz": "images/zone-duel.webp",
-  "zone-card-portal": "images/zone-portal.webp",
-  "news-0": "images/news-0-20261126030910.webp"
+  "news-0": "images/hero-bg-20261126031711.webp"
  }
 };
