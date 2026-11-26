@@ -1376,7 +1376,7 @@ window.MZ_CONTENT = {
     "de": "Neue Idee"
    },
    "desc": {
-    "en": "This one is a very beautiful peace and would perfectly fit into the Mordhau Universe. Modelled by dark_igorek. IMPORTANT NOTE: It is not guranteed that a conversion is possible. I have to look into each model manually. But it has big potential and has the proper detail we would expect! https://sketchfab.com/3d-models/the-forgotten-knight-d14eb14d83bd4e7ba7cbe443d76a10fd",
+    "en": "The forgotten knight modelled by <b>dark_igorek </b> is a very beautiful piece and would fit perfectly into the Mordhau universe. <br><br>You can check the full 3D model online at <a href=\"https://sketchfab.com/3d-models/the-forgotten-knight-d14eb14d83bd4e7ba7cbe443d76a10fd\" target=\"_blank\" rel=\"noopener noreferrer\">sketchfab.com</a><br><br><b>IMPORTANT NOTE: </b><i>It is not guranteed that a conversion can be done without big hurdles. I have to look into each model manually, afterwards. But it has big potential and has the proper detail we would expect!</i>",
     "de": "Beschreibe die Idee in ein, zwei Sätzen."
    },
    "up": 0,

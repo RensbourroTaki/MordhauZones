@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./content.js"></script>
+<script src="./rich-text.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -51,7 +52,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
     <div style="position:relative;pointer-events:none;max-width:1100px;width:100%;padding:80px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
       <img src="{{ img.logo }}" alt="Mordhau Zones" style="width:100%;max-width:960px;height:auto;filter:drop-shadow(0 12px 30px rgba(0,0,0,.7))"></img>
       <p style="margin:0;font-family:Cinzel,serif;font-size:clamp(20px,2.6vw,30px);letter-spacing:.12em;color:#d2ab55">{{ t.heroTitle }} — {{ t.tagline }}</p>
-      <p style="margin:0;max-width:640px;font-size:20px;color:#cfc7b8;text-wrap:pretty">{{ t.heroText }}</p>
+      <p style="margin:0;max-width:640px;font-size:20px;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ t.heroText }}"></mz-rich></p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;pointer-events:auto">
         <button onClick="{{ goHowto }}" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:14px 26px;font-family:Cinzel,serif;font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer" style-hover="background:#e2bf6c">{{ t.ctaJoin }}</button>
         <button onClick="{{ goZones }}" style="background:rgba(16,15,13,.6);color:#ede7db;border:1px solid #d2ab55;border-radius:3px;padding:14px 26px;font-family:Cinzel,serif;font-weight:700;font-size:17px;letter-spacing:.08em;cursor:pointer" style-hover="background:#1f1c17">{{ t.ctaZones }}</button>
@@ -64,7 +65,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <sc-for list="{{ tiles }}" as="tl" hint-placeholder-count="6">
         <button onClick="{{ tl.go }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:24px;color:#ede7db;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px" style-hover="border-color:#d2ab55">
           <span style="font-family:Cinzel,serif;font-weight:700;font-size:22px">{{ tl.title }}</span>
-          <span style="color:#cfc7b8;font-size:16px">{{ tl.text }}</span>
+          <span style="color:#cfc7b8;font-size:16px"><mz-rich text="{{ tl.text }}"></mz-rich></span>
           <span style="color:#d2ab55;font-weight:700;font-size:15px;margin-top:6px">→</span>
         </button>
       </sc-for>
@@ -109,7 +110,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <div style="display:flex;flex-direction:column;gap:12px">
         <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.voteKicker }}</p>
         <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3.4vw,40px)">{{ t.hVote }}</h2>
-        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.voteText }}</p>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ t.voteText }}"></mz-rich></p>
         <button onClick="{{ goVote }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700;align-self:flex-start;margin-top:8px" style-hover="background:#1f1c17">{{ t.toVote }}</button>
       </div>
       <div style="display:flex;flex-direction:column;gap:8px">
@@ -153,7 +154,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <div style="flex:1 1 340px;padding:36px;display:flex;flex-direction:column;gap:14px;justify-content:center">
         <div style="display:flex;gap:12px;font-size:14px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase"><span style="color:#d2ab55;font-weight:700">{{ newsFeat.tag }}</span><span>{{ newsFeat.date }}</span></div>
         <span style="font-family:Cinzel,serif;font-size:clamp(26px,3vw,36px);font-weight:700;line-height:1.15">{{ newsFeat.title }}</span>
-        <span style="color:#cfc7b8;text-wrap:pretty">{{ newsFeat.text }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ newsFeat.text }}"></mz-rich></span>
         <span style="color:#d2ab55;font-weight:700">{{ t.readMore }}</span>
       </div>
     </button>
@@ -164,7 +165,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
           <div style="padding:22px 24px 26px;display:flex;flex-direction:column;gap:10px">
             <div style="display:flex;gap:12px;font-size:14px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase"><span style="color:#d2ab55;font-weight:700">{{ item.tag }}</span><span>{{ item.date }}</span></div>
             <span style="font-family:Cinzel,serif;font-size:22px;font-weight:700;line-height:1.25">{{ item.title }}</span>
-            <span style="color:#cfc7b8;text-wrap:pretty">{{ item.text }}</span>
+            <span style="color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ item.text }}"></mz-rich></span>
           </div>
         </button>
       </sc-for>
@@ -175,10 +176,10 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <button onClick="{{ newsBack }}" style="background:none;border:0;color:#d2ab55;font-weight:700;cursor:pointer;padding:0;margin-bottom:28px">{{ t.backNews }}</button>
       <div style="display:flex;gap:12px;font-size:14px;color:#a9a092;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px"><span style="color:#d2ab55;font-weight:700">{{ article.tag }}</span><span>{{ article.date }}</span></div>
       <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ article.title }}</h1>
-      <p style="margin:0 0 32px;color:#cfc7b8;font-size:21px;text-wrap:pretty">{{ article.text }}</p>
+      <p style="margin:0 0 32px;color:#cfc7b8;font-size:21px;text-wrap:pretty"><mz-rich text="{{ article.text }}"></mz-rich></p>
       <div style="height:420px;margin-bottom:36px"><image-slot id="{{ article.slot }}" src="{{ article.img }}" shape="rounded" radius="4" placeholder="News image"></image-slot></div>
       <div style="display:flex;flex-direction:column;gap:18px">
-        <sc-for list="{{ article.body }}" as="para" hint-placeholder-count="3"><p style="margin:0;color:#ede7db;text-wrap:pretty">{{ para }}</p></sc-for>
+        <sc-for list="{{ article.body }}" as="para" hint-placeholder-count="3"><p style="margin:0;color:#ede7db;text-wrap:pretty"><mz-rich text="{{ para }}"></mz-rich></p></sc-for>
       </div>
     </div>
     <h2 style="margin:88px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.moreNews }}</h2>
@@ -198,7 +199,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="Media" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.mediaKicker }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hMedia }}</h1>
-  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.mediaIntro }}</p>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.mediaIntro }}"></mz-rich></p>
   <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.hTrailer }}</h2>
   <div style="aspect-ratio:16/9;width:100%"><image-slot id="media-main" src="{{ img.media_main }}" shape="rounded" radius="4" placeholder="Trailer – video still (video embed goes here)"></image-slot></div>
   <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.hGallery }}</h2>
@@ -207,7 +208,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
   </div>
   <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.hClips }}</h2>
   <div style="display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;justify-content:space-between;margin:-8px 0 20px">
-    <p style="margin:0;max-width:640px;color:#cfc7b8;text-wrap:pretty">{{ t.clipsText }}</p>
+    <p style="margin:0;max-width:640px;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ t.clipsText }}"></mz-rich></p>
     <button onClick="{{ goContact }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.sendClip }}</button>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px">
@@ -222,7 +223,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="Features" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.featKicker }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hFeatures }}</h1>
-  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.featIntro }}</p>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.featIntro }}"></mz-rich></p>
   <div style="display:flex;flex-direction:column;gap:72px">
     <sc-for list="{{ features }}" as="f" hint-placeholder-count="4">
       <div style="display:flex;flex-wrap:wrap;flex-direction:{{ f.dir }};gap:40px;align-items:center">
@@ -230,7 +231,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
         <div style="flex:1 1 380px;display:flex;flex-direction:column;gap:14px">
           <span style="font-family:Cinzel,serif;font-size:18px;color:#d2ab55;font-weight:700">{{ f.n }}</span>
           <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3vw,38px);line-height:1.15">{{ f.title }}</h2>
-          <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ f.text }}</p>
+          <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ f.text }}"></mz-rich></p>
           <ul style="margin:0;padding:0 0 0 18px;color:#cfc7b8;display:flex;flex-direction:column;gap:4px">
             <sc-for list="{{ f.bullets }}" as="b" hint-placeholder-count="3"><li>{{ b }}</li></sc-for>
           </ul>
@@ -255,7 +256,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="Upcoming" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.upKicker }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hUpcoming }}</h1>
-  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.upIntro }}</p>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.upIntro }}"></mz-rich></p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;align-items:start">
     <div style="display:flex;flex-direction:column;gap:12px">
       <div style="display:flex;align-items:center;gap:10px;padding-bottom:12px;border-bottom:2px solid #d2ab55"><span style="font-family:Cinzel,serif;font-weight:700;font-size:20px">{{ t.colProgress }}</span></div>
@@ -263,7 +264,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
           <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Cinzel,serif;color:#d2ab55;font-weight:700;font-size:15px">{{ u.when }}</span>
             <span style="font-family:Cinzel,serif;font-size:21px;font-weight:700;line-height:1.2">{{ u.title }}</span>
-            <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ u.text }}</span>
+            <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty"><mz-rich text="{{ u.text }}"></mz-rich></span>
             <div style="display:flex;align-items:center;gap:10px;margin-top:6px"><div style="flex:1;height:4px;background:#2c2822;border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ u.pct }};background:#d2ab55"></div></div><span style="font-size:14px;color:#a9a092">{{ u.pct }}</span></div>
           </div>
         </sc-for>
@@ -274,7 +275,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
           <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:22px 22px 24px;display:flex;flex-direction:column;gap:8px">
             <span style="font-family:Cinzel,serif;color:#d2ab55;font-weight:700;font-size:15px">{{ u.when }}</span>
             <span style="font-family:Cinzel,serif;font-size:21px;font-weight:700;line-height:1.2">{{ u.title }}</span>
-            <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ u.text }}</span>
+            <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty"><mz-rich text="{{ u.text }}"></mz-rich></span>
           </div>
         </sc-for>
     </div>
@@ -309,8 +310,8 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <div style="flex:1 1 480px;display:flex;flex-direction:column;gap:12px">
         <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.voteKicker }}</p>
         <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(32px,4vw,48px);font-weight:700;line-height:1.1">{{ t.hVote }}</h2>
-        <p style="margin:0;color:#cfc7b8;max-width:720px;text-wrap:pretty">{{ t.voteText }}</p>
-        <p style="margin:0;color:#a9a092;font-size:15px">{{ t.voteNote }}</p>
+        <p style="margin:0;color:#cfc7b8;max-width:720px;text-wrap:pretty"><mz-rich text="{{ t.voteText }}"></mz-rich></p>
+        <p style="margin:0;color:#a9a092;font-size:15px"><mz-rich text="{{ t.voteNote }}"></mz-rich></p>
       </div>
       <sc-if value="{{ hasIdeaUrl }}" hint-placeholder-val="{{ false }}">
         <button onClick="{{ suggestIdea }}" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:13px 22px;font-family:Cinzel,serif;font-weight:700;letter-spacing:.06em;cursor:pointer" style-hover="background:#e2bf6c">{{ t.suggest }}</button>
@@ -358,7 +359,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
               </sc-if>
             </div>
             <h3 style="margin:0;font-family:Cinzel,serif;font-size:clamp(22px,2.2vw,28px);line-height:1.2">{{ v.title }}</h3>
-            <p style="margin:0;color:#cfc7b8;max-width:820px;text-wrap:pretty">{{ v.desc }}</p>
+            <p style="margin:0;color:#cfc7b8;max-width:820px;text-wrap:pretty"><mz-rich text="{{ v.desc }}"></mz-rich></p>
             <sc-if value="{{ v.hasGal }}" hint-placeholder-val="{{ false }}">
               <div style="display:grid;gap:8px;grid-template-columns:{{ v.galCols }};grid-auto-rows:{{ v.galRow }};max-width:820px;margin-top:4px">
                 <sc-for list="{{ v.gal }}" as="p" hint-placeholder-count="2">
@@ -371,7 +372,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
             <sc-if value="{{ v.note }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;gap:12px;align-items:baseline;background:#100f0d;border:1px solid #2c2822;border-radius:3px;padding:12px 16px;max-width:820px">
                 <span style="flex:none;color:#d2ab55;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase">{{ t.teamNote }}</span>
-                <span style="color:#ede7db;font-size:16px">{{ v.note }}</span>
+                <span style="color:#ede7db;font-size:16px"><mz-rich text="{{ v.note }}"></mz-rich></span>
               </div>
             </sc-if>
             <span style="font-size:14px;color:#8a8275">{{ t.proposedBy }} {{ v.by }} · {{ v.date }}</span>
@@ -392,7 +393,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
         </article>
       </sc-for>
       <sc-if value="{{ noVotes }}" hint-placeholder-val="{{ false }}">
-        <p style="margin:0;padding:40px 0;text-align:center;color:#a9a092">{{ t.noIdeas }}</p>
+        <p style="margin:0;padding:40px 0;text-align:center;color:#a9a092"><mz-rich text="{{ t.noIdeas }}"></mz-rich></p>
       </sc-if>
     </div>
   </section>
@@ -402,7 +403,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="Donate" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.donKicker }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hDonate }}</h1>
-  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.donText }}</p>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.donText }}"></mz-rich></p>
   <sc-if value="{{ goalShow }}" hint-placeholder-val="{{ false }}">
   <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:26px 28px;display:flex;flex-direction:column;gap:12px;margin-bottom:56px">
     <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap">
@@ -410,7 +411,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <span style="font-family:Cinzel,serif;font-weight:900;font-size:24px;color:#d2ab55">{{ goalLabel }}</span>
     </div>
     <div style="height:10px;background:#2c2822;border-radius:5px;overflow:hidden"><div style="height:100%;width:{{ goalPct }};background:#d2ab55"></div></div>
-    <span style="font-size:15px;color:#a9a092">{{ t.goalNote }}</span>
+    <span style="font-size:15px;color:#a9a092"><mz-rich text="{{ t.goalNote }}"></mz-rich></span>
   </div>
   </sc-if>
   <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.monthlyTiers }}</h2>
@@ -448,14 +449,14 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
     <sc-for list="{{ moneyUses }}" as="mu" hint-placeholder-count="3">
       <div style="background:#100f0d;padding:26px;display:flex;flex-direction:column;gap:8px">
         <span style="font-family:Cinzel,serif;font-weight:700;font-size:21px">{{ mu.title }}</span>
-        <span style="color:#cfc7b8;text-wrap:pretty">{{ mu.text }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ mu.text }}"></mz-rich></span>
       </div>
     </sc-for>
   </div>
   <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.hFaq }}</h2>
   <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
     <sc-for list="{{ donFaq }}" as="q" hint-placeholder-count="4">
-      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8">{{ q.a }}</span></div>
+      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8"><mz-rich text="{{ q.a }}"></mz-rich></span></div>
     </sc-for>
   </div>
 </main>
@@ -465,12 +466,12 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="How To" style="max-width:1100px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.howKicker }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hHowto }}</h1>
-  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.howIntro }}</p>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.howIntro }}"></mz-rich></p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:#2c2822;border:1px solid #2c2822;margin-bottom:72px">
     <sc-for list="{{ reqs }}" as="rq" hint-placeholder-count="3">
       <div style="background:#191714;padding:22px 24px;display:flex;flex-direction:column;gap:4px">
         <span style="display:block;color:#d2ab55;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase">{{ rq.label }}</span>
-        <span style="font-weight:700;font-size:19px">{{ rq.text }}</span>
+        <span style="font-weight:700;font-size:19px"><mz-rich text="{{ rq.text }}"></mz-rich></span>
       </div>
     </sc-for>
   </div>
@@ -482,7 +483,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
           <span style="font-family:Cinzel,serif;font-weight:900;font-size:48px;color:#d2ab55;line-height:1;width:44px;flex:none">{{ s.n }}</span>
           <div style="display:flex;flex-direction:column;gap:6px">
             <span style="font-family:Cinzel,serif;font-weight:700;font-size:24px">{{ s.title }}</span>
-            <span style="color:#cfc7b8;text-wrap:pretty">{{ s.text }}</span>
+            <span style="color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ s.text }}"></mz-rich></span>
           </div>
         </div>
         <div style="flex:1 1 380px;height:220px"><image-slot id="howto-{{ s.n }}" src="{{ s.img }}" shape="rounded" radius="4" placeholder="Screenshot – step {{ s.n }}"></image-slot></div>
@@ -494,7 +495,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
     <sc-for list="{{ firstTips }}" as="ft" hint-placeholder-count="3">
       <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:10px">
         <span style="font-family:Cinzel,serif;font-weight:700;font-size:21px">{{ ft.title }}</span>
-        <span style="color:#cfc7b8;text-wrap:pretty;flex:1">{{ ft.text }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty;flex:1"><mz-rich text="{{ ft.text }}"></mz-rich></span>
         <button onClick="{{ ft.go }}" style="background:none;border:0;color:#d2ab55;font-weight:700;cursor:pointer;padding:0;text-align:left">{{ ft.cta }}</button>
       </div>
     </sc-for>
@@ -502,7 +503,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
   <h2 style="margin:72px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.troubleshooting }}</h2>
   <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
     <sc-for list="{{ trouble }}" as="q" hint-placeholder-count="4">
-      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8">{{ q.a }}</span></div>
+      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8"><mz-rich text="{{ q.a }}"></mz-rich></span></div>
     </sc-for>
   </div>
   <button onClick="{{ goContact }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700;margin-top:28px" style-hover="background:#1f1c17">{{ t.stillStuck }}</button>
@@ -514,9 +515,9 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.aboutKicker }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hAbout }}</h1>
   <div style="display:flex;flex-direction:column;gap:16px;max-width:760px;margin-bottom:64px">
-    <p style="margin:0;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.aboutText }}</p>
-    <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.story1 }}</p>
-    <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.story2 }}</p>
+    <p style="margin:0;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.aboutText }}"></mz-rich></p>
+    <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ t.story1 }}"></mz-rich></p>
+    <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ t.story2 }}"></mz-rich></p>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:20px">
     <sc-for list="{{ founders }}" as="fd" hint-placeholder-count="2">
@@ -528,8 +529,8 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
             <span style="color:#d2ab55;font-weight:700;font-size:15px;letter-spacing:.06em;text-transform:uppercase">{{ fd.role }}</span>
           </div>
         </div>
-        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ fd.text }}</p>
-        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ fd.bio }}</p>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ fd.text }}"></mz-rich></p>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ fd.bio }}"></mz-rich></p>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
           <sc-for list="{{ fd.focus }}" as="fc" hint-placeholder-count="3"><span style="font-size:14px;border:1px solid #3a352d;border-radius:2px;padding:4px 10px;color:#ede7db">{{ fc }}</span></sc-for>
         </div>
@@ -542,7 +543,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <div style="background:#100f0d;padding:28px 26px;display:flex;flex-direction:column;gap:8px">
         <span style="font-family:Cinzel,serif;font-size:15px;color:#d2ab55;font-weight:700">{{ vl.n }}</span>
         <span style="font-family:Cinzel,serif;font-weight:700;font-size:22px">{{ vl.title }}</span>
-        <span style="color:#cfc7b8;text-wrap:pretty">{{ vl.text }}</span>
+        <span style="color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ vl.text }}"></mz-rich></span>
       </div>
     </sc-for>
   </div>
@@ -559,13 +560,13 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
     <div style="display:flex;flex-direction:column;gap:14px">
       <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.contactKicker }}</p>
       <h1 style="margin:0;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hContact }}</h1>
-      <p style="margin:0;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.contactText }}</p>
+      <p style="margin:0;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.contactText }}"></mz-rich></p>
       <h2 style="margin:28px 0 4px;font-family:Cinzel,serif;font-size:24px">{{ t.beforeWrite }}</h2>
       <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
         <sc-for list="{{ contactTips }}" as="ct" hint-placeholder-count="3">
           <div style="padding:16px 0;border-bottom:1px solid #2c2822;display:flex;flex-direction:column;gap:4px">
             <span style="display:block;color:#d2ab55;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase">{{ ct.title }}</span>
-            <span style="color:#cfc7b8;text-wrap:pretty">{{ ct.text }}</span>
+            <span style="color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ ct.text }}"></mz-rich></span>
           </div>
         </sc-for>
       </div>
@@ -581,7 +582,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
         </div>
       </sc-if>
       <sc-if value="{{ noContactLinks }}" hint-placeholder-val="{{ false }}">
-        <p style="margin:0;color:#cfc7b8">{{ t.contactSoon }}</p>
+        <p style="margin:0;color:#cfc7b8"><mz-rich text="{{ t.contactSoon }}"></mz-rich></p>
       </sc-if>
     </div>
   </div>
@@ -597,7 +598,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="Zones" style="position:relative;max-width:1280px;margin:0 auto;padding:72px 24px 100px">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.guide }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hZones }}</h1>
-  <p style="margin:0 0 40px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.zonesIntro }}</p>
+  <p style="margin:0 0 40px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.zonesIntro }}"></mz-rich></p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(380px,1fr));gap:28px;align-items:start">
     <div style="display:flex;flex-direction:column;gap:10px">
       <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:6px">
@@ -626,7 +627,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
         </button>
       </div>
       </div>
-      <p style="margin:0;font-size:14px;color:#a9a092">{{ t.mapHint }}</p>
+      <p style="margin:0;font-size:14px;color:#a9a092"><mz-rich text="{{ t.mapHint }}"></mz-rich></p>
     </div>
     <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden">
       <div style="height:240px"><image-slot id="zone-{{ zone.key }}" src="{{ zone.img }}" shape="rect" placeholder="{{ zone.ph }}"></image-slot></div>
@@ -635,7 +636,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
           <h2 style="margin:0;font-family:Cinzel,serif;font-size:32px">{{ zone.name }}</h2>
           <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:{{ zone.tagFg }};background:{{ zone.tagBg }};border-radius:2px;padding:3px 8px">{{ zone.kind }}</span>
         </div>
-        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ zone.desc }}</p>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ zone.desc }}"></mz-rich></p>
         <ul style="margin:0;padding:0 0 0 18px;color:#cfc7b8;display:flex;flex-direction:column;gap:4px">
           <sc-for list="{{ zone.acts }}" as="a" hint-placeholder-count="3"><li>{{ a }}</li></sc-for>
         </ul>
@@ -654,12 +655,12 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
         <p style="margin:0;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.details }}</p>
         <h3 style="margin:0;font-family:Cinzel,serif;font-size:30px">{{ zone.name }}</h3>
         <sc-for list="{{ zone.details }}" as="para" hint-placeholder-count="2">
-          <p style="margin:0;color:#cfc7b8;max-width:760px;text-wrap:pretty">{{ para }}</p>
+          <p style="margin:0;color:#cfc7b8;max-width:760px;text-wrap:pretty"><mz-rich text="{{ para }}"></mz-rich></p>
         </sc-for>
       </div>
       <div style="flex:1 1 240px;display:flex;flex-direction:column;gap:18px;border-left:1px solid #2c2822;padding-left:28px">
-        <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">{{ t.ruleLbl }}</span><span style="color:#ede7db">{{ zone.rule }}</span></div>
-        <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">{{ t.earn }}</span><span style="color:#ede7db">{{ zone.earn }}</span></div>
+        <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">{{ t.ruleLbl }}</span><span style="color:#ede7db"><mz-rich text="{{ zone.rule }}"></mz-rich></span></div>
+        <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">{{ t.earn }}</span><span style="color:#ede7db"><mz-rich text="{{ zone.earn }}"></mz-rich></span></div>
         <div><span style="display:block;color:#d2ab55;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px">{{ t.typeLbl }}</span><span style="color:#ede7db">{{ zone.kind }}</span></div>
       </div>
     </div>
@@ -672,7 +673,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
         <div style="padding:18px 20px 22px;display:flex;flex-direction:column;gap:6px">
           <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#d2ab55;font-weight:700">{{ z.kind }}</span>
           <span style="font-family:Cinzel,serif;font-size:22px;font-weight:700">{{ z.name }}</span>
-          <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ z.short }}</span>
+          <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty"><mz-rich text="{{ z.short }}"></mz-rich></span>
         </div>
       </button>
     </sc-for>
@@ -685,13 +686,13 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="Rules" style="max-width:1100px;margin:0 auto;padding:72px 24px 100px">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.guide }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hRules }}</h1>
-  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.rulesIntro }}</p>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.rulesIntro }}"></mz-rich></p>
   <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.serverRules }}</h2>
   <ol style="margin:0 0 56px;padding:0;list-style:none;display:flex;flex-direction:column;border-top:1px solid #2c2822">
     <sc-for list="{{ rules }}" as="r" hint-placeholder-count="6">
       <li style="display:grid;grid-template-columns:56px minmax(0,1fr);gap:16px;padding:18px 0;border-bottom:1px solid #2c2822">
         <span style="font-family:Cinzel,serif;font-weight:900;font-size:24px;color:#d2ab55">{{ r.n }}</span>
-        <div><strong style="display:block;font-size:19px">{{ r.title }}</strong><span style="color:#cfc7b8">{{ r.text }}</span></div>
+        <div><strong style="display:block;font-size:19px">{{ r.title }}</strong><span style="color:#cfc7b8"><mz-rich text="{{ r.text }}"></mz-rich></span></div>
       </li>
     </sc-for>
   </ol>
@@ -711,12 +712,12 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <div style="background:#191714;border:1px solid #2c2822;border-top:3px solid {{ pn.c }};border-radius:3px;padding:20px;display:flex;flex-direction:column;gap:6px">
         <span style="font-family:Cinzel,serif;font-weight:900;font-size:26px;color:{{ pn.c }};line-height:1">{{ pn.n }}</span>
         <span style="font-weight:700;font-size:19px">{{ pn.title }}</span>
-        <span style="color:#cfc7b8;font-size:16px">{{ pn.text }}</span>
+        <span style="color:#cfc7b8;font-size:16px"><mz-rich text="{{ pn.text }}"></mz-rich></span>
       </div>
     </sc-for>
   </div>
   <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;margin-bottom:56px">
-    <p style="margin:0;color:#cfc7b8;max-width:680px">{{ t.reportText }}</p>
+    <p style="margin:0;color:#cfc7b8;max-width:680px"><mz-rich text="{{ t.reportText }}"></mz-rich></p>
     <button onClick="{{ goContact }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.reportBtn }}</button>
   </div>
   <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.zoneRules }}</h2>
@@ -725,7 +726,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       <div style="background:#100f0d;padding:20px 22px;display:flex;flex-direction:column;gap:4px">
         <span style="font-family:Cinzel,serif;font-weight:700;font-size:18px">{{ z.name }}</span>
         <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#d2ab55;font-weight:700">{{ z.kind }}</span>
-        <span style="color:#cfc7b8;font-size:16px">{{ z.rule }}</span>
+        <span style="color:#cfc7b8;font-size:16px"><mz-rich text="{{ z.rule }}"></mz-rich></span>
       </div>
     </sc-for>
   </div>
@@ -734,7 +735,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
     <sc-for list="{{ guide }}" as="g" hint-placeholder-count="4">
       <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:24px 26px;display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font-family:Cinzel,serif;font-size:21px">{{ g.title }}</h3>
-        <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ g.text }}</p>
+        <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ g.text }}"></mz-rich></p>
       </div>
     </sc-for>
   </div>
@@ -746,25 +747,25 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <main data-screen-label="Reputation" style="max-width:1100px;margin:0 auto;padding:72px 24px 100px">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.guide }}</p>
   <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hRep }}</h1>
-  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ t.repIntro }}</p>
+  <p style="margin:0 0 48px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.repIntro }}"></mz-rich></p>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:64px">
     <sc-for list="{{ repFlow }}" as="s" hint-placeholder-count="4">
       <div style="background:#191714;border:1px solid #2c2822;border-top:3px solid {{ s.c }};border-radius:3px;padding:22px 20px;display:flex;flex-direction:column;gap:8px">
         <span style="font-family:Cinzel,serif;font-weight:900;font-size:28px;color:{{ s.c }};line-height:1">{{ s.n }}</span>
         <span style="font-weight:700;font-size:19px">{{ s.title }}</span>
-        <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty">{{ s.text }}</span>
+        <span style="color:#cfc7b8;font-size:16px;text-wrap:pretty"><mz-rich text="{{ s.text }}"></mz-rich></span>
       </div>
     </sc-for>
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:40px;margin-bottom:64px">
     <div style="display:flex;flex-direction:column;gap:12px">
       <h2 style="margin:0;font-family:Cinzel,serif;font-size:30px;color:#d2ab55">{{ t.hRepPoints }}</h2>
-      <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.repPts }}</p>
+      <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ t.repPts }}"></mz-rich></p>
       <div style="height:260px;margin-top:8px"><image-slot id="rep-board" src="{{ img.rep_board }}" shape="rounded" radius="4" placeholder="Screenshot – in-game highscore board"></image-slot></div>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px">
       <h2 style="margin:0;font-family:Cinzel,serif;font-size:30px;color:#d2ab55">{{ t.hCoins }}</h2>
-      <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ t.repCoins }}</p>
+      <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ t.repCoins }}"></mz-rich></p>
       <div style="height:260px;margin-top:8px"><image-slot id="rep-vending" src="{{ img.rep_vending }}" shape="rounded" radius="4" placeholder="Screenshot – potion vending machine"></image-slot></div>
     </div>
   </div>
@@ -773,14 +774,14 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
     <sc-for list="{{ zoneList }}" as="z" hint-placeholder-count="8">
       <button onClick="{{ z.open }}" style="display:grid;grid-template-columns:minmax(160px,260px) minmax(0,1fr);gap:20px;align-items:baseline;padding:14px 0;border:0;border-bottom:1px solid #2c2822;background:none;color:#ede7db;cursor:pointer;text-align:left" style-hover="color:#d2ab55">
         <span style="font-family:Cinzel,serif;font-weight:700;font-size:18px">{{ z.name }}</span>
-        <span style="color:#cfc7b8">{{ z.earn }}</span>
+        <span style="color:#cfc7b8"><mz-rich text="{{ z.earn }}"></mz-rich></span>
       </button>
     </sc-for>
   </div>
   <h2 style="margin:0 0 20px;font-family:Cinzel,serif;font-size:30px">{{ t.hFaq }}</h2>
   <div style="display:flex;flex-direction:column;border-top:1px solid #2c2822">
     <sc-for list="{{ faq }}" as="q" hint-placeholder-count="4">
-      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8">{{ q.a }}</span></div>
+      <div style="padding:18px 0;border-bottom:1px solid #2c2822"><strong style="display:block;font-size:19px;margin-bottom:4px">{{ q.q }}</strong><span style="color:#cfc7b8"><mz-rich text="{{ q.a }}"></mz-rich></span></div>
     </sc-for>
   </div>
 </main>
