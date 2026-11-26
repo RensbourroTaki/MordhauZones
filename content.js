@@ -1376,7 +1376,7 @@ window.MZ_CONTENT = {
     "de": "Neue Idee"
    },
    "desc": {
-    "en": "The forgotten knight modelled by dark_igorek  is a very beautiful piece and would fit perfectly into the Mordhau universe. <br><br>You can explore the full 3D model on sketchfab.com<br><br><b>Important note: </b><i>I’ll need to review each model individually before I can say how difficult it would be to bring it into the game. This one shows a lot of promise and has the level of detail we’re looking for!</i>",
+    "en": "The forgotten knight modelled by dark_igorek  is a very beautiful piece and would fit perfectly into the Mordhau universe. <br><br>You can explore the full 3D model on <a href=\"https://sketchfab.com/3d-models/the-forgotten-knight-d14eb14d83bd4e7ba7cbe443d76a10fd\" target=\"_blank\" rel=\"noopener noreferrer\">sketchfab.com</a><br><br><b>Important note: </b><i>I’ll need to review each model individually before I can say how difficult it would be to bring it into the game. This one shows a lot of promise and has the level of detail we’re looking for!</i>",
     "de": "Beschreibe die Idee in ein, zwei Sätzen."
    },
    "up": 0,
