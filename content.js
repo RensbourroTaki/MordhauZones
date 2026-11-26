@@ -2332,7 +2332,11 @@ window.MZ_CONTENT = {
   "bg-vote": "images/news-2.webp",
   "bg-features": "images/media-1-20261126030043.webp",
   "bg-media": "images/zone-portal-20261126033626.webp",
-  "bg-news": "images/logo-20261126031823.webp"
+  "bg-news": "images/logo-20261126031823.webp",
+  "bg-rules": "images/hero-bg-20261126031711.webp",
+  "bg-rep": "images/news-1.webp",
+  "bg-howto": "images/zone-card-tavern-20261126020707.webp",
+  "bg-about": "images/hero-bg-20261126031711.webp"
  },
  "voteCats": [
   {
