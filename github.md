@@ -9,5 +9,5 @@ date: 2026-11-25T20:52:42Z
 ## Screen map
 | Screen | Repo files |
 |---|---|
-| Mordhau Zones website (all pages) | Mordhau Park v2.dc.html, support.js, image-slot.js, .image-slots.state.json, assets/logo.png |
+| Mordhau Zones website (all pages) | Mordhau Park v2.dc.html, support.js, image-slot.js, .image-slots.state.json, assets/logo.webp |
 | Redirect | index.html |
