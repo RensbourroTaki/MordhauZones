@@ -43,12 +43,20 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
   </div>
 </header>
 
+<div style="position:relative;isolation:isolate">
+<sc-if value="{{ pageBg.show }}" hint-placeholder-val="{{ false }}">
+<div style="position:absolute;left:0;right:0;top:0;height:900px;z-index:-1;pointer-events:none;overflow:hidden">
+  <image-slot id="bg-{{ pageBg.key }}" src="{{ pageBg.img }}" shape="rect" placeholder="Page background"></image-slot>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(16,15,13,.55) 0%,rgba(16,15,13,.78) 40%,rgba(16,15,13,.93) 72%,#100f0d 100%),linear-gradient(to right,rgba(16,15,13,.6) 0%,rgba(16,15,13,0) 50%,rgba(16,15,13,.6) 100%)"></div>
+</div>
+</sc-if>
+
 <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
 <main data-screen-label="Home">
 
-  <section style="position:relative;min-height:86vh;display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid #2c2822">
+  <section style="position:relative;min-height:86vh;display:flex;align-items:center;justify-content:center;overflow:hidden">
     <div style="position:absolute;inset:0"><image-slot id="hero-bg" src="{{ img.hero_bg }}" shape="rect" placeholder="Hero background – Mordhau key art / screenshot"></image-slot></div>
-    <div style="position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,rgba(16,15,13,.35) 0%,rgba(16,15,13,.88) 75%)"></div>
+    <div style="position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,rgba(16,15,13,0) 0%,rgba(16,15,13,0) 50%,rgba(16,15,13,.75) 80%,#100f0d 100%),radial-gradient(ellipse at center,rgba(16,15,13,.35) 0%,rgba(16,15,13,.88) 75%)"></div>
     <div style="position:relative;pointer-events:none;max-width:1100px;width:100%;padding:80px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px">
       <img src="{{ img.logo }}" alt="Mordhau Zones" style="width:100%;max-width:960px;height:auto;filter:drop-shadow(0 12px 30px rgba(0,0,0,.7))"></img>
       <p style="margin:0;font-family:Cinzel,serif;font-size:clamp(20px,2.6vw,30px);letter-spacing:.12em;color:#d2ab55">{{ t.heroTitle }} — {{ t.tagline }}</p>
@@ -593,7 +601,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 <div style="position:relative;overflow:hidden">
 <div style="position:absolute;left:0;right:0;top:0;height:1100px;pointer-events:none">
   <image-slot id="zone-{{ zone.key }}" src="{{ zone.img }}" shape="rect" placeholder=" "></image-slot>
-  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(16,15,13,.45) 0%,rgba(16,15,13,.72) 45%,#100f0d 100%),linear-gradient(to right,rgba(16,15,13,.6) 0%,rgba(16,15,13,0) 50%,rgba(16,15,13,.6) 100%)"></div>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(16,15,13,.45) 0%,rgba(16,15,13,.72) 40%,rgba(16,15,13,.93) 72%,#100f0d 100%),linear-gradient(to right,rgba(16,15,13,.6) 0%,rgba(16,15,13,0) 50%,rgba(16,15,13,.6) 100%)"></div>
 </div>
 <main data-screen-label="Zones" style="position:relative;max-width:1280px;margin:0 auto;padding:72px 24px 100px">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.guide }}</p>
@@ -786,6 +794,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
   </div>
 </main>
 </sc-if>
+</div>
 
 <sc-if value="{{ lb }}" hint-placeholder-val="{{ false }}">
   <div onClick="{{ lb.close }}" style="position:fixed;inset:0;z-index:1000;background:rgba(8,7,6,.92);display:flex;align-items:center;justify-content:center;padding:48px 72px;cursor:zoom-out">
@@ -972,9 +981,12 @@ class Component extends DCLogic {
 
     const contactLinks = loc((S.contactLinks || []).filter(c => c && c.url), lang).map(c => ({ ...c, go: () => openUrl(c.url) }));
     const img = {}; for (const k in IMG) img[k.replace(/-/g, '_')] = IMG[k];
+    // Background behind the top of every page (home + zones have their own); visitors only see it when an image is set.
+    const pageBgImg = imgOf('bg-' + page);
+    const pageBg = { key: page, img: pageBgImg, show: page !== 'home' && page !== 'zones' && (!!pageBgImg || editMode) };
 
     return {
-      ...extra, t, nav, tiles, filters, sorts, cats, lb: lbView, zoneList, mapZones, portal, zone: cur, votes, tiers, img,
+      ...extra, t, nav, tiles, filters, sorts, cats, lb: lbView, zoneList, mapZones, portal, zone: cur, votes, tiers, img, pageBg,
       noVotes: votes.length === 0, hasIdeaUrl: !!S.ideaUrl, suggestIdea: () => openUrl(S.ideaUrl),
       contactLinks, hasContactLinks: contactLinks.length > 0, noContactLinks: contactLinks.length === 0,
       features, steps: loc(C.steps || [], lang).map(s => ({ ...s, img: imgOf('howto-' + s.n) })),
