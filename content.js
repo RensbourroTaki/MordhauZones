@@ -1384,112 +1384,6 @@ window.MZ_CONTENT = {
    "pics": 3
   },
   {
-   "id": "joust",
-   "status": "review",
-   "zone": {
-    "en": "New zone",
-    "de": "Neue Zone"
-   },
-   "by": "SirLancelittle",
-   "date": "2026-11-09",
-   "title": {
-    "en": "Jousting arena",
-    "de": "Tjost-Arena"
-   },
-   "desc": {
-    "en": "A tilt yard with horses and lances. Two riders charge at each other, best of three passes wins.",
-    "de": "Eine Tjostbahn mit Pferden und Lanzen. Zwei Reiter galoppieren aufeinander zu, wer zwei von drei Durchgängen gewinnt, siegt."
-   },
-   "note": {
-    "en": "We’re checking how well horses work on the map.",
-    "de": "Wir prüfen gerade, wie gut Pferde auf der Map funktionieren."
-   },
-   "up": 142,
-   "down": 0,
-   "cat": "zones",
-   "pics": 1
-  },
-  {
-   "id": "clan",
-   "status": "planned",
-   "zone": "Tavern",
-   "by": "Brother Ale",
-   "date": "2026-11-10",
-   "title": {
-    "en": "Clan halls",
-    "de": "Clan-Hallen"
-   },
-   "desc": {
-    "en": "Rooms above the Tavern that clans can claim, with their banner on the door and their members’ scores on the wall.",
-    "de": "Räume über der Taverne, die Clans beanspruchen können, mit eigenem Banner an der Tür und den Scores der Mitglieder an der Wand."
-   },
-   "note": {
-    "en": "On the roadmap for 2027.",
-    "de": "Für 2027 auf der Roadmap."
-   },
-   "up": 121,
-   "down": 0,
-   "cat": "feature",
-   "pics": 0
-  },
-  {
-   "id": "boss",
-   "status": "review",
-   "zone": "Cooking with Zombies",
-   "by": "PotScraper",
-   "date": "2026-11-12",
-   "title": {
-    "en": "Zombie boss waves",
-    "de": "Zombie-Boss-Wellen"
-   },
-   "desc": {
-    "en": "Every few waves a big zombie shows up that only goes down to a special dish.",
-    "de": "Alle paar Wellen taucht ein großer Zombie auf, der nur mit einem besonderen Gericht umfällt."
-   },
-   "up": 110,
-   "down": 0,
-   "cat": "feature",
-   "pics": 0
-  },
-  {
-   "id": "fish",
-   "status": "open",
-   "zone": "Tavern",
-   "by": "Wetboot",
-   "date": "2026-11-15",
-   "title": {
-    "en": "Fishing at the lake",
-    "de": "Angeln am See"
-   },
-   "desc": {
-    "en": "A quiet spot to fish for coins, with rare catches for the highscore board.",
-    "de": "Ein ruhiger Platz zum Angeln für Coins, mit seltenen Fängen fürs Highscore-Board."
-   },
-   "up": 98,
-   "down": 0,
-   "cat": "feature",
-   "pics": 0
-  },
-  {
-   "id": "arch",
-   "status": "open",
-   "zone": "Hunting Grounds",
-   "by": "Quiverfull",
-   "date": "2026-11-18",
-   "title": {
-    "en": "Archery range with targets",
-    "de": "Bogenschießplatz mit Zielscheiben"
-   },
-   "desc": {
-    "en": "Moving targets at different distances to practise before heading into the Hunting Grounds.",
-    "de": "Bewegliche Ziele auf verschiedenen Distanzen zum Üben, bevor es in die Hunting Grounds geht."
-   },
-   "up": 76,
-   "down": 0,
-   "cat": "zones",
-   "pics": 0
-  },
-  {
    "id": "emote",
    "status": "open",
    "zone": "Tavern",
@@ -1506,7 +1400,7 @@ window.MZ_CONTENT = {
    "up": 54,
    "down": 0,
    "cat": "character",
-   "pics": 0
+   "pics": 1
   }
  ],
  "tiers": [
@@ -2301,7 +2195,8 @@ window.MZ_CONTENT = {
   "news-0": "images/hero-bg-20261126031711.webp",
   "vote-imwxsyz8r-1": "images/vote-imwxsyz8r-1-20261126181155.webp",
   "vote-imwxsyz8r-2": "images/vote-imwxsyz8r-2-20261126181200.webp",
-  "vote-imwxsyz8r-3": "images/vote-imwxsyz8r-3-20261126181208.webp"
+  "vote-imwxsyz8r-3": "images/vote-imwxsyz8r-3-20261126181208.webp",
+  "vote-emote-1": "images/zone-card-tavern-20261126020707.webp"
  },
  "voteCats": [
   {
