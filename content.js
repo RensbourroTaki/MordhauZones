@@ -1366,6 +1366,42 @@ window.MZ_CONTENT = {
  },
  "votes": [
   {
+   "id": "imwxufg49",
+   "status": "new",
+   "cat": "character",
+   "by": "Team",
+   "date": "2026-11-26",
+   "title": {
+    "en": "ALL STAR CHARACTER: The Cartoon Knight",
+    "de": "Neue Idee"
+   },
+   "desc": {
+    "en": "Who wants to have this little fella for our All-Star Zone?<br><br>Check the model directly at <a href=\"https://sketchfab.com/3d-models/the-cartoon-knight-free-download-33fefd6ddc994d4992a59fd29b6333af\" target=\"_blank\" rel=\"noopener noreferrer\">sketchfab.com</a><br><br>NOTICE: All Star Characters can only be played in the proper zone and do not contain armor part switching. The whole character will be switched as soon as you enter the proper zone.",
+    "de": "Beschreibe die Idee in ein, zwei Sätzen."
+   },
+   "up": 0,
+   "down": 0,
+   "pics": 2
+  },
+  {
+   "id": "imwxueapy",
+   "status": "new",
+   "cat": "feature",
+   "by": "Team",
+   "date": "2026-11-26",
+   "title": {
+    "en": "Tavern dance floor ",
+    "de": "Neue Idee"
+   },
+   "desc": {
+    "en": "<b>A dance floor in front of the bards. <br><br>Features: </b><br><ul><li>Emotes in sync with the music.</li></ul>",
+    "de": "Beschreibe die Idee in ein, zwei Sätzen."
+   },
+   "up": 0,
+   "down": 0,
+   "pics": 1
+  },
+  {
    "id": "imwxsyz8r",
    "status": "new",
    "cat": "armor",
@@ -1382,25 +1418,6 @@ window.MZ_CONTENT = {
    "up": 0,
    "down": 0,
    "pics": 3
-  },
-  {
-   "id": "emote",
-   "status": "open",
-   "zone": "Tavern",
-   "by": "Lute Larry",
-   "date": "2026-11-21",
-   "title": {
-    "en": "Tavern dance floor",
-    "de": "Tanzfläche in der Taverne"
-   },
-   "desc": {
-    "en": "A dance floor in front of the bards. Emotes in sync with the music.",
-    "de": "Eine Tanzfläche vor den Barden. Emotes im Takt der Musik."
-   },
-   "up": 54,
-   "down": 0,
-   "cat": "character",
-   "pics": 1
   }
  ],
  "tiers": [
@@ -2196,7 +2213,9 @@ window.MZ_CONTENT = {
   "vote-imwxsyz8r-1": "images/vote-imwxsyz8r-1-20261126181155.webp",
   "vote-imwxsyz8r-2": "images/vote-imwxsyz8r-2-20261126181200.webp",
   "vote-imwxsyz8r-3": "images/vote-imwxsyz8r-3-20261126181208.webp",
-  "vote-emote-1": "images/zone-card-tavern-20261126020707.webp"
+  "vote-imwxueapy-1": "images/zone-card-tavern-20261126020707.webp",
+  "vote-imwxufg49-1": "images/vote-imwxufg49-1-20261126185003.webp",
+  "vote-imwxufg49-2": "images/vote-imwxufg49-2-20261126185048.webp"
  },
  "voteCats": [
   {
