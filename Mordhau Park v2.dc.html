@@ -312,6 +312,55 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 </main>
 </sc-if>
 
+<sc-if value="{{ isContent }}" hint-placeholder-val="{{ false }}">
+<main id="contentpage" data-screen-label="Content" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.contentKicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ t.hContent }}</h1>
+  <p style="margin:0 0 40px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty"><mz-rich text="{{ t.contentIntro }}"></mz-rich></p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:12px">
+    <sc-for list="{{ cTiles }}" as="ct" hint-placeholder-count="6">
+      <button onClick="{{ ct.go }}" style="background:{{ ct.bg }};border:1px solid {{ ct.border }};border-top:3px solid {{ ct.color }};border-radius:4px;padding:16px 16px 14px;color:#ede7db;cursor:pointer;text-align:left;display:flex;align-items:baseline;justify-content:space-between;gap:8px;min-width:0" style-hover="background:#221e18">
+        <span style="font-family:Cinzel,serif;font-weight:700;font-size:19px;color:{{ ct.color }}">{{ ct.label }}</span>
+        <span style="font-family:Cinzel,serif;font-weight:900;font-size:22px">{{ ct.n }}</span>
+      </button>
+    </sc-for>
+  </div>
+  <sc-for list="{{ cSections }}" as="sec" hint-placeholder-count="4">
+    <section data-ccat="{{ sec.key }}" style="margin-top:56px">
+      <div style="display:flex;align-items:baseline;gap:14px;padding-bottom:12px;border-bottom:2px solid {{ sec.color }};margin-bottom:18px">
+        <h2 style="margin:0;font-family:Cinzel,serif;font-size:clamp(28px,3vw,36px);color:{{ sec.color }}">{{ sec.label }}</h2>
+        <span style="font-size:15px;color:#a9a092">{{ sec.n }} {{ t.contentEntries }}</span>
+      </div>
+      <sc-if value="{{ sec.empty }}" hint-placeholder-val="{{ false }}">
+        <p style="margin:0;padding:28px 0;color:#a9a092"><mz-rich text="{{ t.contentEmpty }}"></mz-rich></p>
+      </sc-if>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <sc-for list="{{ sec.items }}" as="it" hint-placeholder-count="3">
+          <article data-item="{{ it.id }}" style="background:#191714;border:1px solid #2c2822;border-left:4px solid {{ it.color }};border-radius:4px;padding:24px;display:flex;flex-wrap:wrap;gap:24px 32px;align-items:flex-start">
+            <div style="flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:10px">
+              <sc-if value="{{ it.kind }}" hint-placeholder-val="{{ false }}">
+                <span style="align-self:flex-start;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#100f0d;background:{{ it.color }};border-radius:2px;padding:3px 8px">{{ it.kind }}</span>
+              </sc-if>
+              <h3 style="margin:0;font-family:Cinzel,serif;font-size:clamp(22px,2.2vw,28px);line-height:1.2">{{ it.name }}</h3>
+              <p style="margin:0;color:#cfc7b8;text-wrap:pretty"><mz-rich text="{{ it.desc }}"></mz-rich></p>
+            </div>
+            <sc-if value="{{ it.hasGal }}" hint-placeholder-val="{{ false }}">
+              <div style="flex:2 1 520px;min-width:0;display:grid;gap:8px;grid-template-columns:{{ it.galCols }};grid-auto-rows:{{ it.galRow }}">
+                <sc-for list="{{ it.gal }}" as="p" hint-placeholder-count="2">
+                  <button onClick="{{ p.open }}" style="padding:0;border:0;background:#100f0d;border-radius:4px;overflow:hidden;cursor:zoom-in;min-width:0;min-height:0" style-hover="filter:brightness(1.12)">
+                    <div style="width:100%;height:100%;pointer-events:none"><image-slot id="{{ p.slot }}" src="{{ p.img }}" shape="rounded" radius="4" placeholder="{{ p.ph }}"></image-slot></div>
+                  </button>
+                </sc-for>
+              </div>
+            </sc-if>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </sc-for>
+</main>
+</sc-if>
+
 <sc-if value="{{ isVote }}" hint-placeholder-val="{{ false }}">
   <section id="voteboard" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
     <div style="display:flex;flex-wrap:wrap;gap:24px 48px;align-items:flex-end;justify-content:space-between;margin-bottom:32px">
@@ -839,7 +888,7 @@ const openUrl = url => { if (url) window.open(url, '_blank', 'noopener'); };
 const donateLink = amt => (S.donateUrl || '').replace('{amount}', String(amt == null ? '' : amt).replace(/[^0-9.,]/g, ''));
 
 class Component extends DCLogic {
-  state = { lang: this.props.defaultLang ?? 'en', page: this.props.startPage ?? 'home', zone: 'tavern', vSort: 'top', vFilter: 'all', vCat: 'all', lb: null, newsId: null, newsTag: 'all', give: 10, giveCustom: '', donMsg: null };
+  state = { lang: this.props.defaultLang ?? 'en', page: this.props.startPage ?? 'home', zone: 'tavern', vSort: 'top', vFilter: 'all', vCat: 'all', cCat: 'all', lb: null, newsId: null, newsTag: 'all', give: 10, giveCustom: '', donMsg: null };
 
   componentDidMount() {
     window.addEventListener('keydown', e => {
@@ -977,6 +1026,25 @@ class Component extends DCLogic {
       goNews: () => this.goPage('news'), goVote: () => this.goPage('vote')
     };
     const features = loc(C.features || [], lang).map((f, i) => ({ ...f, img: imgOf('feat-' + f.key), dir: i % 2 ? 'row-reverse' : 'row', go: () => this.goPage(f.page) }));
+    // Content page: everything that already exists, grouped by category; screenshots side by side right of the text.
+    const { cCat } = this.state;
+    const cDefs = loc(C.contentCats || [], lang);
+    const cItems = loc(C.catalog || [], lang);
+    const CGAL = { 1: ['1fr', '300px'], 2: ['1fr 1fr', '240px'], 3: ['1fr 1fr 1fr', '200px'] };
+    const cItem = it => {
+      const n = Math.max(0, Math.min(6, Number(it.pics) || 0));
+      const shown = Array.from({ length: n }, (_, i) => ({ slot: 'item-' + it.id + '-' + (i + 1), i })).map(p => ({ ...p, img: imgOf(p.slot) })).filter(p => editMode || p.img);
+      const g = CGAL[Math.min(3, shown.length)] || CGAL[3];
+      const gal = shown.map(p => ({ ...p, ph: 'Screenshot ' + (p.i + 1),
+        open: () => { const srcs = shown.filter(x => x.img); const at = srcs.findIndex(x => x.slot === p.slot); if (at >= 0) this.setState({ lb: { id: it.id, srcs: srcs.map(x => x.img), i: at, title: it.name } }); } }));
+      return { ...it, kind: it.kind || null, hasGal: gal.length > 0, gal, galCols: g[0], galRow: shown.length > 3 ? '170px' : g[1] };
+    };
+    const cSecAll = cDefs.map(c => { const items = cItems.filter(it => it.cat === c.key).map(cItem).map(it => ({ ...it, color: c.color })); return { ...c, items, n: items.length, empty: items.length === 0 }; });
+    const cSections = cSecAll.filter(s => cCat === 'all' ? (s.n > 0 || editMode) : s.key === cCat);
+    const cTiles = [{ key: 'all', label: t.contentAll || 'All', color: '#ede7db', n: cItems.length }, ...cSecAll].map(c => {
+      const on = cCat === c.key;
+      return { key: c.key, label: c.label, color: c.color, n: c.n, bg: on ? '#221e18' : '#191714', border: on ? c.color : '#2c2822', go: () => this.setState({ cCat: c.key }) };
+    });
     const tiers = loc(C.tiers || [], lang).map(tr => ({ ...tr, border: tr.hl ? gold : '#2c2822', pick: () => donateTo(tr.price, 'tier') }));
 
     const contactLinks = loc((S.contactLinks || []).filter(c => c && c.url), lang).map(c => ({ ...c, go: () => openUrl(c.url) }));
@@ -986,7 +1054,7 @@ class Component extends DCLogic {
     const pageBg = { key: page, img: pageBgImg, show: page !== 'home' && page !== 'zones' && (!!pageBgImg || editMode) };
 
     return {
-      ...extra, t, nav, tiles, filters, sorts, cats, lb: lbView, zoneList, mapZones, portal, zone: cur, votes, tiers, img, pageBg,
+      ...extra, t, nav, tiles, filters, sorts, cats, lb: lbView, cTiles, cSections, isContent: page === 'content', zoneList, mapZones, portal, zone: cur, votes, tiers, img, pageBg,
       noVotes: votes.length === 0, hasIdeaUrl: !!S.ideaUrl, suggestIdea: () => openUrl(S.ideaUrl),
       contactLinks, hasContactLinks: contactLinks.length > 0, noContactLinks: contactLinks.length === 0,
       features, steps: loc(C.steps || [], lang).map(s => ({ ...s, img: imgOf('howto-' + s.n) })),

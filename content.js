@@ -523,6 +523,30 @@ window.MZ_CONTENT = {
   "sortFeatured": {
    "en": "Featured",
    "de": "Empfohlen"
+  },
+  "contentKicker": {
+   "en": "What's in the mod",
+   "de": "Was im Mod steckt"
+  },
+  "hContent": {
+   "en": "Content",
+   "de": "Content"
+  },
+  "contentIntro": {
+   "en": "Everything that is already playable on Mordhau Zones – zones, characters, armor, weapons and items, each with screenshots.",
+   "de": "Alles, was auf Mordhau Zones schon spielbar ist – Zonen, Charaktere, Rüstungen, Waffen und Items, jeweils mit Screenshots."
+  },
+  "contentAll": {
+   "en": "All",
+   "de": "Alles"
+  },
+  "contentEntries": {
+   "en": "entries",
+   "de": "Einträge"
+  },
+  "contentEmpty": {
+   "en": "We are filling this section right now – check back soon.",
+   "de": "Diese Rubrik füllen wir gerade – schau bald wieder vorbei."
   }
  },
  "nav": [
@@ -546,6 +570,13 @@ window.MZ_CONTENT = {
     "de": "Features"
    },
    "page": "features"
+  },
+  {
+   "label": {
+    "en": "Content",
+    "de": "Content"
+   },
+   "page": "content"
   },
   {
    "label": {
@@ -2288,7 +2319,14 @@ window.MZ_CONTENT = {
   "vote-imwxunj5x-2": "images/vote-imwxunj5x-2-20261126185627.webp",
   "vote-imwxunj5x-3": "images/vote-imwxunj5x-3-20261126185632.webp",
   "vote-imwxv05sf-1": "images/vote-imwxv05sf-1-20261126190556.webp",
-  "vote-imwxv05sf-2": "images/vote-imwxv05sf-2-20261126190600.webp"
+  "vote-imwxv05sf-2": "images/vote-imwxv05sf-2-20261126190600.webp",
+  "item-ztavern-1": "images/zone-card-tavern-20261126020707.webp",
+  "item-ztavern-2": "images/zone-tavern.webp",
+  "item-zboxing-1": "images/media-1-20261126030043.webp",
+  "item-zhunting-1": "images/hero-bg-20261126024035.webp",
+  "item-zzombies-1": "images/news-4-20261126020648.webp",
+  "item-zparkour-1": "images/news-3.webp",
+  "item-zportal-1": "images/zone-portal-20261126033626.webp"
  },
  "voteCats": [
   {
@@ -2330,6 +2368,148 @@ window.MZ_CONTENT = {
     "de": "Charakter"
    },
    "color": "#b07cc6"
+  }
+ ],
+ "contentCats": [
+  {
+   "key": "zones",
+   "label": {
+    "en": "Zones",
+    "de": "Zonen"
+   },
+   "color": "#6fa8a0"
+  },
+  {
+   "key": "characters",
+   "label": {
+    "en": "Characters",
+    "de": "Charaktere"
+   },
+   "color": "#b07cc6"
+  },
+  {
+   "key": "armor",
+   "label": {
+    "en": "Armor",
+    "de": "Rüstungen"
+   },
+   "color": "#8b9bb4"
+  },
+  {
+   "key": "weapons",
+   "label": {
+    "en": "Weapons",
+    "de": "Waffen"
+   },
+   "color": "#c9744a"
+  },
+  {
+   "key": "items",
+   "label": {
+    "en": "Items",
+    "de": "Items"
+   },
+   "color": "#d2ab55"
+  }
+ ],
+ "catalog": [
+  {
+   "id": "ztavern",
+   "cat": "zones",
+   "name": "Tavern",
+   "kind": {
+    "en": "Bards & Games",
+    "de": "Bards & Games"
+   },
+   "desc": {
+    "en": "The heart of the map. Bards, music, dice and darts.",
+    "de": "Das Herz der Map. Barden, Musik, Würfel und Darts."
+   },
+   "pics": 2
+  },
+  {
+   "id": "zboxing",
+   "cat": "zones",
+   "name": "Boxing Zone",
+   "kind": {
+    "en": "1v1 PvP",
+    "de": "1v1 PvP"
+   },
+   "desc": {
+    "en": "Step into the ring. Fists only, one on one.",
+    "de": "Rein in den Ring. Nur Fäuste, eins gegen eins."
+   },
+   "pics": 1
+  },
+  {
+   "id": "zhunting",
+   "cat": "zones",
+   "name": "Hunting Grounds",
+   "kind": {
+    "en": "Stealth PvP",
+    "de": "Stealth PvP"
+   },
+   "desc": {
+    "en": "Stealth play in complex terrain. Hide, climb, strike.",
+    "de": "Stealth-Play in komplexem Gelände. Verstecken, klettern, zuschlagen."
+   },
+   "pics": 1
+  },
+  {
+   "id": "zzombies",
+   "cat": "zones",
+   "name": "Cooking with Zombies",
+   "kind": {
+    "en": "Horde & Activity",
+    "de": "Horde & Aktivität"
+   },
+   "desc": {
+    "en": "Co-op for two: one cooks, one gardens. The finished dish becomes your weapon against the horde.",
+    "de": "Koop zu zweit: einer kocht, einer gärtnert. Das fertige Gericht wird zur Waffe gegen die Horde."
+   },
+   "pics": 1
+  },
+  {
+   "id": "zparkour",
+   "cat": "zones",
+   "name": "Parkour",
+   "kind": {
+    "en": "Death Match",
+    "de": "Death Match"
+   },
+   "desc": {
+    "en": "Obstacles, traps and moving platforms. Free deathmatch on the course.",
+    "de": "Hindernisse, Fallen und Moving Platforms. Free Deathmatch auf dem Parcours."
+   },
+   "pics": 1
+  },
+  {
+   "id": "zfkz",
+   "cat": "zones",
+   "name": "Free Kill Zone",
+   "kind": {
+    "en": "Deathmatch",
+    "de": "Deathmatch"
+   },
+   "desc": {
+    "en": "Free for all. Everyone is fair game.",
+    "de": "Jeder gegen jeden. Alle sind Freiwild."
+   },
+   "pics": 1
+  },
+  {
+   "id": "zportal",
+   "cat": "zones",
+   "name": "Invasion Portal",
+   "kind": {
+    "en": "Enhanced Invasion Maps - 64 Players",
+    "de": "Invasion"
+   },
+   "desc": {
+    "en": "Far out at the edge of the map. Follow the path and step through.",
+    "de": "Weit draußen am Rand der Map. Folg dem Pfad und tritt hindurch."
+   },
+   "pics": 1
   }
  ]
 };
