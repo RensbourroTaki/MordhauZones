@@ -2299,7 +2299,7 @@ window.MZ_CONTENT = {
   "media-2": "images/zone-tavern.webp",
   "media-3": "images/hero-bg-20261126024035.webp",
   "media-4": "images/news-4-20261126020648.webp",
-  "media-8": "images/zone-portal.webp",
+  "media-8": "images/zone-portal-20261126033626.webp",
   "zone-boxing": "images/media-1-20261126030043.webp",
   "zone-hunting": "images/hero-bg-20261126024035.webp",
   "zone-zombies": "images/news-4-20261126020648.webp",
@@ -2326,7 +2326,13 @@ window.MZ_CONTENT = {
   "item-zhunting-1": "images/hero-bg-20261126024035.webp",
   "item-zzombies-1": "images/news-4-20261126020648.webp",
   "item-zparkour-1": "images/news-3.webp",
-  "item-zportal-1": "images/zone-portal-20261126033626.webp"
+  "item-zportal-1": "images/zone-portal-20261126033626.webp",
+  "bg-content": "images/hero-bg-20261126031711.webp",
+  "bg-upcoming": "images/hero-bg-20261126024035.webp",
+  "bg-vote": "images/news-2.webp",
+  "bg-features": "images/media-1-20261126030043.webp",
+  "bg-media": "images/zone-portal-20261126033626.webp",
+  "bg-news": "images/logo-20261126031823.webp"
  },
  "voteCats": [
   {
