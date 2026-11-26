@@ -1185,68 +1185,100 @@ window.MZ_CONTENT = {
    "n": "II",
    "key": "rep",
    "page": "rep",
-   "ph": "In-game highscore board",
+   "ph": "Highscore board / vending machine",
    "cta": {
-    "en": "Reputation Guide →",
-    "de": "Reputation Guide →"
+    "en": "Reputation & coin guide →",
+    "de": "Reputation- & Coin-Guide →"
    },
    "title": {
-    "en": "Reputation & highscores",
-    "de": "Reputation & Highscores"
+    "en": "Reputation & coins",
+    "de": "Reputation & Coins"
    },
    "text": {
-    "en": "Kills and activities earn reputation points. Each zone shows its own ranking list in-game.",
-    "de": "Kills und Aktivitäten bringen Reputation Points. Jede Zone zeigt ingame ihre eigene Rangliste."
+    "en": "Kills and activities earn reputation and coins. Climb the ranking list of every zone and spend your coins at vending machines.",
+    "de": "Kills und Aktivitäten bringen Reputation und Coins. Steig in der Rangliste jeder Zone auf und gib deine Coins an Vending Machines aus."
    },
    "bullets": [
     {
-     "en": "Reputation tracked per zone",
-     "de": "Reputation pro Zone"
+     "en": "Reputation and highscore board per zone",
+     "de": "Reputation und Highscore-Board pro Zone"
     },
-    {
-     "en": "Highscore board in every zone",
-     "de": "Highscore-Board in jeder Zone"
-    },
-    {
-     "en": "Player display in Cooking with Zombies",
-     "de": "Spieleranzeige bei Cooking with Zombies"
-    }
-   ]
-  },
-  {
-   "n": "III",
-   "key": "coins",
-   "page": "rep",
-   "ph": "Potion vending machine",
-   "cta": {
-    "en": "How coins work →",
-    "de": "So funktionieren Coins →"
-   },
-   "title": {
-    "en": "Coins & potions",
-    "de": "Coins & Potions"
-   },
-   "text": {
-    "en": "Spend coins at vending machines on stackable potions you equip and trigger like a weapon.",
-    "de": "Gib Coins an Vending Machines für stackbare Potions aus, die du wie eine Waffe ausrüstest und auslöst."
-   },
-   "bullets": [
     {
      "en": "Coins from kills and activities",
      "de": "Coins aus Kills und Aktivitäten"
     },
     {
-     "en": "Vending machines around the map",
-     "de": "Vending Machines auf der ganzen Map"
+     "en": "Vending machines with stackable potions",
+     "de": "Vending Machines mit stackbaren Potions"
+    }
+   ]
+  },
+  {
+   "n": "III",
+   "key": "chars",
+   "page": "upcoming",
+   "ph": "All-star character lineup",
+   "cta": {
+    "en": "See what's coming →",
+    "de": "Was kommt →"
+   },
+   "title": {
+    "en": "Custom all-star characters",
+    "de": "Eigene All-Star-Charaktere"
+   },
+   "text": {
+    "en": "Comic and cartoon all-star characters with their own zone. Step in and your fighter switches to the character model.",
+    "de": "Comic- und Cartoon-All-Star-Charaktere mit eigener Zone. Betrittst du sie, wechselt dein Kämpfer auf das Charaktermodell."
+   },
+   "bullets": [
+    {
+     "en": "Comic & cartoon style characters",
+     "de": "Charaktere im Comic- & Cartoon-Stil"
     },
     {
-     "en": "Potions stack and trigger on demand",
-     "de": "Potions stacken und lösen auf Wunsch aus"
+     "en": "Played in their own zone",
+     "de": "Gespielt in einer eigenen Zone"
+    },
+    {
+     "en": "Your character switches model on entering",
+     "de": "Dein Charakter wechselt beim Betreten das Modell"
     }
    ]
   },
   {
    "n": "IV",
+   "key": "gear",
+   "page": "upcoming",
+   "ph": "Custom armor & weapons",
+   "cta": {
+    "en": "See what's coming →",
+    "de": "Was kommt →"
+   },
+   "title": {
+    "en": "Custom armor & weapons",
+    "de": "Eigene Rüstungen & Waffen"
+   },
+   "text": {
+    "en": "New armor sets and weapons made for Mordhau Zones, beyond the standard arsenal.",
+    "de": "Neue Rüstungen und Waffen, gemacht für Mordhau Zones, über das Standard-Arsenal hinaus."
+   },
+   "bullets": [
+    {
+     "en": "New armor sets",
+     "de": "Neue Rüstungssets"
+    },
+    {
+     "en": "New weapons",
+     "de": "Neue Waffen"
+    },
+    {
+     "en": "Ideas from the VoteBoard",
+     "de": "Ideen aus dem VoteBoard"
+    }
+   ]
+  },
+  {
+   "n": "V",
    "key": "vote",
    "page": "vote",
    "ph": "Community / VoteBoard",
