@@ -1366,6 +1366,24 @@ window.MZ_CONTENT = {
  },
  "votes": [
   {
+   "id": "imwxunj5x",
+   "status": "new",
+   "cat": "armor",
+   "by": "Team",
+   "date": "2026-11-26",
+   "title": {
+    "en": "The Old King Armor",
+    "de": "Neue Idee"
+   },
+   "desc": {
+    "en": "The Old King Armor modelled by <b>Pedro B. Goulart</b> is a very beautiful piece and would fit perfectly into the Mordhau universe.<br><br>You can explore the full 3D model on<a href=\"https://sketchfab.com/3d-models/old-king-armor-f5a4479d211e49d49937b55fd9478e85\" target=\"_blank\" rel=\"noopener noreferrer\"> sketchfab.com</a><br><br><b>Important note: </b><i>I’ll need to review each model individually before I can say how difficult it would be to bring it into the game. This one shows a lot of promise and has the level of detail we’re looking for!</i>",
+    "de": "Beschreibe die Idee in ein, zwei Sätzen."
+   },
+   "up": 0,
+   "down": 0,
+   "pics": 3
+  },
+  {
    "id": "imwxufg49",
    "status": "new",
    "cat": "character",
@@ -1412,7 +1430,7 @@ window.MZ_CONTENT = {
     "de": "Neue Idee"
    },
    "desc": {
-    "en": "The forgotten knight modelled by dark_igorek  is a very beautiful piece and would fit perfectly into the Mordhau universe. <br><br>You can explore the full 3D model on <a href=\"https://sketchfab.com/3d-models/the-forgotten-knight-d14eb14d83bd4e7ba7cbe443d76a10fd\" target=\"_blank\" rel=\"noopener noreferrer\">sketchfab.com</a><br><br><b>Important note: </b><i>I’ll need to review each model individually before I can say how difficult it would be to bring it into the game. This one shows a lot of promise and has the level of detail we’re looking for!</i>",
+    "en": "The forgotten knight modelled by <b>dark_igorek </b> is a very beautiful piece and would fit perfectly into the Mordhau universe. <br><br>You can explore the full 3D model on <a href=\"https://sketchfab.com/3d-models/the-forgotten-knight-d14eb14d83bd4e7ba7cbe443d76a10fd\" target=\"_blank\" rel=\"noopener noreferrer\">sketchfab.com</a><br><br><b>Important note: </b><i>I’ll need to review each model individually before I can say how difficult it would be to bring it into the game. This one shows a lot of promise and has the level of detail we’re looking for!</i>",
     "de": "Beschreibe die Idee in ein, zwei Sätzen."
    },
    "up": 0,
@@ -2215,7 +2233,10 @@ window.MZ_CONTENT = {
   "vote-imwxsyz8r-3": "images/vote-imwxsyz8r-3-20261126181208.webp",
   "vote-imwxueapy-1": "images/zone-card-tavern-20261126020707.webp",
   "vote-imwxufg49-1": "images/vote-imwxufg49-1-20261126185003.webp",
-  "vote-imwxufg49-2": "images/vote-imwxufg49-2-20261126185048.webp"
+  "vote-imwxufg49-2": "images/vote-imwxufg49-2-20261126185048.webp",
+  "vote-imwxunj5x-1": "images/vote-imwxunj5x-1-20261126185620.webp",
+  "vote-imwxunj5x-2": "images/vote-imwxunj5x-2-20261126185627.webp",
+  "vote-imwxunj5x-3": "images/vote-imwxunj5x-3-20261126185632.webp"
  },
  "voteCats": [
   {
