@@ -483,6 +483,46 @@ window.MZ_CONTENT = {
   "footCopy": {
    "en": "© 2026 Mordhau Zones.",
    "de": "© 2026 Mordhau Zones."
+  },
+  "hCats": {
+   "en": "Categories",
+   "de": "Rubriken"
+  },
+  "catAll": {
+   "en": "All",
+   "de": "Alle"
+  },
+  "approval": {
+   "en": "approval",
+   "de": "Zustimmung"
+  },
+  "votesFor": {
+   "en": "for",
+   "de": "dafür"
+  },
+  "votesAgainst": {
+   "en": "against",
+   "de": "dagegen"
+  },
+  "noVotesYet": {
+   "en": "no votes",
+   "de": "keine Stimmen"
+  },
+  "leading": {
+   "en": "Leading",
+   "de": "Vorne"
+  },
+  "ideasLbl": {
+   "en": "ideas",
+   "de": "Ideen"
+  },
+  "emptyCat": {
+   "en": "No ideas yet",
+   "de": "Noch keine Ideen"
+  },
+  "sortFeatured": {
+   "en": "Featured",
+   "de": "Empfohlen"
   }
  },
  "nav": [
@@ -1326,6 +1366,24 @@ window.MZ_CONTENT = {
  },
  "votes": [
   {
+   "id": "imwxsyz8r",
+   "status": "new",
+   "cat": "armor",
+   "by": "Team",
+   "date": "2026-11-26",
+   "title": {
+    "en": " The Forgotten Knight armor",
+    "de": "Neue Idee"
+   },
+   "desc": {
+    "en": "This one is a very beautiful peace and would perfectly fit into the Mordhau Universe. Modelled by dark_igorek. IMPORTANT NOTE: It is not guranteed that a conversion is possible. I have to look into each model manually. But it has big potential and has the proper detail we would expect! https://sketchfab.com/3d-models/the-forgotten-knight-d14eb14d83bd4e7ba7cbe443d76a10fd",
+    "de": "Beschreibe die Idee in ein, zwei Sätzen."
+   },
+   "up": 0,
+   "down": 0,
+   "pics": 3
+  },
+  {
    "id": "joust",
    "status": "review",
    "zone": {
@@ -1346,7 +1404,10 @@ window.MZ_CONTENT = {
     "en": "We’re checking how well horses work on the map.",
     "de": "Wir prüfen gerade, wie gut Pferde auf der Map funktionieren."
    },
-   "votes": 142
+   "up": 142,
+   "down": 0,
+   "cat": "zones",
+   "pics": 1
   },
   {
    "id": "clan",
@@ -1366,7 +1427,10 @@ window.MZ_CONTENT = {
     "en": "On the roadmap for 2027.",
     "de": "Für 2027 auf der Roadmap."
    },
-   "votes": 121
+   "up": 121,
+   "down": 0,
+   "cat": "feature",
+   "pics": 0
   },
   {
    "id": "boss",
@@ -1382,7 +1446,10 @@ window.MZ_CONTENT = {
     "en": "Every few waves a big zombie shows up that only goes down to a special dish.",
     "de": "Alle paar Wellen taucht ein großer Zombie auf, der nur mit einem besonderen Gericht umfällt."
    },
-   "votes": 110
+   "up": 110,
+   "down": 0,
+   "cat": "feature",
+   "pics": 0
   },
   {
    "id": "fish",
@@ -1398,7 +1465,10 @@ window.MZ_CONTENT = {
     "en": "A quiet spot to fish for coins, with rare catches for the highscore board.",
     "de": "Ein ruhiger Platz zum Angeln für Coins, mit seltenen Fängen fürs Highscore-Board."
    },
-   "votes": 98
+   "up": 98,
+   "down": 0,
+   "cat": "feature",
+   "pics": 0
   },
   {
    "id": "arch",
@@ -1414,7 +1484,10 @@ window.MZ_CONTENT = {
     "en": "Moving targets at different distances to practise before heading into the Hunting Grounds.",
     "de": "Bewegliche Ziele auf verschiedenen Distanzen zum Üben, bevor es in die Hunting Grounds geht."
    },
-   "votes": 76
+   "up": 76,
+   "down": 0,
+   "cat": "zones",
+   "pics": 0
   },
   {
    "id": "emote",
@@ -1430,7 +1503,10 @@ window.MZ_CONTENT = {
     "en": "A dance floor in front of the bards. Emotes in sync with the music.",
     "de": "Eine Tanzfläche vor den Barden. Emotes im Takt der Musik."
    },
-   "votes": 54
+   "up": 54,
+   "down": 0,
+   "cat": "character",
+   "pics": 0
   }
  ],
  "tiers": [
@@ -2222,6 +2298,51 @@ window.MZ_CONTENT = {
   "zone-card-hunting": "images/hero-bg-20261126024035.webp",
   "zone-card-zombies": "images/news-4-20261126020648.webp",
   "zone-card-parkour": "images/news-3.webp",
-  "news-0": "images/hero-bg-20261126031711.webp"
- }
+  "news-0": "images/hero-bg-20261126031711.webp",
+  "vote-imwxsyz8r-1": "images/vote-imwxsyz8r-1-20261126181155.webp",
+  "vote-imwxsyz8r-2": "images/vote-imwxsyz8r-2-20261126181200.webp",
+  "vote-imwxsyz8r-3": "images/vote-imwxsyz8r-3-20261126181208.webp"
+ },
+ "voteCats": [
+  {
+   "key": "zones",
+   "label": {
+    "en": "Zones",
+    "de": "Zonen"
+   },
+   "color": "#6fa8a0"
+  },
+  {
+   "key": "weapons",
+   "label": {
+    "en": "Weapons",
+    "de": "Waffen"
+   },
+   "color": "#c9744a"
+  },
+  {
+   "key": "armor",
+   "label": {
+    "en": "Armor",
+    "de": "Rüstung"
+   },
+   "color": "#8b9bb4"
+  },
+  {
+   "key": "feature",
+   "label": {
+    "en": "Feature",
+    "de": "Feature"
+   },
+   "color": "#d2ab55"
+  },
+  {
+   "key": "character",
+   "label": {
+    "en": "Character",
+    "de": "Charakter"
+   },
+   "color": "#b07cc6"
+  }
+ ]
 };

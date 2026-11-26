@@ -117,7 +117,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
           <button onClick="{{ goVote }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;display:flex;align-items:center;gap:16px;padding:16px 20px;color:#ede7db;cursor:pointer;text-align:left" style-hover="border-color:#d2ab55">
             <span style="font-family:Cinzel,serif;font-weight:900;font-size:24px;color:#6f675b;width:28px">{{ v.rank }}</span>
             <span style="flex:1;font-weight:700;font-size:19px">{{ v.title }}</span>
-            <span style="font-family:Cinzel,serif;font-weight:900;font-size:20px;color:#d2ab55">▲ {{ v.count }}</span>
+            <span style="font-family:Cinzel,serif;font-weight:900;font-size:20px;color:{{ v.col }}">{{ v.pctLabel }}</span>
           </button>
         </sc-for>
       </div>
@@ -284,7 +284,7 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
         <button onClick="{{ goVote }}" style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:22px;color:#ede7db;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:8px" style-hover="border-color:#d2ab55">
           <span style="font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#a9a092;font-weight:700">{{ u.zone }}</span>
           <span style="font-family:Cinzel,serif;font-size:21px;font-weight:700;line-height:1.2">{{ u.title }}</span>
-          <span style="font-family:Cinzel,serif;font-weight:900;color:#d2ab55">▲ {{ u.count }}</span>
+          <span style="font-family:Cinzel,serif;font-weight:900;color:{{ u.col }}">{{ u.pctLabel }} <span style="font-weight:400;font-size:14px;color:#a9a092">▲ {{ u.up }} · ▼ {{ u.down }}</span></span>
         </button>
       </sc-for>
       <button onClick="{{ goVote }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.toVote }}</button>
@@ -318,6 +318,19 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
     </div>
 
 
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:28px">
+      <sc-for list="{{ cats }}" as="ct" hint-placeholder-count="6">
+        <button onClick="{{ ct.go }}" style="background:{{ ct.bg }};border:1px solid {{ ct.border }};border-top:3px solid {{ ct.color }};border-radius:4px;padding:16px 16px 14px;color:#ede7db;cursor:pointer;text-align:left;display:flex;flex-direction:column;gap:6px;min-width:0" style-hover="background:#221e18">
+          <span style="display:flex;align-items:baseline;justify-content:space-between;gap:8px">
+            <span style="font-family:Cinzel,serif;font-weight:700;font-size:19px;color:{{ ct.color }}">{{ ct.label }}</span>
+            <span style="font-family:Cinzel,serif;font-weight:900;font-size:22px">{{ ct.n }}</span>
+          </span>
+          <span style="font-size:13px;color:#8a8275;letter-spacing:.06em;text-transform:uppercase">{{ ct.lead }}</span>
+          <span style="font-size:15px;color:#cfc7b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ ct.top }}</span>
+        </button>
+      </sc-for>
+    </div>
+
     <div style="display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid #2c2822;border-bottom:1px solid #2c2822;margin-bottom:20px">
       <div style="display:flex;gap:6px;flex-wrap:wrap">
         <sc-for list="{{ filters }}" as="fl" hint-placeholder-count="4">
@@ -326,23 +339,35 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
       </div>
       <div style="display:flex;gap:6px;align-items:center;font-size:15px;color:#a9a092">
         <span>{{ t.sortBy }}</span>
-        <sc-for list="{{ sorts }}" as="so" hint-placeholder-count="2">
+        <sc-for list="{{ sorts }}" as="so" hint-placeholder-count="3">
           <button onClick="{{ so.go }}" style="background:none;border:0;border-bottom:2px solid {{ so.line }};color:{{ so.fg }};padding:6px 4px;cursor:pointer;font-weight:700;font-size:15px">{{ so.label }}</button>
         </sc-for>
       </div>
     </div>
 
-    <div style="display:flex;flex-direction:column;gap:14px">
+    <div id="votelist" style="display:flex;flex-direction:column;gap:14px">
       <sc-for list="{{ votes }}" as="v" hint-placeholder-count="6">
-        <article style="background:#191714;border:1px solid #2c2822;border-radius:4px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:0">
-          <div style="padding:28px 0 28px 28px;font-family:Cinzel,serif;font-weight:900;font-size:30px;color:#6f675b;line-height:1;min-width:64px">{{ v.rank }}</div>
+        <article data-vote="{{ v.id }}" style="background:linear-gradient(90deg,{{ v.tint }},#191714 38%);border:1px solid #2c2822;border-left:4px solid {{ v.col }};border-radius:4px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:0">
+          <div style="padding:28px 0 28px 24px;font-family:Cinzel,serif;font-weight:900;font-size:30px;color:#6f675b;line-height:1;min-width:60px">{{ v.rank }}</div>
           <div style="padding:26px 28px;display:flex;flex-direction:column;gap:12px;min-width:0">
             <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center">
+              <span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#100f0d;background:{{ v.catColor }};border-radius:2px;padding:3px 8px">{{ v.catLabel }}</span>
               <span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:{{ v.stFg }};background:{{ v.stBg }};border-radius:2px;padding:3px 8px">{{ v.statusLabel }}</span>
-              <span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#ede7db;border:1px solid #3a352d;border-radius:2px;padding:2px 8px">{{ v.zone }}</span>
+              <sc-if value="{{ v.zone }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;color:#ede7db;border:1px solid #3a352d;border-radius:2px;padding:2px 8px">{{ v.zone }}</span>
+              </sc-if>
             </div>
             <h3 style="margin:0;font-family:Cinzel,serif;font-size:clamp(22px,2.2vw,28px);line-height:1.2">{{ v.title }}</h3>
             <p style="margin:0;color:#cfc7b8;max-width:820px;text-wrap:pretty">{{ v.desc }}</p>
+            <sc-if value="{{ v.hasGal }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;gap:8px;grid-template-columns:{{ v.galCols }};grid-auto-rows:{{ v.galRow }};max-width:820px;margin-top:4px">
+                <sc-for list="{{ v.gal }}" as="p" hint-placeholder-count="2">
+                  <button onClick="{{ p.open }}" style="grid-column:{{ p.gc }};grid-row:{{ p.gr }};padding:0;border:0;background:#100f0d;border-radius:4px;overflow:hidden;cursor:zoom-in;min-width:0;min-height:0" style-hover="filter:brightness(1.12)">
+                    <div style="width:100%;height:100%;pointer-events:none"><image-slot id="{{ p.slot }}" src="{{ p.img }}" shape="rounded" radius="4" placeholder="{{ p.ph }}"></image-slot></div>
+                  </button>
+                </sc-for>
+              </div>
+            </sc-if>
             <sc-if value="{{ v.note }}" hint-placeholder-val="{{ false }}">
               <div style="display:flex;gap:12px;align-items:baseline;background:#100f0d;border:1px solid #2c2822;border-radius:3px;padding:12px 16px;max-width:820px">
                 <span style="flex:none;color:#d2ab55;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase">{{ t.teamNote }}</span>
@@ -351,13 +376,18 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
             </sc-if>
             <span style="font-size:14px;color:#8a8275">{{ t.proposedBy }} {{ v.by }} · {{ v.date }}</span>
           </div>
-          <div style="padding:24px 28px 24px 0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:120px">
-            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:92px;height:92px;border:1px solid #3a352d;background:#100f0d;color:#ede7db;border-radius:4px;line-height:1.1;gap:2px">
-              <span style="font-size:14px;color:#d2ab55">▲</span>
-              <span style="font-family:Cinzel,serif;font-weight:900;font-size:26px">{{ v.count }}</span>
-              <span style="font-size:12px;letter-spacing:.08em;text-transform:uppercase">{{ t.votesLbl }}</span>
+          <div style="padding:26px 28px 26px 4px;display:flex;flex-direction:column;align-items:center;gap:12px;min-width:150px">
+            <div style="width:112px;height:112px;border-radius:50%;background:conic-gradient({{ v.col }} {{ v.deg }},#2c2822 0);display:flex;align-items:center;justify-content:center">
+              <div style="width:92px;height:92px;border-radius:50%;background:#100f0d;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1.05">
+                <span style="font-family:Cinzel,serif;font-weight:900;font-size:27px;color:{{ v.col }}">{{ v.pctLabel }}</span>
+                <span style="font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#a9a092;margin-top:3px">{{ v.ringSub }}</span>
+              </div>
             </div>
-            <div style="width:92px;height:4px;background:#2c2822;border-radius:2px;overflow:hidden"><div style="height:100%;width:{{ v.pct }};background:#d2ab55;transition:width .4s"></div></div>
+            <div style="width:112px;height:6px;border-radius:3px;overflow:hidden;background:{{ v.barBg }};display:flex"><div style="height:100%;width:{{ v.upW }};background:#7fb069"></div><div style="height:100%;width:{{ v.downW }};background:#c0483c"></div></div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:2px;font-size:14px;font-weight:700">
+              <span style="color:#9cc47a">▲ {{ v.up }} <span style="font-weight:400;color:#a9a092">{{ t.votesFor }}</span></span>
+              <span style="color:#e07a6b">▼ {{ v.down }} <span style="font-weight:400;color:#a9a092">{{ t.votesAgainst }}</span></span>
+            </div>
           </div>
         </article>
       </sc-for>
@@ -756,6 +786,17 @@ input,textarea,select,button{font-family:inherit;font-size:inherit}
 </main>
 </sc-if>
 
+<sc-if value="{{ lb }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ lb.close }}" style="position:fixed;inset:0;z-index:1000;background:rgba(8,7,6,.92);display:flex;align-items:center;justify-content:center;padding:48px 72px;cursor:zoom-out">
+    <img src="{{ lb.src }}" alt="" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:4px;box-shadow:0 20px 60px rgba(0,0,0,.7)"></img>
+    <sc-if value="{{ lb.multi }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ lb.prev }}" style="position:fixed;left:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid #3a352d;background:#14110d;color:#d2ab55;font-size:22px;cursor:pointer" style-hover="border-color:#d2ab55">‹</button>
+      <button onClick="{{ lb.next }}" style="position:fixed;right:16px;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:1px solid #3a352d;background:#14110d;color:#d2ab55;font-size:22px;cursor:pointer" style-hover="border-color:#d2ab55">›</button>
+    </sc-if>
+    <span style="position:fixed;bottom:18px;left:50%;transform:translateX(-50%);color:#a9a092;font-size:14px">{{ lb.caption }}</span>
+  </div>
+</sc-if>
+
 <footer style="border-top:1px solid #2c2822;background:#0b0a09">
   <div style="max-width:1280px;margin:0 auto;padding:40px 24px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
     <img src="{{ img.logo }}" alt="Mordhau Zones" style="height:64px;width:auto"></img>
@@ -788,9 +829,14 @@ const openUrl = url => { if (url) window.open(url, '_blank', 'noopener'); };
 const donateLink = amt => (S.donateUrl || '').replace('{amount}', String(amt == null ? '' : amt).replace(/[^0-9.,]/g, ''));
 
 class Component extends DCLogic {
-  state = { lang: this.props.defaultLang ?? 'en', page: this.props.startPage ?? 'home', zone: 'tavern', vSort: 'top', vFilter: 'all', newsId: null, newsTag: 'all', give: 10, giveCustom: '', donMsg: null };
+  state = { lang: this.props.defaultLang ?? 'en', page: this.props.startPage ?? 'home', zone: 'tavern', vSort: 'top', vFilter: 'all', vCat: 'all', lb: null, newsId: null, newsTag: 'all', give: 10, giveCustom: '', donMsg: null };
 
   componentDidMount() {
+    window.addEventListener('keydown', e => {
+      const lb = this.state.lb; if (!lb) return;
+      if (e.key === 'Escape') this.setState({ lb: null });
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') this.setState({ lb: { ...lb, i: (lb.i + (e.key === 'ArrowRight' ? 1 : lb.srcs.length - 1)) % lb.srcs.length } });
+    });
     try {
       const s = JSON.parse(localStorage.getItem('mp-site') || '{}');
       if (s.lang) this.setState({ lang: s.lang });
@@ -827,28 +873,69 @@ class Component extends DCLogic {
     const zc = zoneList.find(z => z.key === zone) || zoneList[0] || {};
     const cur = { ...zc, tagFg: (tagC[zc.pvp] || tagC.safe)[0], tagBg: (tagC[zc.pvp] || tagC.safe)[1] };
 
-    // VoteBoard: read-only ranking maintained in the CMS (no online voting yet)
-    const { vSort, vFilter } = this.state;
+    // VoteBoard: ranking maintained in the CMS (no online voting yet). Up/down votes per idea:
+    // rank = net score (up - down), colour = approval (up / all) from red over amber to green.
+    const { vSort, vFilter, vCat, lb } = this.state;
     const vst = C.voteStatus || {};
-    const all = loc(C.votes || [], lang).map(v => ({ ...v, count: Number(v.votes) || 0 }));
-    const byTop = [...all].sort((a, b) => b.count - a.count);
+    const catDefs = loc(C.voteCats || [], lang);
+    const catOf = k => catDefs.find(c => c.key === k) || { key: k, label: k || '–', color: '#6f675b' };
+    const hue = p => 'hsl(' + Math.round(p * 1.2) + ',58%,52%)';
+    const editMode = !!window.MZ_EDIT;  // the local CMS also shows empty picture places
+    const all = loc(C.votes || [], lang).map((v, order) => {
+      const up = Math.max(0, Number(v.up != null ? v.up : v.votes) || 0), down = Math.max(0, Number(v.down) || 0);
+      const total = up + down, pct = total ? Math.round(up / total * 100) : null;
+      return { ...v, order, up, down, total, net: up - down, pct, count: up - down,
+        col: pct == null ? '#6f675b' : hue(pct), pctLabel: pct == null ? '–' : pct + '%' };
+    });
+    const byTop = [...all].sort((a, b) => b.net - a.net || (b.pct || 0) - (a.pct || 0) || b.total - a.total);
     const rankOf = {}; byTop.forEach((v, i) => rankOf[v.id] = i + 1);
-    const max = Math.max(1, byTop.length ? byTop[0].count : 1);
     const isOpen = v => v.status === 'open' || v.status === 'new';
-    let vl = vSort === 'new' ? [...all].sort((a, b) => (b.date || '').localeCompare(a.date || '')) : byTop;
+    const inCat = v => vCat === 'all' || v.cat === vCat;
+    let vl = vSort === 'new' ? [...all].sort((a, b) => (b.date || '').localeCompare(a.date || '')) : vSort === 'featured' ? all : byTop;
+    vl = vl.filter(inCat);
     if (vFilter !== 'all') vl = vl.filter(v => vFilter === 'open' ? isOpen(v) : v.status === vFilter);
+    // picture layouts by number of pictures (1-6): [columns, row height, spans of the first picture]
+    const GAL = { 1: ['1fr', '320px', ['1', 'auto']], 2: ['1fr 1fr', '230px'], 3: ['2fr 1fr', '150px', ['1', 'span 2']],
+      4: ['2fr 1fr', '102px', ['1', 'span 3']], 5: ['2fr 1fr 1fr', '150px', ['1', 'span 2']], 6: ['1fr 1fr 1fr', '160px'] };
     const votes = vl.map(v => {
       const st = vst[v.status] || { label: L(v.status, v.status), fg: '#ede7db', bg: '#3a352d' };
-      return { ...v, note: v.note || null, rank: rankOf[v.id], pct: Math.round(v.count / max * 100) + '%',
+      const ct = catOf(v.cat);
+      const n = Math.max(0, Math.min(6, Number(v.pics) || 0));
+      const places = Array.from({ length: n }, (_, i) => ({ slot: 'vote-' + v.id + '-' + (i + 1), i }));
+      const shown = places.map(p => ({ ...p, img: imgOf(p.slot) })).filter(p => editMode || p.img);
+      const g = GAL[shown.length] || GAL[6];
+      const gal = shown.map((p, k) => ({ ...p, ph: (lang === 'de' ? 'Bild ' : 'Picture ') + (p.i + 1),
+        gc: k === 0 && g[2] ? g[2][0] : 'auto', gr: k === 0 && g[2] ? g[2][1] : 'auto',
+        open: () => { const srcs = shown.filter(x => x.img); const at = srcs.findIndex(x => x.slot === p.slot); if (at >= 0) this.setState({ lb: { id: v.id, srcs: srcs.map(x => x.img), i: at, title: v.title } }); } }));
+      return { ...v, note: v.note || null, zone: v.zone || null, rank: rankOf[v.id],
+        deg: Math.round((v.pct || 0) * 3.6) + 'deg', ringSub: v.total ? t.approval : t.noVotesYet,
+        tint: v.pct == null ? '#191714' : 'hsla(' + Math.round(v.pct * 1.2) + ',58%,40%,.14)',
+        upW: v.total ? Math.round(v.up / v.total * 100) + '%' : '0%', downW: v.total ? (100 - Math.round(v.up / v.total * 100)) + '%' : '0%',
+        barBg: '#2c2822', catLabel: ct.label, catColor: ct.color,
+        hasGal: gal.length > 0, gal, galCols: g[0], galRow: g[1],
         statusLabel: loc(st.label, lang), stFg: st.fg, stBg: st.bg };
     });
     const fdefs = [['all', L('All', 'Alle')], ['open', L('Open', 'Offen')], ['review', L('Under review', 'In Prüfung')], ['planned', L('Planned', 'Geplant')]];
+    const inC = all.filter(inCat);
     const filters = fdefs.map(([k, l]) => {
       const on = vFilter === k;
-      const n = k === 'all' ? all.length : all.filter(v => k === 'open' ? isOpen(v) : v.status === k).length;
+      const n = k === 'all' ? inC.length : inC.filter(v => k === 'open' ? isOpen(v) : v.status === k).length;
       return { label: loc(l, lang), n, bg: on ? gold : 'transparent', fg: on ? '#100f0d' : '#ede7db', border: on ? gold : '#3a352d', go: () => this.setState({ vFilter: k }) };
     });
-    const sorts = [['top', L('Top', 'Top')], ['new', L('Newest', 'Neueste')]].map(([k, l]) => ({ label: loc(l, lang), line: vSort === k ? gold : 'transparent', fg: vSort === k ? '#ede7db' : '#a9a092', go: () => this.setState({ vSort: k }) }));
+    const sorts = [['top', L('Top', 'Top')], ['new', L('Newest', 'Neueste')], ['featured', L('Featured', 'Empfohlen')]].map(([k, l]) => ({ label: loc(l, lang), line: vSort === k ? gold : 'transparent', fg: vSort === k ? '#ede7db' : '#a9a092', go: () => this.setState({ vSort: k }) }));
+    // category overview: one tile per category (+ "all") with count and the leading idea
+    const cats = [{ key: 'all', label: t.catAll || (lang === 'de' ? 'Alle' : 'All'), color: '#ede7db' }, ...catDefs].map(c => {
+      const list = byTop.filter(v => c.key === 'all' || v.cat === c.key);
+      const on = vCat === c.key;
+      return { ...c, n: list.length, lead: list.length ? (t.leading || 'Leading') : '', top: list.length ? list[0].title : (t.emptyCat || '–'),
+        bg: on ? '#221e18' : '#191714', border: on ? c.color : '#2c2822', go: () => this.setState({ vCat: c.key }) };
+    });
+    const lbView = lb && lb.srcs && lb.srcs.length ? {
+      src: lb.srcs[lb.i % lb.srcs.length], multi: lb.srcs.length > 1, caption: lb.title + (lb.srcs.length > 1 ? '  ·  ' + (lb.i + 1) + ' / ' + lb.srcs.length : ''),
+      close: () => this.setState({ lb: null }),
+      prev: e => { e.stopPropagation(); this.setState({ lb: { ...lb, i: (lb.i + lb.srcs.length - 1) % lb.srcs.length } }); },
+      next: e => { e.stopPropagation(); this.setState({ lb: { ...lb, i: (lb.i + 1) % lb.srcs.length } }); }
+    } : null;
 
     const { newsId, newsTag, give, giveCustom, donMsg } = this.state;
     const newsAll = loc(C.news || [], lang).map(n => ({ ...n, img: imgOf(n.slot), open: () => this.setState({ page: 'news', newsId: n.id }, () => window.scrollTo({ top: 0 })) }));
@@ -857,7 +944,7 @@ class Component extends DCLogic {
     const newsF = newsTag === 'all' || !tagKeys.includes(newsTag) ? newsAll : newsAll.filter(n => n.tag === newsTag);
     const article = newsAll.find(n => n.id === newsId) || newsAll[0] || {};
     const upAll = loc(C.upcoming || [], lang);
-    const upReview = all.filter(v => v.status === 'review').sort((a, b) => b.count - a.count).map(v => ({ title: v.title, zone: v.zone, count: v.count }));
+    const upReview = byTop.filter(v => v.status === 'review').map(v => ({ title: v.title, zone: v.zone || catOf(v.cat).label, up: v.up, down: v.down, col: v.col, pctLabel: v.pctLabel }));
 
     // Donations: real link from the CMS, otherwise an honest "coming soon" message
     const cur$ = S.currency || '€';
@@ -870,7 +957,7 @@ class Component extends DCLogic {
       moreNews: newsAll.filter(n => n.id !== article.id).slice(0, 3), homeNews: newsAll.slice(0, 3), shipped: newsAll,
       newsBack: () => this.setState({ newsId: null }, () => window.scrollTo({ top: 0 })),
       upProgress: upAll.filter(u => u.stage === 'progress'), upPlanned: upAll.filter(u => u.stage === 'planned'), upReview,
-      topVotes: byTop.slice(0, 3).map((v, i) => ({ rank: i + 1, title: v.title, count: v.count })),
+      topVotes: byTop.slice(0, 3).map((v, i) => ({ rank: i + 1, title: v.title, col: v.col, pctLabel: v.pctLabel })),
       goalShow: !!S.goalShow && gT > 0, goalLabel: cur$ + gC + ' / ' + cur$ + gT, goalPct: (gT > 0 ? Math.min(100, Math.round(gC / gT * 100)) : 0) + '%',
       amounts, giveCustom,
       onCustom: e => this.setState({ giveCustom: e.target.value }),
@@ -886,7 +973,7 @@ class Component extends DCLogic {
     const img = {}; for (const k in IMG) img[k.replace(/-/g, '_')] = IMG[k];
 
     return {
-      ...extra, t, nav, tiles, filters, sorts, zoneList, mapZones, portal, zone: cur, votes, tiers, img,
+      ...extra, t, nav, tiles, filters, sorts, cats, lb: lbView, zoneList, mapZones, portal, zone: cur, votes, tiers, img,
       noVotes: votes.length === 0, hasIdeaUrl: !!S.ideaUrl, suggestIdea: () => openUrl(S.ideaUrl),
       contactLinks, hasContactLinks: contactLinks.length > 0, noContactLinks: contactLinks.length === 0,
       features, steps: loc(C.steps || [], lang).map(s => ({ ...s, img: imgOf('howto-' + s.n) })),
