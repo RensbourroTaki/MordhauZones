@@ -3375,6 +3375,24 @@ window.MZ_CONTENT = {
  },
  "votes": [
   {
+   "id": "imwzm2c2l",
+   "status": "new",
+   "cat": "armor",
+   "by": "Team",
+   "date": "2026-11-27",
+   "title": {
+    "en": "Cavalry Armor Set",
+    "de": "Neue Idee"
+   },
+   "desc": {
+    "en": "Another possible clean candidate on <a href=\"https://sketchfab.com/3d-models/cavalry-armor-set-7621117443cc4c21ab90528fc399a944\" target=\"_blank\" rel=\"noopener noreferrer\">sketchfab.com</a> modelled by Ulvi Aktaş<br>What you say to this one? Ofc I will adapt the propotions of each armor part to Mordhau's default character. But, he's not that bad. Ofc without cape. hm... capes!",
+    "de": "Beschreibe die Idee in ein, zwei Sätzen."
+   },
+   "up": 0,
+   "down": 0,
+   "pics": 3
+  },
+  {
    "id": "imwzhjr9i",
    "status": "new",
    "cat": "armor",
@@ -5192,7 +5210,10 @@ window.MZ_CONTENT = {
   "zone-fkz": "images/item-zfkz-1-20261127234602.webp",
   "zone-card-fkz": "images/item-zfkz-1-20261127234602.webp",
   "zone-card-portal": "images/item-zportal-1-20261127234816.webp",
-  "zone-card-zombies": "images/zone-zombies-20261127233022.webp"
+  "zone-card-zombies": "images/zone-zombies-20261127233022.webp",
+  "vote-imwzm2c2l-1": "images/vote-imwzm2c2l-1-20261128003207.webp",
+  "vote-imwzm2c2l-2": "images/vote-imwzm2c2l-2-20261128003214.webp",
+  "vote-imwzm2c2l-3": "images/vote-imwzm2c2l-3-20261128003221.webp"
  },
  "voteCats": [
   {
