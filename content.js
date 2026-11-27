@@ -5189,7 +5189,10 @@ window.MZ_CONTENT = {
   "vote-imwzhjr9i-5": "images/vote-imwzhjr9i-5-20261127222247.webp",
   "press-shot-imwzk6iv7": "images/zone-zombies-20261127233022.webp",
   "item-zfkz-1": "images/item-zfkz-1-20261127234602.webp",
-  "zone-fkz": "images/item-zfkz-1-20261127234602.webp"
+  "zone-fkz": "images/item-zfkz-1-20261127234602.webp",
+  "zone-card-fkz": "images/item-zfkz-1-20261127234602.webp",
+  "zone-card-portal": "images/item-zportal-1-20261127234816.webp",
+  "zone-card-zombies": "images/zone-zombies-20261127233022.webp"
  },
  "voteCats": [
   {
