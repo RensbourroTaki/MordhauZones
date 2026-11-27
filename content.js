@@ -28,6 +28,9 @@ window.MZ_CONTENT = {
    10,
    25,
    50
+  ],
+  "hiddenPages": [
+   "rep"
   ]
  },
  "texts": {
@@ -476,6 +479,10 @@ window.MZ_CONTENT = {
    "en": "Reputation",
    "de": "Reputation"
   },
+  "footPress": {
+   "en": "Press Kit",
+   "de": "Press Kit"
+  },
   "footContact": {
    "en": "Contact",
    "de": "Contact"
@@ -626,6 +633,13 @@ window.MZ_CONTENT = {
     "de": "About"
    },
    "page": "about"
+  },
+  {
+   "label": {
+    "en": "Press Kit",
+    "de": "Press Kit"
+   },
+   "page": "press"
   },
   {
    "label": {
@@ -2337,7 +2351,19 @@ window.MZ_CONTENT = {
   "bg-howto": "images/zone-card-tavern-20261126020707.webp",
   "bg-about": "images/hero-bg-20261126031711.webp",
   "feat-zones": "images/feat-zones-20261127023927.webp",
-  "bg-features": "images/bg-features-20261127023941.webp"
+  "bg-features": "images/bg-features-20261127023941.webp",
+  "bg-press": "images/hero-bg-20261126031711.webp",
+  "press-shot-1": "images/hero-bg-20261126031711.webp",
+  "press-shot-2": "images/zone-card-tavern-20261126020707.webp",
+  "press-shot-3": "images/zone-tavern.webp",
+  "press-shot-4": "images/media-1-20261126030043.webp",
+  "press-shot-5": "images/hero-bg-20261126024035.webp",
+  "press-shot-6": "images/news-4-20261126020648.webp",
+  "press-shot-7": "images/news-3.webp",
+  "press-shot-8": "images/zone-portal-20261126033626.webp",
+  "press-shot-9": "images/feat-zones-20261127023927.webp",
+  "press-shot-10": "images/news-1.webp",
+  "press-shot-11": "images/news-2.webp"
  },
  "voteCats": [
   {
@@ -2522,5 +2548,292 @@ window.MZ_CONTENT = {
    },
    "pics": 1
   }
- ]
+ ],
+ "press": {
+  "kicker": {
+   "en": "For press & creators",
+   "de": "Für Presse & Creator"
+  },
+  "title": {
+   "en": "Press Kit",
+   "de": "Press Kit"
+  },
+  "intro": {
+   "en": "Facts, logos, icons and screenshots of Mordhau Zones. Free to use for articles, videos and streams about the mod.",
+   "de": "Fakten, Logos, Icons und Screenshots zu Mordhau Zones. Frei verwendbar für Artikel, Videos und Streams über den Mod."
+  },
+  "hFacts": {
+   "en": "Fact sheet",
+   "de": "Fact Sheet"
+  },
+  "facts": [
+   {
+    "k": {
+     "en": "Title",
+     "de": "Titel"
+    },
+    "v": {
+     "en": "Mordhau Zones",
+     "de": "Mordhau Zones"
+    }
+   },
+   {
+    "k": {
+     "en": "Type",
+     "de": "Art"
+    },
+    "v": {
+     "en": "Mod & community server for MORDHAU",
+     "de": "Mod & Community-Server für MORDHAU"
+    }
+   },
+   {
+    "k": {
+     "en": "Developers",
+     "de": "Entwickler"
+    },
+    "v": {
+     "en": "AlwaysFun & M4L-73",
+     "de": "AlwaysFun & M4L-73"
+    }
+   },
+   {
+    "k": {
+     "en": "Platform",
+     "de": "Plattform"
+    },
+    "v": {
+     "en": "PC (MORDHAU required)",
+     "de": "PC (MORDHAU erforderlich)"
+    }
+   },
+   {
+    "k": {
+     "en": "Server list",
+     "de": "Serverliste"
+    },
+    "v": {
+     "en": "Server type: Modded",
+     "de": "Server Type: Modded"
+    }
+   },
+   {
+    "k": {
+     "en": "Map",
+     "de": "Map"
+    },
+    "v": {
+     "en": "One modded map, 7 zones",
+     "de": "Eine Mod-Map, 7 Zonen"
+    }
+   },
+   {
+    "k": {
+     "en": "Price",
+     "de": "Preis"
+    },
+    "v": {
+     "en": "Free",
+     "de": "Kostenlos"
+    }
+   },
+   {
+    "k": {
+     "en": "Website",
+     "de": "Website"
+    },
+    "v": {
+     "en": "rensbourrotaki.github.io/MordhauZones",
+     "de": "rensbourrotaki.github.io/MordhauZones"
+    }
+   }
+  ],
+  "hAbout": {
+   "en": "About the mod",
+   "de": "Über den Mod"
+  },
+  "about": [
+   {
+    "en": "Mordhau Zones is a mod server for MORDHAU. One big modded map is split into seven zones: Tavern, Boxing Zone, Hunting Grounds, Cooking with Zombies, Parkour, Free Kill Zone and the Invasion Portal.",
+    "de": "Mordhau Zones ist ein Mod-Server für MORDHAU. Eine große Mod-Map ist in sieben Zonen aufgeteilt: Taverne, Boxing Zone, Hunting Grounds, Cooking with Zombies, Parkour, Free Kill Zone und das Invasion Portal."
+   },
+   {
+    "en": "Kills and zone activities earn reputation points and coins. Coins buy stackable potions at vending machines, reputation points show up on the highscore boards in each zone.",
+    "de": "Kills und Zonen-Aktivitäten bringen Reputation Points und Coins. Mit Coins kauft man stapelbare Tränke an Vending Machines, die Reputation Points erscheinen auf den Highscore-Boards der jeweiligen Zone."
+   },
+   {
+    "en": "Built by AlwaysFun (maps, graphics, audio, mechanics) and M4L-73 (developer, admin & moderator). Players vote on upcoming features on the VoteBoard.",
+    "de": "Gebaut von AlwaysFun (Maps, Grafik, Audio, Mechaniken) und M4L-73 (Entwickler, Admin & Moderator). Über kommende Features stimmen die Spieler auf dem VoteBoard ab."
+   }
+  ],
+  "hAssets": {
+   "en": "Logos & icons",
+   "de": "Logos & Icons"
+  },
+  "assets": [
+   {
+    "title": {
+     "en": "Logo",
+     "de": "Logo"
+    },
+    "meta": {
+     "en": "PNG · transparent · 1672 × 941",
+     "de": "PNG · transparent · 1672 × 941"
+    },
+    "file": "images/presskit-logo.png",
+    "ratio": "16/9",
+    "contain": true
+   },
+   {
+    "title": {
+     "en": "Logo (web)",
+     "de": "Logo (Web)"
+    },
+    "meta": {
+     "en": "WEBP · transparent · 1672 × 941",
+     "de": "WEBP · transparent · 1672 × 941"
+    },
+    "file": "logo.webp",
+    "ratio": "16/9",
+    "contain": true
+   },
+   {
+    "title": {
+     "en": "Icon 1:1",
+     "de": "Icon 1:1"
+    },
+    "meta": {
+     "en": "PNG · 1024 × 1024",
+     "de": "PNG · 1024 × 1024"
+    },
+    "file": "images/presskit-icon-1024.png",
+    "ratio": "1/1",
+    "contain": false
+   },
+   {
+    "title": {
+     "en": "Icon 1:1 · Tavern H",
+     "de": "Icon 1:1 · Taverne H"
+    },
+    "meta": {
+     "en": "PNG · 512 × 512",
+     "de": "PNG · 512 × 512"
+    },
+    "file": "images/presskit-icon-h-512.png",
+    "ratio": "1/1",
+    "contain": false
+   }
+  ],
+  "hShots": {
+   "en": "Screenshots",
+   "de": "Screenshots"
+  },
+  "shotsNote": {
+   "en": "Click to view full size.",
+   "de": "Zum Vergrößern anklicken."
+  },
+  "shots": [
+   {
+    "id": "1",
+    "caption": {
+     "en": "Mordhau Zones",
+     "de": "Mordhau Zones"
+    }
+   },
+   {
+    "id": "2",
+    "caption": {
+     "en": "Tavern",
+     "de": "Taverne"
+    }
+   },
+   {
+    "id": "3",
+    "caption": {
+     "en": "Tavern",
+     "de": "Taverne"
+    }
+   },
+   {
+    "id": "4",
+    "caption": {
+     "en": "Boxing Zone",
+     "de": "Boxing Zone"
+    }
+   },
+   {
+    "id": "5",
+    "caption": {
+     "en": "Hunting Grounds",
+     "de": "Hunting Grounds"
+    }
+   },
+   {
+    "id": "6",
+    "caption": {
+     "en": "Cooking with Zombies",
+     "de": "Cooking with Zombies"
+    }
+   },
+   {
+    "id": "7",
+    "caption": {
+     "en": "Parkour",
+     "de": "Parkour"
+    }
+   },
+   {
+    "id": "8",
+    "caption": {
+     "en": "Invasion Portal",
+     "de": "Invasion Portal"
+    }
+   },
+   {
+    "id": "9",
+    "caption": {
+     "en": "Zones",
+     "de": "Zonen"
+    }
+   },
+   {
+    "id": "10",
+    "caption": {
+     "en": "Mordhau Zones",
+     "de": "Mordhau Zones"
+    }
+   },
+   {
+    "id": "11",
+    "caption": {
+     "en": "Mordhau Zones",
+     "de": "Mordhau Zones"
+    }
+   }
+  ],
+  "view": {
+   "en": "View",
+   "de": "Ansehen"
+  },
+  "download": {
+   "en": "Download",
+   "de": "Download"
+  },
+  "hContact": {
+   "en": "Press contact",
+   "de": "Pressekontakt"
+  },
+  "contactText": {
+   "en": "Interviews, review access or more material: write to us via the contact form.",
+   "de": "Interviews, Zugang zum Testen oder mehr Material: Schreib uns über das Kontaktformular."
+  },
+  "contactCta": {
+   "en": "Contact us",
+   "de": "Kontakt aufnehmen"
+  },
+  "usage": {
+   "en": "MORDHAU is a trademark of its respective owner. Mordhau Zones is a community mod, not affiliated with Triternion.",
+   "de": "MORDHAU ist eine Marke des jeweiligen Inhabers. Mordhau Zones ist ein Community-Mod und nicht mit Triternion verbunden."
+  }
+ }
 };

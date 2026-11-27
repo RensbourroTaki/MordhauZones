@@ -275,6 +275,77 @@ html[data-mob] [style*="gap: 72px"]{gap:48px!important}
 </main>
 </sc-if>
 
+<sc-if value="{{ isPress }}" hint-placeholder-val="{{ false }}">
+<main id="presspage" data-screen-label="Press Kit" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
+  <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ press.kicker }}</p>
+  <h1 style="margin:0 0 12px;font-family:Cinzel,serif;font-size:clamp(40px,5vw,64px);font-weight:900;line-height:1.05">{{ press.title }}</h1>
+  <p style="margin:0 0 56px;max-width:720px;color:#cfc7b8;font-size:20px;text-wrap:pretty">{{ press.intro }}</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:40px 56px;align-items:start">
+    <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:28px">
+      <h2 style="margin:0 0 18px;font-family:Cinzel,serif;font-size:26px">{{ press.hFacts }}</h2>
+      <dl style="margin:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:0">
+        <sc-for list="{{ press.facts }}" as="f" hint-placeholder-count="8">
+          <dt style="padding:11px 20px 11px 0;border-top:1px solid #2c2822;color:#a9a092;font-size:15px;text-transform:uppercase;letter-spacing:.08em">{{ f.k }}</dt>
+          <dd style="margin:0;padding:11px 0;border-top:1px solid #2c2822;color:#ede7db;overflow-wrap:anywhere">{{ f.v }}</dd>
+        </sc-for>
+      </dl>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <h2 style="margin:0 0 4px;font-family:Cinzel,serif;font-size:26px">{{ press.hAbout }}</h2>
+      <sc-for list="{{ press.about }}" as="p" hint-placeholder-count="3"><p style="margin:0;color:#cfc7b8;font-size:18px;text-wrap:pretty">{{ p }}</p></sc-for>
+    </div>
+  </div>
+
+  <h2 style="margin:80px 0 20px;font-family:Cinzel,serif;font-size:30px">{{ press.hAssets }}</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px">
+    <sc-for list="{{ press.assets }}" as="a" hint-placeholder-count="4">
+      <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden;display:flex;flex-direction:column">
+        <button onClick="{{ a.open }}" style="border:0;padding:0;cursor:zoom-in;aspect-ratio:4/3;background:#0d0c0a;display:flex;align-items:center;justify-content:center">
+          <img src="{{ a.file }}" alt="{{ a.title }}" style="max-width:{{ a.maxW }};max-height:{{ a.maxH }};object-fit:contain;display:block;border-radius:2px"></img>
+        </button>
+        <div style="padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px;flex:1">
+          <div style="display:flex;flex-direction:column;gap:2px">
+            <strong style="font-family:Cinzel,serif;font-size:18px">{{ a.title }}</strong>
+            <span style="color:#a9a092;font-size:14px">{{ a.meta }}</span>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:auto">
+            <button onClick="{{ a.open }}" style="flex:1;background:none;border:1px solid #3a352d;color:#cfc7b8;border-radius:3px;padding:10px 12px;min-height:44px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ press.view }}</button>
+            <a href="{{ a.file }}" download="{{ a.dl }}" style="flex:1;background:#d2ab55;color:#100f0d;border-radius:3px;padding:10px 12px;min-height:44px;font-weight:700;text-decoration:none;display:flex;align-items:center;justify-content:center" style-hover="background:#e0bd6c">{{ press.download }}</a>
+          </div>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline;justify-content:space-between;margin:80px 0 20px">
+    <h2 style="margin:0;font-family:Cinzel,serif;font-size:30px">{{ press.hShots }}</h2>
+    <span style="color:#a9a092;font-size:15px">{{ press.shotsNote }}</span>
+  </div>
+  <div id="pressshots" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr));gap:12px">
+    <sc-for list="{{ press.shots }}" as="s" hint-placeholder-count="8">
+      <div data-shot="{{ s.id }}" style="display:flex;flex-direction:column;gap:8px;min-width:0">
+        <button onClick="{{ s.open }}" style="display:block;width:100%;border:1px solid #2c2822;padding:0;border-radius:4px;overflow:hidden;cursor:zoom-in;aspect-ratio:16/9;background:#191714" style-hover="filter:brightness(1.12)">
+          <div style="width:100%;height:100%;pointer-events:none"><image-slot id="{{ s.slot }}" src="{{ s.img }}" shape="rounded" radius="4" placeholder="{{ s.ph }}"></image-slot></div>
+        </button>
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px">
+          <span style="font-size:15px;color:#cfc7b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">{{ s.caption }}</span>
+          <a href="{{ s.img }}" download="{{ s.dl }}" style="color:#d2ab55;font-size:14px;font-weight:700;text-decoration:none;padding:6px 0;flex:none">{{ press.download }}</a>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div style="margin-top:80px;background:#191714;border:1px solid #2c2822;border-radius:4px;padding:28px;display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between">
+    <div style="display:flex;flex-direction:column;gap:6px;max-width:640px">
+      <h2 style="margin:0;font-family:Cinzel,serif;font-size:26px">{{ press.hContact }}</h2>
+      <p style="margin:0;color:#cfc7b8;text-wrap:pretty">{{ press.contactText }}</p>
+    </div>
+    <button onClick="{{ goContact }}" style="background:#d2ab55;color:#100f0d;border:0;border-radius:3px;padding:14px 24px;min-height:44px;cursor:pointer;font-weight:700" style-hover="background:#e0bd6c">{{ press.contactCta }}</button>
+  </div>
+  <p style="margin:24px 0 0;color:#8a8275;font-size:14px">{{ press.usage }}</p>
+</main>
+</sc-if>
+
 <sc-if value="{{ isFeatures }}" hint-placeholder-val="{{ false }}">
 <main data-screen-label="Features" style="max-width:1280px;margin:0 auto;padding:72px 24px 100px;min-height:70vh">
   <p style="margin:0 0 6px;color:#d2ab55;font-size:14px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">{{ t.featKicker }}</p>
@@ -291,7 +362,9 @@ html[data-mob] [style*="gap: 72px"]{gap:48px!important}
           <ul style="margin:0;padding:0 0 0 18px;color:#cfc7b8;display:flex;flex-direction:column;gap:4px">
             <sc-for list="{{ f.bullets }}" as="b" hint-placeholder-count="3"><li>{{ b }}</li></sc-for>
           </ul>
+          <sc-if value="{{ f.hasCta }}" hint-placeholder-val="{{ true }}">
           <button onClick="{{ f.go }}" style="background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700;align-self:flex-start;margin-top:6px" style-hover="background:#1f1c17">{{ f.cta }}</button>
+          </sc-if>
         </div>
       </div>
     </sc-for>
@@ -601,7 +674,9 @@ html[data-mob] [style*="gap: 72px"]{gap:48px!important}
       <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;padding:24px;display:flex;flex-direction:column;gap:10px">
         <span style="font-family:Cinzel,serif;font-weight:700;font-size:21px">{{ ft.title }}</span>
         <span style="color:#cfc7b8;text-wrap:pretty;flex:1"><mz-rich text="{{ ft.text }}"></mz-rich></span>
+        <sc-if value="{{ ft.hasCta }}" hint-placeholder-val="{{ true }}">
         <button onClick="{{ ft.go }}" style="background:none;border:0;color:#d2ab55;font-weight:700;cursor:pointer;padding:0;text-align:left">{{ ft.cta }}</button>
+        </sc-if>
       </div>
     </sc-for>
   </div>
@@ -844,7 +919,9 @@ html[data-mob] [style*="gap: 72px"]{gap:48px!important}
       </div>
     </sc-for>
   </div>
+  <sc-if value="{{ showRep }}" hint-placeholder-val="{{ true }}">
   <button onClick="{{ goRep }}" style="margin-top:28px;background:none;border:1px solid #d2ab55;color:#d2ab55;border-radius:3px;padding:12px 20px;cursor:pointer;font-weight:700" style-hover="background:#1f1c17">{{ t.toRep }}</button>
+  </sc-if>
 </main>
 </sc-if>
 
@@ -910,7 +987,10 @@ html[data-mob] [style*="gap: 72px"]{gap:48px!important}
     <div style="display:flex;flex-wrap:wrap;gap:8px 20px;font-size:15px">
       <button onClick="{{ goRules }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">{{ t.footRules }}</button>
       <button onClick="{{ goZones }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">{{ t.footZones }}</button>
+      <sc-if value="{{ showRep }}" hint-placeholder-val="{{ true }}">
       <button onClick="{{ goRep }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">{{ t.footRep }}</button>
+      </sc-if>
+      <button onClick="{{ goPress }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">{{ t.footPress }}</button>
       <button onClick="{{ goContact }}" style="background:none;border:0;color:#d2ab55;cursor:pointer;padding:0">{{ t.footContact }}</button>
     </div>
     <p style="margin:0;width:100%;font-size:14px;color:#8a8275">{{ t.footCopy }} {{ t.disclaimer }}</p>
@@ -930,6 +1010,7 @@ const loc = (v, lang) => {
   return v;
 };
 const IMG = C.images || {};
+const hiddenPages = () => new Set(Array.isArray(S.hiddenPages) ? S.hiddenPages : []);
 const imgOf = id => IMG[id] || undefined;
 const openUrl = url => { if (url) window.open(url, '_blank', 'noopener'); };
 // donateUrl may contain {amount}, e.g. https://paypal.me/name/{amount}EUR
@@ -954,14 +1035,18 @@ class Component extends DCLogic {
   setLang(lang) {
     this.setState({ lang }, () => { try { localStorage.setItem('mp-site', JSON.stringify({ lang })); } catch (e) {} });
   }
-  goPage(p) { this.setState({ page: p, newsId: null, donMsg: null, menu: false }, () => window.scrollTo({ top: 0 })); }
+  // Pages listed in settings.hiddenPages are switched off: not in the menu and not reachable (visitors land on home).
+  // The local CMS (window.MZ_EDIT) can still open them so their texts stay editable.
+  goPage(p) { if (hiddenPages().has(p) && !window.MZ_EDIT) p = 'home'; this.setState({ page: p, newsId: null, donMsg: null, menu: false }, () => window.scrollTo({ top: 0 })); }
 
   renderVals() {
-    const { lang, page, zone } = this.state;
+    const { lang, zone } = this.state;
+    const hidden = hiddenPages();
+    const page = hidden.has(this.state.page) && !window.MZ_EDIT ? 'home' : this.state.page;
     const t = loc(C.texts || {}, lang);
     const gold = '#d2ab55';
-    const nav = (C.nav || []).map(n => ({ label: loc(n.label, lang), go: () => this.goPage(n.page), color: n.page === page ? gold : '#cfc7b8' }));
-    const tiles = loc(C.tiles || [], lang).map(tl => ({ ...tl, go: () => this.goPage(tl.page) }));
+    const nav = (C.nav || []).filter(n => !hidden.has(n.page)).map(n => ({ label: loc(n.label, lang), go: () => this.goPage(n.page), color: n.page === page ? gold : '#cfc7b8' }));
+    const tiles = loc(C.tiles || [], lang).filter(tl => !hidden.has(tl.page)).map(tl => ({ ...tl, go: () => this.goPage(tl.page) }));
 
     const zl = loc(C.zones || [], lang);
     const tagC = { safe: ['#9cc47a', '#1f2a18'], pvp: ['#fff', '#a3281f'], pve: ['#100f0d', gold] };
@@ -1039,6 +1124,16 @@ class Component extends DCLogic {
       return { ...c, n: list.length, lead: list.length ? (t.leading || 'Leading') : '', top: list.length ? list[0].title : (t.emptyCat || '–'),
         bg: on ? '#221e18' : '#191714', border: on ? c.color : '#2c2822', go: () => this.setState({ vCat: c.key }) };
     });
+    const P = loc(C.press || {}, lang);
+    const fname = p => (p || '').split('#')[0].split('/').pop().replace(/-\d{14}(?=\.)/, '');
+    // Screenshots live in content.images as slots press-shot-<id> (editable in the CMS); visitors only see filled ones.
+    const pShots = (P.shots || []).map(s => ({ ...s, slot: 'press-shot-' + s.id, img: imgOf('press-shot-' + s.id), ph: 'Screenshot' })).filter(s => editMode || s.img);
+    const pFilled = pShots.filter(s => s.img);
+    const pressV = { ...P,
+      assets: (P.assets || []).map(a => ({ ...a, dl: 'mordhau-zones-' + fname(a.file), maxW: a.contain ? '86%' : '70%', maxH: a.contain ? '80%' : '86%',
+        open: () => this.setState({ lb: { id: 'press-a', srcs: [a.file], i: 0, title: a.title } }) })),
+      shots: pShots.map(s => ({ ...s, dl: 'mordhau-zones-' + fname(s.img),
+        open: () => { if (s.img) this.setState({ lb: { id: 'press-s', srcs: pFilled.map(x => x.img), i: Math.max(0, pFilled.indexOf(s)), title: P.title } }); } })) };
     const lbView = lb && lb.srcs && lb.srcs.length ? {
       src: lb.srcs[lb.i % lb.srcs.length], multi: lb.srcs.length > 1, caption: lb.title + (lb.srcs.length > 1 ? '  ·  ' + (lb.i + 1) + ' / ' + lb.srcs.length : ''),
       close: () => this.setState({ lb: null }),
@@ -1072,10 +1167,10 @@ class Component extends DCLogic {
       onCustom: e => this.setState({ giveCustom: e.target.value }),
       giveOnce: () => donateTo(giveCustom || give, 'once'),
       tierMsg: donMsg === 'tier' ? t.donSoon : null, onceMsg: donMsg === 'once' ? t.donSoon : null,
-      ...ex, firstTips: (ex.firstTips || []).map(f => ({ ...f, go: () => this.goPage(f.page) })),
+      ...ex, firstTips: (ex.firstTips || []).map(f => ({ ...f, hasCta: !!f.cta && !hidden.has(f.page), go: () => this.goPage(f.page) })),
       goNews: () => this.goPage('news'), goVote: () => this.goPage('vote')
     };
-    const features = loc(C.features || [], lang).map((f, i) => ({ ...f, img: imgOf('feat-' + f.key), dir: i % 2 ? 'row-reverse' : 'row', go: () => this.goPage(f.page) }));
+    const features = loc(C.features || [], lang).map((f, i) => ({ ...f, img: imgOf('feat-' + f.key), dir: i % 2 ? 'row-reverse' : 'row', hasCta: !!f.cta && !hidden.has(f.page), go: () => this.goPage(f.page) }));
     // Content page: everything that already exists, grouped by category; screenshots side by side right of the text.
     const { cCat } = this.state;
     const cDefs = loc(C.contentCats || [], lang);
@@ -1117,7 +1212,7 @@ class Component extends DCLogic {
       doList: loc(C.doList || [], lang), dontList: loc(C.dontList || [], lang), guide: loc(C.guide || [], lang), repFlow: loc(C.repFlow || [], lang), faq: loc(C.faq || [], lang),
       isHome: page === 'home', isNews: page === 'news', isMedia: page === 'media', isFeatures: page === 'features', isUpcoming: page === 'upcoming',
       isVote: page === 'vote', isDonate: page === 'donate', isHowto: page === 'howto', isAbout: page === 'about', isContact: page === 'contact',
-      isZones: page === 'zones', isRules: page === 'rules', isRep: page === 'rep',
+      isZones: page === 'zones', isRules: page === 'rules', isRep: page === 'rep', showRep: !hidden.has('rep'), isPress: page === 'press', press: pressV, goPress: () => this.goPage('press'),
       enBg: lang === 'en' ? gold : 'transparent', enFg: lang === 'en' ? '#100f0d' : '#cfc7b8',
       deBg: lang === 'de' ? gold : 'transparent', deFg: lang === 'de' ? '#100f0d' : '#cfc7b8',
       setEn: () => this.setLang('en'), setDe: () => this.setLang('de'),
