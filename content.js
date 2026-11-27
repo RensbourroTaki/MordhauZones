@@ -2123,7 +2123,7 @@ window.MZ_CONTENT = {
   },
   {
    "key": "fkz",
-   "name": "Free Kill Zone",
+   "name": "FREE 4 ALL",
    "col": "3 / 7",
    "row": "4 / 5",
    "pvp": "pvp",
@@ -2148,7 +2148,7 @@ window.MZ_CONTENT = {
     "es": "Todos contra todos. Nadie está a salvo."
    },
    "desc": {
-    "en": "Deathmatch. Everyone against everyone, anything goes inside the zone. Step in only if you’re ready.",
+    "en": "Obstacles, traps and moving platforms. Free deathmatch on the course. For all throwable weapons. ",
     "de": "Deathmatch. Jeder gegen jeden, innerhalb der Zone ist alles erlaubt. Rein nur, wenn du bereit bist.",
     "fr": "Deathmatch. Tous contre tous, tout est permis à l’intérieur de la zone. N’entre que si tu es prêt.",
     "it": "Deathmatch. Tutti contro tutti, dentro la zona vale tutto. Entra solo se sei pronto.",
@@ -2169,7 +2169,7 @@ window.MZ_CONTENT = {
      "es": "Deathmatch todos contra todos"
     },
     {
-     "en": "Kill highscore board",
+     "en": "Reload ammo underway.",
      "de": "Kill-Highscore-Board",
      "fr": "Tableau Highscore des kills",
      "it": "Highscore board delle kill",
@@ -5155,7 +5155,7 @@ window.MZ_CONTENT = {
   "item-zboxing-1": "images/media-1-20261126030043.webp",
   "item-zhunting-1": "images/hero-bg-20261126024035.webp",
   "item-zzombies-1": "images/zone-zombies-20261127233022.webp",
-  "item-zparkour-1": "images/news-3.webp",
+  "item-zparkour-1": "images/item-zparkour-1-20261127234553.webp",
   "item-zportal-1": "images/zone-portal-20261126033626.webp",
   "bg-content": "images/hero-bg-20261126031711.webp",
   "bg-upcoming": "images/hero-bg-20261126024035.webp",
@@ -5187,7 +5187,9 @@ window.MZ_CONTENT = {
   "vote-imwzhjr9i-3": "images/vote-imwzhjr9i-3-20261127222219.webp",
   "vote-imwzhjr9i-4": "images/vote-imwzhjr9i-4-20261127222229.webp",
   "vote-imwzhjr9i-5": "images/vote-imwzhjr9i-5-20261127222247.webp",
-  "press-shot-imwzk6iv7": "images/zone-zombies-20261127233022.webp"
+  "press-shot-imwzk6iv7": "images/zone-zombies-20261127233022.webp",
+  "item-zfkz-1": "images/item-zfkz-1-20261127234602.webp",
+  "zone-fkz": "images/item-zfkz-1-20261127234602.webp"
  },
  "voteCats": [
   {
@@ -5441,7 +5443,7 @@ window.MZ_CONTENT = {
   {
    "id": "zparkour",
    "cat": "zones",
-   "name": "Parkour",
+   "name": "Target Parkour",
    "kind": {
     "en": "Death Match",
     "de": "Death Match",
@@ -5453,7 +5455,7 @@ window.MZ_CONTENT = {
     "es": "Death Match"
    },
    "desc": {
-    "en": "Obstacles, traps and moving platforms. Free deathmatch on the course.",
+    "en": "Obstacles, traps and moving platforms. Free deathmatch on the course. For all throwable weapons. Reload ammo underway.",
     "de": "Hindernisse, Fallen und Moving Platforms. Free Deathmatch auf dem Parcours.",
     "fr": "Obstacles, pièges et plateformes mobiles. Deathmatch libre sur le parcours.",
     "it": "Ostacoli, trappole e piattaforme mobili. Deathmatch libero sul percorso.",
@@ -5479,7 +5481,7 @@ window.MZ_CONTENT = {
     "es": "Deathmatch"
    },
    "desc": {
-    "en": "Free for all. Everyone is fair game.",
+    "en": "A full Castle and around it - Free for all!",
     "de": "Jeder gegen jeden. Alle sind Freiwild.",
     "fr": "Chacun pour soi. Tout le monde est une cible.",
     "it": "Tutti contro tutti. Nessuno è al sicuro.",
