@@ -1935,12 +1935,12 @@ window.MZ_CONTENT = {
   },
   {
    "key": "zombies",
-   "name": "Cooking with Zombies",
+   "name": "BOWLING",
    "col": "1 / 3",
    "row": "3 / 5",
    "pvp": "pve",
    "kind": {
-    "en": "Horde & Activity",
+    "en": "3 RAMPS each up to 4 players",
     "de": "Horde & Aktivität",
     "fr": "Horde & Activité",
     "it": "Orda & Attività",
@@ -1960,7 +1960,7 @@ window.MZ_CONTENT = {
     "es": "Cooperativo para dos: uno cocina, otro cultiva. El plato terminado se convierte en tu arma contra la horda."
    },
    "desc": {
-    "en": "One player cooks, the other fetches ingredients from the garden and keeps new crops growing. Once a dish is done it turns into a weapon, so you can take down the zombie horde in time.",
+    "en": "Three ramps, each up to 4 Players",
     "de": "Einer kocht, der andere holt die Zutaten aus dem Garten und sorgt für neuen Anbau. Ist ein Gericht fertig, wird es zur schlagfertigen Waffe, damit ihr die Zombie-Horde rechtzeitig umbringen könnt.",
     "fr": "Un joueur cuisine, l’autre va chercher les ingrédients au jardin et replante pour que ça continue de pousser. Une fois le plat prêt, il se transforme en arme pour éliminer la horde de zombies à temps.",
     "it": "Un giocatore cucina, l’altro prende gli ingredienti dall’orto e fa crescere nuovi raccolti. Quando un piatto è pronto diventa un’arma, così potete abbattere l’orda di zombie in tempo.",
@@ -1971,7 +1971,7 @@ window.MZ_CONTENT = {
    },
    "acts": [
     {
-     "en": "Cook dishes that become weapons",
+     "en": "2 vs 2 Player Registration by standing on the right platform before the match begins",
      "de": "Gerichte kochen, die zu Waffen werden",
      "fr": "Cuisiner des plats qui deviennent des armes",
      "it": "Cucina piatti che diventano armi",
@@ -1981,7 +1981,7 @@ window.MZ_CONTENT = {
      "es": "Cocina platos que se convierten en armas"
     },
     {
-     "en": "Harvest and replant the garden",
+     "en": "Standard Bowling Rules",
      "de": "Garten ernten und neu anbauen",
      "fr": "Récolter et replanter le jardin",
      "it": "Raccogli e ripianta l’orto",
@@ -1991,7 +1991,7 @@ window.MZ_CONTENT = {
      "es": "Cosecha y replanta el huerto"
     },
     {
-     "en": "Up to 6 players: 3 sections with 2 players each",
+     "en": "Loser/-team explodes! ^^",
      "de": "Bis zu 6 Spieler: 3 Abschnitte mit je 2 Spielern",
      "fr": "Jusqu’à 6 joueurs : 3 sections de 2 joueurs chacune",
      "it": "Fino a 6 giocatori: 3 sezioni da 2 giocatori ciascuna",
@@ -2001,7 +2001,7 @@ window.MZ_CONTENT = {
      "es": "Hasta 6 jugadores: 3 secciones de 2 jugadores cada una"
     },
     {
-     "en": "Own highscore board with player display per section",
+     "en": "Live score board for each ramp",
      "de": "Eigenes Highscore-Board mit Spieleranzeige pro Abschnitt",
      "fr": "Tableau Highscore dédié avec affichage des joueurs par section",
      "it": "Highscore board dedicato con nomi dei giocatori per sezione",
@@ -5136,7 +5136,7 @@ window.MZ_CONTENT = {
   "media-8": "images/zone-portal-20261126033626.webp",
   "zone-boxing": "images/media-1-20261126030043.webp",
   "zone-hunting": "images/hero-bg-20261126024035.webp",
-  "zone-zombies": "images/news-4-20261126020648.webp",
+  "zone-zombies": "images/zone-zombies-20261127233022.webp",
   "zone-parkour": "images/news-3.webp",
   "zone-card-boxing": "images/media-1-20261126030043.webp",
   "zone-card-hunting": "images/hero-bg-20261126024035.webp",
