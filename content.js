@@ -2363,7 +2363,11 @@ window.MZ_CONTENT = {
   "press-shot-8": "images/zone-portal-20261126033626.webp",
   "press-shot-9": "images/feat-zones-20261127023927.webp",
   "press-shot-10": "images/news-1.webp",
-  "press-shot-11": "images/news-2.webp"
+  "press-shot-11": "images/news-2.webp",
+  "press-asset-logo": "images/presskit-logo.png",
+  "press-asset-logo-web": "logo.webp",
+  "press-asset-icon": "images/press-asset-icon-20261127185456.png",
+  "press-asset-icon-h": "images/presskit-icon-h-512.png"
  },
  "voteCats": [
   {
@@ -2672,6 +2676,7 @@ window.MZ_CONTENT = {
   },
   "assets": [
    {
+    "id": "logo",
     "title": {
      "en": "Logo",
      "de": "Logo"
@@ -2680,11 +2685,11 @@ window.MZ_CONTENT = {
      "en": "PNG · transparent · 1672 × 941",
      "de": "PNG · transparent · 1672 × 941"
     },
-    "file": "images/presskit-logo.png",
     "ratio": "16/9",
     "contain": true
    },
    {
+    "id": "logo-web",
     "title": {
      "en": "Logo (web)",
      "de": "Logo (Web)"
@@ -2693,24 +2698,24 @@ window.MZ_CONTENT = {
      "en": "WEBP · transparent · 1672 × 941",
      "de": "WEBP · transparent · 1672 × 941"
     },
-    "file": "logo.webp",
     "ratio": "16/9",
     "contain": true
    },
    {
+    "id": "icon",
     "title": {
      "en": "Icon 1:1",
      "de": "Icon 1:1"
     },
     "meta": {
-     "en": "PNG · 1024 × 1024",
-     "de": "PNG · 1024 × 1024"
+     "en": "PNG · transparent · 1024 × 1024",
+     "de": "PNG · transparent · 1024 × 1024"
     },
-    "file": "images/presskit-icon-1024.png",
     "ratio": "1/1",
     "contain": false
    },
    {
+    "id": "icon-h",
     "title": {
      "en": "Icon 1:1 · Tavern H",
      "de": "Icon 1:1 · Taverne H"
@@ -2719,7 +2724,6 @@ window.MZ_CONTENT = {
      "en": "PNG · 512 × 512",
      "de": "PNG · 512 × 512"
     },
-    "file": "images/presskit-icon-h-512.png",
     "ratio": "1/1",
     "contain": false
    }

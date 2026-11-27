@@ -300,8 +300,8 @@ html[data-mob] [style*="gap: 72px"]{gap:48px!important}
   <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px">
     <sc-for list="{{ press.assets }}" as="a" hint-placeholder-count="4">
       <div style="background:#191714;border:1px solid #2c2822;border-radius:4px;overflow:hidden;display:flex;flex-direction:column">
-        <button onClick="{{ a.open }}" style="border:0;padding:0;cursor:zoom-in;aspect-ratio:4/3;background:#0d0c0a;display:flex;align-items:center;justify-content:center">
-          <img src="{{ a.file }}" alt="{{ a.title }}" style="max-width:{{ a.maxW }};max-height:{{ a.maxH }};object-fit:contain;display:block;border-radius:2px"></img>
+        <button onClick="{{ a.open }}" style="display:block;width:100%;border:0;padding:0;cursor:zoom-in;aspect-ratio:4/3;background:#0d0c0a" style-hover="filter:brightness(1.12)">
+          <div style="width:100%;height:100%;padding:{{ a.pad }};box-sizing:border-box;pointer-events:none"><image-slot id="{{ a.slot }}" src="{{ a.file }}" shape="rect" fit="contain" placeholder="{{ a.ph }}"></image-slot></div>
         </button>
         <div style="padding:14px 16px 16px;display:flex;flex-direction:column;gap:12px;flex:1">
           <div style="display:flex;flex-direction:column;gap:2px">
@@ -1129,9 +1129,11 @@ class Component extends DCLogic {
     // Screenshots live in content.images as slots press-shot-<id> (editable in the CMS); visitors only see filled ones.
     const pShots = (P.shots || []).map(s => ({ ...s, slot: 'press-shot-' + s.id, img: imgOf('press-shot-' + s.id), ph: 'Screenshot' })).filter(s => editMode || s.img);
     const pFilled = pShots.filter(s => s.img);
+    // Logos/icons = slots press-asset-<id> (the CMS stores these uploads UNCHANGED, e.g. transparent PNG); visitors see filled ones only.
+    const pAssets = (P.assets || []).map(a => ({ ...a, slot: 'press-asset-' + a.id, file: imgOf('press-asset-' + a.id), ph: 'Logo / Icon' })).filter(a => editMode || a.file);
     const pressV = { ...P,
-      assets: (P.assets || []).map(a => ({ ...a, dl: 'mordhau-zones-' + fname(a.file), maxW: a.contain ? '86%' : '70%', maxH: a.contain ? '80%' : '86%',
-        open: () => this.setState({ lb: { id: 'press-a', srcs: [a.file], i: 0, title: a.title } }) })),
+      assets: pAssets.map(a => ({ ...a, dl: 'mordhau-zones-' + fname(a.file), pad: a.contain ? '7% 7%' : '7% 15%',
+        open: () => { if (a.file) this.setState({ lb: { id: 'press-a', srcs: [a.file], i: 0, title: a.title } }); } })),
       shots: pShots.map(s => ({ ...s, dl: 'mordhau-zones-' + fname(s.img),
         open: () => { if (s.img) this.setState({ lb: { id: 'press-s', srcs: pFilled.map(x => x.img), i: Math.max(0, pFilled.indexOf(s)), title: P.title } }); } })) };
     const lbView = lb && lb.srcs && lb.srcs.length ? {
