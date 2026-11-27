@@ -5100,7 +5100,7 @@ window.MZ_CONTENT = {
   ]
  },
  "images": {
-  "logo": "images/logo-20261126031823.webp",
+  "logo": "logo-big.webp",
   "news-2": "images/news-2.webp",
   "news-1": "images/news-1.webp",
   "zone-tavern": "images/zone-card-tavern-20261126020707.webp",
@@ -5167,7 +5167,8 @@ window.MZ_CONTENT = {
   "press-shot-10": "images/news-1.webp",
   "press-shot-11": "images/news-2.webp",
   "press-asset-logo": "images/presskit-logo.png",
-  "press-asset-icon": "images/press-asset-icon-20261127185456.png"
+  "press-asset-icon": "images/press-asset-icon-20261127185456.png",
+  "logo-small": "logo-small.webp"
  },
  "voteCats": [
   {
