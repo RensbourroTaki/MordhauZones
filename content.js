@@ -2287,7 +2287,7 @@ window.MZ_CONTENT = {
   "logo": "images/logo-20261126031823.webp",
   "news-2": "images/news-2.webp",
   "news-1": "images/news-1.webp",
-  "zone-tavern": "images/zone-tavern.webp",
+  "zone-tavern": "images/zone-card-tavern-20261126020707.webp",
   "zone-portal": "images/zone-portal-20261126033626.webp",
   "news-3": "images/news-3.webp",
   "founder-0": "images/founder-0.webp",
@@ -2330,13 +2330,14 @@ window.MZ_CONTENT = {
   "bg-content": "images/hero-bg-20261126031711.webp",
   "bg-upcoming": "images/hero-bg-20261126024035.webp",
   "bg-vote": "images/news-2.webp",
-  "bg-features": "images/media-1-20261126030043.webp",
   "bg-media": "images/zone-portal-20261126033626.webp",
   "bg-news": "images/logo-20261126031823.webp",
   "bg-rules": "images/hero-bg-20261126031711.webp",
   "bg-rep": "images/news-1.webp",
   "bg-howto": "images/zone-card-tavern-20261126020707.webp",
-  "bg-about": "images/hero-bg-20261126031711.webp"
+  "bg-about": "images/hero-bg-20261126031711.webp",
+  "feat-zones": "images/feat-zones-20261127023927.webp",
+  "bg-features": "images/bg-features-20261127023941.webp"
  },
  "voteCats": [
   {
