@@ -3375,6 +3375,24 @@ window.MZ_CONTENT = {
  },
  "votes": [
   {
+   "id": "imwzhjr9i",
+   "status": "new",
+   "cat": "armor",
+   "by": "Team",
+   "date": "2026-11-27",
+   "title": {
+    "en": "Paladin RPG Set",
+    "de": "Neue Idee"
+   },
+   "desc": {
+    "en": "We own some assets on fab.com and this one is one in our fab library, I just never used it before, as it just came in because it was an free asset of the week =)<a href=\"https://www.fab.com/listings/59fb644c-2d7f-401f-ab48-4cf02dce7392\" target=\"_blank\" rel=\"noopener noreferrer\"> Check it out!</a><br><br>However, The model needs to be inspected 1st as every other, to ensure each part can be disassembled for the Mordhau body part system (cut off with armor! ;))",
+    "de": "Beschreibe die Idee in ein, zwei Sätzen."
+   },
+   "up": 0,
+   "down": 0,
+   "pics": 5
+  },
+  {
    "id": "imwxv05sf",
    "status": "new",
    "cat": "character",
@@ -5168,7 +5186,12 @@ window.MZ_CONTENT = {
   "press-shot-11": "images/news-2.webp",
   "press-asset-logo": "images/presskit-logo.png",
   "press-asset-icon": "images/press-asset-icon-20261127185456.png",
-  "logo-small": "logo-small.webp"
+  "logo-small": "logo-small.webp",
+  "vote-imwzhjr9i-1": "images/vote-imwzhjr9i-1-20261127222152.webp",
+  "vote-imwzhjr9i-2": "images/vote-imwzhjr9i-1-20261127222142.webp",
+  "vote-imwzhjr9i-3": "images/vote-imwzhjr9i-3-20261127222219.webp",
+  "vote-imwzhjr9i-4": "images/vote-imwzhjr9i-4-20261127222229.webp",
+  "vote-imwzhjr9i-5": "images/vote-imwzhjr9i-5-20261127222247.webp"
  },
  "voteCats": [
   {
