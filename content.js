@@ -2034,7 +2034,7 @@ window.MZ_CONTENT = {
   },
   {
    "key": "parkour",
-   "name": "Parkour",
+   "name": "Target Parkour",
    "col": "6 / 7",
    "row": "1 / 4",
    "pvp": "pvp",
@@ -2049,7 +2049,7 @@ window.MZ_CONTENT = {
     "es": "Death Match"
    },
    "short": {
-    "en": "Obstacles, traps and moving platforms. Free deathmatch on the course.",
+    "en": "Obstacles, traps and moving platforms. Free deathmatch on the course. For all throwable weapons. Reload ammo underway.",
     "de": "Hindernisse, Fallen und Moving Platforms. Free Deathmatch auf dem Parcours.",
     "fr": "Obstacles, pièges et plateformes mobiles. Deathmatch libre sur le parcours.",
     "it": "Ostacoli, trappole e piattaforme mobili. Deathmatch libero sul percorso.",
