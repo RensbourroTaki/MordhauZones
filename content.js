@@ -5126,13 +5126,11 @@ window.MZ_CONTENT = {
   "news-3": "images/news-3.webp",
   "founder-0": "images/founder-0.webp",
   "founder-1": "images/founder-1.webp",
-  "news-4": "images/news-4-20261126020648.webp",
   "zone-card-tavern": "images/zone-card-tavern-20261126020707.webp",
   "hero-bg": "images/hero-bg-20261126031711.webp",
   "media-1": "images/media-1-20261126030043.webp",
   "media-2": "images/zone-tavern.webp",
   "media-3": "images/hero-bg-20261126024035.webp",
-  "media-4": "images/news-4-20261126020648.webp",
   "media-8": "images/zone-portal-20261126033626.webp",
   "zone-boxing": "images/media-1-20261126030043.webp",
   "zone-hunting": "images/hero-bg-20261126024035.webp",
@@ -5140,7 +5138,6 @@ window.MZ_CONTENT = {
   "zone-parkour": "images/news-3.webp",
   "zone-card-boxing": "images/media-1-20261126030043.webp",
   "zone-card-hunting": "images/hero-bg-20261126024035.webp",
-  "zone-card-zombies": "images/news-4-20261126020648.webp",
   "zone-card-parkour": "images/news-3.webp",
   "news-0": "images/hero-bg-20261126031711.webp",
   "vote-imwxsyz8r-1": "images/vote-imwxsyz8r-1-20261126181155.webp",
@@ -5154,11 +5151,10 @@ window.MZ_CONTENT = {
   "vote-imwxunj5x-3": "images/vote-imwxunj5x-3-20261126185632.webp",
   "vote-imwxv05sf-1": "images/vote-imwxv05sf-1-20261126190556.webp",
   "vote-imwxv05sf-2": "images/vote-imwxv05sf-2-20261126190600.webp",
-  "item-ztavern-1": "images/zone-card-tavern-20261126020707.webp",
-  "item-ztavern-2": "images/zone-tavern.webp",
+  "item-ztavern-1": "images/zone-tavern.webp",
   "item-zboxing-1": "images/media-1-20261126030043.webp",
   "item-zhunting-1": "images/hero-bg-20261126024035.webp",
-  "item-zzombies-1": "images/news-4-20261126020648.webp",
+  "item-zzombies-1": "images/zone-zombies-20261127233022.webp",
   "item-zparkour-1": "images/news-3.webp",
   "item-zportal-1": "images/zone-portal-20261126033626.webp",
   "bg-content": "images/hero-bg-20261126031711.webp",
@@ -5178,7 +5174,6 @@ window.MZ_CONTENT = {
   "press-shot-3": "images/zone-tavern.webp",
   "press-shot-4": "images/media-1-20261126030043.webp",
   "press-shot-5": "images/hero-bg-20261126024035.webp",
-  "press-shot-6": "images/news-4-20261126020648.webp",
   "press-shot-7": "images/news-3.webp",
   "press-shot-8": "images/zone-portal-20261126033626.webp",
   "press-shot-9": "images/feat-zones-20261127023927.webp",
@@ -5191,7 +5186,8 @@ window.MZ_CONTENT = {
   "vote-imwzhjr9i-2": "images/vote-imwzhjr9i-1-20261127222142.webp",
   "vote-imwzhjr9i-3": "images/vote-imwzhjr9i-3-20261127222219.webp",
   "vote-imwzhjr9i-4": "images/vote-imwzhjr9i-4-20261127222229.webp",
-  "vote-imwzhjr9i-5": "images/vote-imwzhjr9i-5-20261127222247.webp"
+  "vote-imwzhjr9i-5": "images/vote-imwzhjr9i-5-20261127222247.webp",
+  "press-shot-imwzk6iv7": "images/zone-zombies-20261127233022.webp"
  },
  "voteCats": [
   {
@@ -5362,7 +5358,7 @@ window.MZ_CONTENT = {
     "ro": "Inima hărții. Barzi, muzică, zaruri și darts.",
     "es": "El corazón del mapa. Bardos, música, dados y dardos."
    },
-   "pics": 2
+   "pics": 1
   },
   {
    "id": "zboxing",
@@ -5419,7 +5415,7 @@ window.MZ_CONTENT = {
   {
    "id": "zzombies",
    "cat": "zones",
-   "name": "Cooking with Zombies",
+   "name": "BOWLING ",
    "kind": {
     "en": "Horde & Activity",
     "de": "Horde & Aktivität",
@@ -5431,7 +5427,7 @@ window.MZ_CONTENT = {
     "es": "Horda y actividad"
    },
    "desc": {
-    "en": "Co-op for two: one cooks, one gardens. The finished dish becomes your weapon against the horde.",
+    "en": "Three ramps, each for max 4 players, all-vs or 2 vs 2 teams",
     "de": "Koop zu zweit: einer kocht, einer gärtnert. Das fertige Gericht wird zur Waffe gegen die Horde.",
     "fr": "Coop à deux : l’un cuisine, l’autre jardine. Le plat terminé devient ton arme contre la horde.",
     "it": "Co-op in due: uno cucina, uno fa l’orto. Il piatto finito diventa la tua arma contro l’orda.",
@@ -6006,6 +6002,13 @@ window.MZ_CONTENT = {
      "hu": "Mordhau Zones",
      "ro": "Mordhau Zones",
      "es": "Mordhau Zones"
+    }
+   },
+   {
+    "id": "imwzk6iv7",
+    "caption": {
+     "en": "Caption",
+     "de": "Bildunterschrift"
     }
    }
   ],
